@@ -1,7 +1,7 @@
 ﻿<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <html>
 <head>
-    <title>${code.title}</title>
+    <title>${title}</title>
     <script type="text/javascript" src="${contextPath}/syntaxhighlighter/scripts/shCore.js"></script>
 	<script type="text/javascript" src="${contextPath}/syntaxhighlighter/scripts/shBrushBash.js"></script>
 	<script type="text/javascript" src="${contextPath}/syntaxhighlighter/scripts/shBrushCpp.js"></script>

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 
+import com.paladin.bean.User;
 import com.paladin.mvc.RequestContext;
 
 /**
@@ -14,8 +15,8 @@ import com.paladin.mvc.RequestContext;
  */
 public class BaseAction {
 
-	protected boolean checkUser(final RequestContext _reqCtxt) {
-		return (_reqCtxt.session().getAttribute("user") != null);
+	protected User getUserFromSession(final RequestContext _reqCtxt) {
+		return (User) _reqCtxt.session().getAttribute("user");
 	}
 
 	protected void redirect(final RequestContext _reqCtxt, final String _uri) {

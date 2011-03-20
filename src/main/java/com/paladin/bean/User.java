@@ -10,6 +10,7 @@ public class User {
 	private String email;
 	private String first_ip;
 	private String role;
+	private String profile;
 
 	public int getId() {
 		return id;
@@ -81,6 +82,14 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 
 }

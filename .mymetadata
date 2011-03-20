@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="palading"
+  name="MayFlower"
   id="myeclipse.1295761764406"
   context-root="/palading"
   j2ee-spec="5.0"
-  archive="palading.war">
+  archive="MayFlower.war">
   <attributes>
     <attribute name="webrootdir" value="WebRoot" />
   </attributes>

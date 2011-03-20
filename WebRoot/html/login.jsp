@@ -36,7 +36,7 @@
                                             </IMG>
                                         </td>
                                         <td>
-                                            <A href="#">Pmail</A>开始使用减少了垃圾邮件的全新电子信箱。
+                                            <A href="#">Pmail</A>开始使用减少了垃圾邮件的全新电子信箱(正在建设中)。
                                         </td>
                                     </tr>
                                     <tr>
@@ -45,7 +45,7 @@
                                             </IMG>
                                         </td>
                                         <td>
-                                            <A href="#">iMayFlower </A>在MayFlower 首页中添加资讯、游戏和其他更多产品。
+                                            <A href="#">iMayFlower </A>在MayFlower 首页中添加资讯、游戏和其他更多产品(正在建设中)。
                                         </td>
                                     </tr>
                                 </TBODY>
@@ -56,7 +56,8 @@
                                 <TABLE cellSpacing=0 cellPadding=1 align=center
                                     border=0>
                                         <tr>
-                                            <td align=center colSpan=2><FONT size=+0><B>用户登录</B></FONT></td>
+                                            <td align=center>&nbsp;</td>
+                                          <td align=center><font size=+0><b>用户登录</b></font></td>
                                         </tr>
                                         <tr>
                                             <td align=middle colSpan=2></td>
@@ -85,7 +86,7 @@
                                         <tr>
                                             <td height="25"></td>
                                             <td height="25" align="left">
-                                                <input id="signIn" type="button" value="登 录" name="signIn" onClick="login()"/>&nbsp;&nbsp;
+                                                <input id="signIn" type="submit" value="登 录" name="signIn"/>&nbsp;&nbsp;
                                                 <input name="reSetBtn" type="button" value="清 空" onClick='resetFm()'/>
                                             </td>
                                         </tr>
@@ -98,7 +99,7 @@
                                         </tr>
                                         -->
                                         <tr>
-                                            <td height="25" colSpan=2 align="center"><font color="#FFFFFF">${msg}</font>
+                                            <td height="25" colSpan=2 align="center"><font color="#FA0">${msg}</font>
                                             </td>
                                         </tr>
                                 </TABLE>

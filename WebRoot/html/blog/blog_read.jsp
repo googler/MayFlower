@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>${blog.title}</title>
+    <title>${title}</title>
 </head>
 <body> 
 <table width="100%" cellspacing="2">

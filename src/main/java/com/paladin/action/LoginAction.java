@@ -59,7 +59,8 @@ public class LoginAction extends BaseAction {
 		if (user == null) {// if not recorded, generate new user
 			String password = "12345";
 			sql_builder.append("INSERT INTO USER(USERNAME, PASSWORD, NICKNAME, EMAIL, REG_DATE, ");
-			sql_builder.append("LASTLOGIN_DATE, FIRST_IP, ROLE) VALUES (?, ?, ?, ?, NOW(), NOW(), ?, 'visitor')");
+			sql_builder
+					.append("LASTLOGIN_DATE, FIRST_IP, ROLE) VALUES (?, ?, ?, ?, NOW(), NOW(), ?, 'visitor')");
 			QueryHelper.update(sql_builder.toString(), new Object[] { ip, password, ip, ip, ip });
 			user = getUserByIp(ip);
 		}
@@ -81,7 +82,7 @@ public class LoginAction extends BaseAction {
 		String pwd = request.getParameter("pwd").trim();
 		User user = getUser(email, pwd);
 		if (null == user) {
-			request.setAttribute("msg", "Oops! 你输入的帐户信息有误啊:(");
+			request.setAttribute("msg", "Oops! 你输入的帐户信息有误:(");
 			forward(_reqCtxt, "/html/login.jsp");
 			return;
 		}
@@ -100,7 +101,7 @@ public class LoginAction extends BaseAction {
 	}
 
 	private User getUser(final String _email, final String _pwd) {
-		return QueryHelper.read(User.class, "SELECT * FROM USER WHERE EMAIL = ? AND PASSWORD = ?", new Object[] {
-				_email, _pwd });
+		return QueryHelper.read(User.class, "SELECT * FROM USER WHERE EMAIL = ? AND PASSWORD = ?",
+				new Object[] { _email, _pwd });
 	}
 }

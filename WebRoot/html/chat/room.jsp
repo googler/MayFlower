@@ -22,7 +22,7 @@
               <table>
                 <tr>
                   <td><input name="msg" type="search" id="msg" title="说句心里话" value=""  size="90" maxlength="2048" placeholder='说句心里话' autofocus onKeyDown="if(event.keyCode==13) sendMsg('${user.nickname}');"/></td>
-                  <td nowrap><input id="send" name="send" type="button" style="height:30px;" value="发 送" onClick="sendMsg('${user.nickname}');">(按回车键发送)</td></tr>
+                  <td nowrap><input id="send" name="send" type="button" style="height:30px;" value="  发  送  " onClick="sendMsg('${user.nickname}');">(按回车键发送)</td></tr>
               </table>
             </td></tr></table></td> 
         </tr> 
@@ -87,7 +87,6 @@
 	};
 	function sendMsg(user) {
 		if (document.getElementById('msg').value.trim() == '') {
-			alert('不要说空话哦!')
 			return false;
 		}
 		var msg = document.getElementById('msg').value;

@@ -27,9 +27,7 @@
     <table width="100%" border="0" cellspacing="0" cellpadding="2"> 
 		<tr> 
  	       <td>
-				<textarea id="content" name="content" cols="130" rows="8" style="height:600px;" placeholder='这里面输入内容哦!'>
-                	${blog.content}
-                </textarea></td>
+				<textarea id="content" name="content" cols="130" rows="8" style="height:600px;" placeholder='这里面输入内容哦!'>${blog.content}</textarea></td>
         </tr>
         <tr> 
    	      <td align="left" valign="middle">

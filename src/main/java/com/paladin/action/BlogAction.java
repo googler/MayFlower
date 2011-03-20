@@ -44,7 +44,7 @@ public class BlogAction extends BaseAction {
 	 * @return
 	 */
 	public void list(final RequestContext _reqCtxt) {
-		log.info("Get blog list.");
+		log.info("get blog list.");
 		final HttpServletRequest request = _reqCtxt.request();
 		// 当前页面
 		String current_page = request.getParameter("c_page");
@@ -63,12 +63,15 @@ public class BlogAction extends BaseAction {
 	 * 打开文章详细内容
 	 */
 	public void read(final RequestContext _reqCtxt, final long _id) throws ServletException, IOException {
+		log.info("get blog detail, the id = " + _id);
+
 		String sql = "SELECT * FROM BLOG WHERE ID = ?";
 		Blog blog = QueryHelper.read(Blog.class, sql, new Object[] { _id });
 		final HttpServletRequest request = _reqCtxt.request();
-		
+
 		String q = request.getParameter("q");
 		if (StringUtils.isNotEmpty(q)) {
+			request.setAttribute("title", blog.getTitle());
 			dealBlogWhenQ(blog, q);
 			request.setAttribute("q", q);
 		}
@@ -80,6 +83,8 @@ public class BlogAction extends BaseAction {
 	 * 转到编辑页面
 	 */
 	public void edit(final RequestContext _reqCtxt, final long _id) {
+		log.info("get read to edit blog-" + _id);
+
 		String sql = "SELECT * FROM BLOG WHERE ID = ?";
 		Blog blog = QueryHelper.read(Blog.class, sql, new Object[] { _id });
 		_reqCtxt.request().setAttribute("blog", blog);
@@ -92,6 +97,7 @@ public class BlogAction extends BaseAction {
 	 * @return
 	 */
 	public void toAdd(final RequestContext _reqCtxt) {
+		log.info("to add a new blog");
 		forward(_reqCtxt, "/html/blog/blog_edit.jsp");
 	}
 
@@ -110,10 +116,12 @@ public class BlogAction extends BaseAction {
 		if (Tools.isNullString(id)) {// 添加新文章
 			String sql = "INSERT INTO BLOG(TITLE, CONTENT, AUTHOR, CREATE_DATE, TAG) VALUES(?, ?, ?, now(), ?)";
 			QueryHelper.update(sql, new Object[] { title, content.toString(), "erhu", tag });
+			log.info("add blog success");
 			redirect(_reqCtxt, "/blog");
 		} else {// 修改文章
 			String sql = "UPDATE BLOG SET TITLE = ?, CONTENT = ?, TAG = ?, LASTMODIFY_DATE = NOW() WHERE ID = ?";
 			QueryHelper.update(sql, new Object[] { title, content.toString(), tag, id });
+			log.info("update blog success");
 			redirect(_reqCtxt, "/blog/read/" + id);
 		}
 	}
@@ -124,10 +132,12 @@ public class BlogAction extends BaseAction {
 	public void del(final RequestContext _reqCtxt) {
 		final HttpServletRequest request = _reqCtxt.request();
 		String id = request.getParameter("id");
+		log.info("delete blog-" + id);
 		String sql = "DELETE FROM BLOG WHERE ID = ?";
 		QueryHelper.update(sql, new Object[] { id });
 		redirect(_reqCtxt, "/blog");
 	}
+
 	private void dealBlogWhenQ(Blog _blog, String _q) {
 		try {
 			_q = new String(_q.getBytes("ISO-8859-1"), "UTF-8").replaceAll("<[^>]*>", "");
@@ -142,6 +152,7 @@ public class BlogAction extends BaseAction {
 		String content = _blog.getContent();
 		_blog.setContent(content.replace(_q, "<span style='background-color:#f00;'>" + _q + "</span>"));
 	}
+
 	/**
 	 * init
 	 * 

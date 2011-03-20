@@ -36,6 +36,7 @@ public class CodeAction extends BaseAction {
 	 * @return
 	 */
 	public void list(final RequestContext _reqCtxt) {
+		log.info("get code list.");
 		final HttpServletRequest request = _reqCtxt.request();
 		// 当前页面
 		String current_page = request.getParameter("c_page");
@@ -54,6 +55,8 @@ public class CodeAction extends BaseAction {
 	 * 打开代码详细内容
 	 */
 	public void read(final RequestContext _reqCtxt, final long _id) throws ServletException, IOException {
+		log.info("get code detail, the id = " + _id);
+
 		String sql = "SELECT * FROM CODE WHERE ID = ?";
 		Code code = QueryHelper.read(Code.class, sql, new Object[] { _id });
 		final HttpServletRequest request = _reqCtxt.request();
@@ -62,6 +65,7 @@ public class CodeAction extends BaseAction {
 		if (StringUtils.isNotEmpty(q)) {
 			q = new String(q.getBytes("ISO-8859-1"), "UTF-8").replaceAll("<[^>]*>", "");
 			String title = code.getTitle().trim();
+			request.setAttribute("title", code.getTitle());
 			if (title.indexOf(q) >= 0) {
 				title = title.replaceAll(q, "<span style='background-color:#f00;'>" + q + "</span>");
 			}
@@ -76,6 +80,8 @@ public class CodeAction extends BaseAction {
 	 * 转到编辑页面
 	 */
 	public void edit(final RequestContext _reqCtxt, final long _id) {
+		log.info("get read to edit code-" + _id);
+
 		String sql = "SELECT * FROM CODE WHERE ID = ?";
 		Code code = QueryHelper.read(Code.class, sql, new Object[] { _id });
 		_reqCtxt.request().setAttribute("code", code);
@@ -88,6 +94,7 @@ public class CodeAction extends BaseAction {
 	 * @return
 	 */
 	public void toAdd(final RequestContext _reqCtxt) {
+		log.info("to add a new code");
 		forward(_reqCtxt, "/html/code/code_edit.jsp");
 	}
 
@@ -107,10 +114,12 @@ public class CodeAction extends BaseAction {
 		if (Tools.isNullString(id)) {// 添加新代码
 			String sql = "INSERT INTO CODE(TITLE, CONTENT, AUTHOR, CREATE_DATE, TAG, LANGUAGE) VALUES(?, ?, ?, now(), ?, ?)";
 			QueryHelper.update(sql, new Object[] { title, content.toString(), "erhu", tag, language });
+			log.info("add new code success");
 			redirect(_reqCtxt, "/code");
 		} else {// 修改代码
 			String sql = "UPDATE CODE SET TITLE = ?, CONTENT = ?, TAG = ?, LASTMODIFY_DATE = NOW(), LANGUAGE = ? WHERE ID = ?";
 			QueryHelper.update(sql, new Object[] { title, content.toString(), tag, language, id });
+			log.info("update code success");
 			redirect(_reqCtxt, "/code/read/" + id);
 		}
 	}
@@ -121,6 +130,7 @@ public class CodeAction extends BaseAction {
 	public void del(final RequestContext _reqCtxt) {
 		final HttpServletRequest request = _reqCtxt.request();
 		String id = request.getParameter("id");
+		log.info("delete code-" + id);
 		String sql = "DELETE FROM CODE WHERE ID = ?";
 		QueryHelper.update(sql, new Object[] { id });
 		redirect(_reqCtxt, "/code");

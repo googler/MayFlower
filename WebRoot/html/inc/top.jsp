@@ -20,10 +20,10 @@
     </div>
     <div id=guser><nobr><font color="#FFFF00">奋斗改变命运，梦想让我们与众不同! </font>| 
     	<c:if test='${empty user}'>
-                <a href="${contextPath}/login/auto" class='gb4'>登录</a>
+                <a href="${contextPath}/login" class='gb4'>登录</a>
 		</c:if>
         <c:if test='${!(empty user)}'>
-                Welcome <a href="" title="${user.email}">${user.nickname}</a>&nbsp;|&nbsp;
+                欢迎 <a href="${contextPath}/admin" title="${user.email}">${user.nickname}</a>&nbsp;|&nbsp;
                 <a href="${contextPath}/login/exit" class='gb4'>退出</a>
         </c:if>
         &nbsp;&nbsp;</nobr>
