@@ -1,0 +1,36 @@
+/**
+	 * init polledDataSouce by c3p0
+	 * 
+	 * @param props
+	 * @param show_sql
+	 */
+	/*private static final void initDataSourceC3p0() {
+		try {
+			Properties _dbProperties = new Properties();
+			_dbProperties.load(DBManager.class.getResourceAsStream("db.properties"));
+
+			Properties cp_props = new Properties();
+			for (Object key : _dbProperties.keySet()) {
+				String skey = (String) key;
+				if (skey.startsWith("jdbc.")) {
+					String flag = skey.substring(5);
+					cp_props.put(flag, _dbProperties.getProperty(skey));
+					if ("show_sql".equalsIgnoreCase(flag)) {
+						show_sql = "true".equalsIgnoreCase(_dbProperties.getProperty(skey));
+					}
+				}
+			}
+			dataSource = DataSources.pooledDataSource(DataSources.unpooledDataSource(cp_props
+					.getProperty("url"), cp_props.getProperty("username"), cp_props.getProperty("password")));
+			log.info("Using DataSource : " + dataSource.getClass().getName());
+			BeanUtils.populate(dataSource, cp_props);
+
+			Connection conn = getConnection();
+			DatabaseMetaData mdm = conn.getMetaData();
+			log.info("Connected to " + mdm.getDatabaseProductName() + " " + mdm.getDatabaseProductVersion());
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeConnection();
+		}
+	}*/
