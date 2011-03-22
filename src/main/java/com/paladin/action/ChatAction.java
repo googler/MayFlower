@@ -14,7 +14,7 @@ public class ChatAction extends BaseAction {
 		if (_reqCtxt.session().getAttribute("user") != null) {
 			forward(_reqCtxt, "/html/chat/room.jsp");
 		} else {
-			redirect(_reqCtxt, "/login/auto");
+			forward(_reqCtxt, "/login?r=/chat");
 		}
 	}
 }

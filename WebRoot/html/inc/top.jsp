@@ -1,4 +1,6 @@
 ﻿<%@ page contentType="text/html;charset=UTF-8"%>
+<form action="${contextPath}/login" id="l_fm" method="get">
+<input type="hidden" name="r"/>
 <div>
 	<div id=gbar><nobr>&nbsp;&nbsp;<a href="${contextPath}/" class=gb1>主页</a>&nbsp;&nbsp;
             <a href="${contextPath}/blog" class=gb1>博文</a>
@@ -20,7 +22,7 @@
     </div>
     <div id=guser><nobr><font color="#FFFF00">奋斗改变命运，梦想让我们与众不同! </font>| 
     	<c:if test='${empty user}'>
-                <a href="${contextPath}/login" class='gb4'>登录</a>
+                <a onclick="toLogin()" href="#" class='gb4'>登录</a>
 		</c:if>
         <c:if test='${!(empty user)}'>
                 欢迎 <a href="${contextPath}/admin" title="${user.email}">${user.nickname}</a>&nbsp;|&nbsp;
@@ -31,4 +33,10 @@
     <div class=gbh style='left:0;'></div> 
     <div class=gbh style='right:0;'></div> 
 </div>
-
+<script>
+	function toLogin() {
+		document.getElementById('l_fm').r.value=window.location;
+		document.getElementById('l_fm').submit();
+	}
+</script>
+</form>

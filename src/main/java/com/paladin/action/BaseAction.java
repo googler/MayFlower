@@ -2,7 +2,11 @@ package com.paladin.action;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.paladin.bean.User;
 import com.paladin.mvc.RequestContext;
@@ -14,6 +18,8 @@ import com.paladin.mvc.RequestContext;
  * @since Mar 9th, 2011
  */
 public class BaseAction {
+
+	public static Log log = LogFactory.getLog(BaseAction.class);
 
 	protected User getUserFromSession(final RequestContext _reqCtxt) {
 		return (User) _reqCtxt.session().getAttribute("user");
@@ -35,5 +41,14 @@ public class BaseAction {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * init
+	 * 
+	 * @param _ctxt
+	 */
+	public void init(ServletContext _ctxt) {
+		log.info(this.getClass().getName() + " init...");
 	}
 }

@@ -1,11 +1,8 @@
 package com.paladin.common;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import com.paladin.bean.Blog;
 
 public class Tools {
 	/**
@@ -68,7 +65,7 @@ public class Tools {
 	}
 
 	/** check tag */
-	public static String checkTag(String _tags, final String _type) {
+	public static String checkTag(String _tags) {
 		// 替换全角逗号分隔符
 		_tags = _tags.replace("，", ",");
 		// 删除重复的tag
@@ -78,19 +75,11 @@ public class Tools {
 			if (!Tools.isNullString(_tag) && !tag_list.contains(_tag))
 				tag_list.add(_tag);
 		}
-		if (!tag_list.contains(_type))
-			tag_list.add(_type);
 		String tag = Arrays.toString((Object[]) tag_list.toArray());
 		return tag.substring(1, tag.length() - 1);
 	}
 	
 	public static void main(String[] args) {
-		List<String> list = new ArrayList<String>();
-		list.add("goo luck");
-		list.add("nice");
-		System.out.println(list.contains("nice"));
-		list.add(null);
-		list.add(list.contains("nice") ? null : "nice");
-		System.out.println(list.size());
+
 	}
 }

@@ -1,5 +1,8 @@
 package com.paladin.action;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
@@ -29,7 +32,7 @@ public class AdminAction extends BaseAction {
 		if (user != null) {
 			forward(_reqCtxt, "/html/admin/user_info.jsp");
 		} else {
-			redirect(_reqCtxt, "/login/auto");
+			redirect(_reqCtxt, "/login");
 		}
 	}
 
@@ -41,6 +44,30 @@ public class AdminAction extends BaseAction {
 	 */
 	public void userinfo(final RequestContext _reqCtxt, final String _userid) {
 
+	}
+
+	/**
+	 * 查看服务器信息
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void sysinfo(final RequestContext _reqCtxt) {
+		HttpServletRequest req = _reqCtxt.request();
+		Map<String, Object> sysProperties = new TreeMap(System.getProperties());
+		Map<String, String> env = new TreeMap<String, String>(System.getenv());
+
+		Runtime r = Runtime.getRuntime();
+
+		long maxMemory = r.maxMemory() / 1024000L;
+		long freeMemory = r.freeMemory() / 1024000L;
+		int processorNum = r.availableProcessors();
+
+		req.setAttribute("sysProperties", sysProperties);
+		req.setAttribute("env", env);
+
+		req.setAttribute("maxMemory", Long.valueOf(maxMemory));
+		req.setAttribute("freeMemory", Long.valueOf(freeMemory));
+		req.setAttribute("processorNum", Integer.valueOf(processorNum));
+		forward(_reqCtxt, "/html/admin/sys_info.jsp");
 	}
 
 	/**

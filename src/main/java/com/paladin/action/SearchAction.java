@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
@@ -62,7 +63,8 @@ public class SearchAction extends BaseAction {
 					if (!blog_list.contains(b)) {
 						String title = b.getTitle().trim();
 						if (title.indexOf(q) >= 0)
-							title = title.replaceAll(q, "<span style='background-color:#f00;'>" + q + "</span>");
+							title = title.replaceAll(q, "<span style='background-color:#f00;'>" + q
+									+ "</span>");
 						b.setTitle(title);
 
 						String content = b.getContent();
@@ -73,7 +75,8 @@ public class SearchAction extends BaseAction {
 							content = content.substring(first_index, last_index + q.length() + 1);
 						if (content.length() > 1200)
 							content = content.substring(0, 1200);
-						b.setContent(content.replace(q, "<span style='background-color:#f00;'>" + q + "</span>"));
+						b.setContent(content.replace(q, "<span style='background-color:#f00;'>" + q
+								+ "</span>"));
 						blog_list.add(b);
 					}
 				}
@@ -86,7 +89,8 @@ public class SearchAction extends BaseAction {
 					if (!code_list.contains(c)) {
 						String title = c.getTitle().trim();
 						if (title.indexOf(q) >= 0)
-							title = title.replaceAll(q, "<span style='background-color:#f00;'>" + q + "</span>");
+							title = title.replaceAll(q, "<span style='background-color:#f00;'>" + q
+									+ "</span>");
 						c.setTitle(title);
 
 						String content = c.getContent();
@@ -97,7 +101,8 @@ public class SearchAction extends BaseAction {
 							content = content.substring(first_index, last_index + q.length() + 1);
 						if (content.length() > 1200)
 							content = content.substring(0, 1200);
-						c.setContent(content.replace(q, "<span style='background-color:#f00;'>" + q + "</span>"));
+						c.setContent(content.replace(q, "<span style='background-color:#f00;'>" + q
+								+ "</span>"));
 						code_list.add(c);
 					}
 				}
@@ -116,7 +121,7 @@ public class SearchAction extends BaseAction {
 	 * search file
 	 * 
 	 * @param _reqCtxt
-	 * @throws UnsupportedEncodingException 
+	 * @throws UnsupportedEncodingException
 	 */
 	public void f(final RequestContext _reqCtxt) throws UnsupportedEncodingException {
 		List<HFile> file_list = new ArrayList<HFile>();
@@ -148,14 +153,5 @@ public class SearchAction extends BaseAction {
 		log.info("get file:" + file_list.size());
 		request.setAttribute("file_list", file_list);
 		forward(_reqCtxt, "/html/search/search_f.jsp");
-	}
-
-	/**
-	 * search blog, file, code
-	 * 
-	 * @param _reqCtxt
-	 */
-	public void s(final RequestContext _reqCtxt) {
-
 	}
 }

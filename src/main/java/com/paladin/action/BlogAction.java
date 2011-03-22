@@ -2,6 +2,7 @@ package com.paladin.action;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import com.paladin.bean.Blog;
 import com.paladin.common.Constants;
 import com.paladin.common.Tools;
 import com.paladin.mvc.RequestContext;
+import com.paladin.sys.db.DBManager;
 import com.paladin.sys.db.QueryHelper;
 
 /**
@@ -74,6 +76,7 @@ public class BlogAction extends BaseAction {
 			request.setAttribute("title", blog.getTitle());
 			dealBlogWhenQ(blog, q);
 			request.setAttribute("q", q);
+			request.setAttribute("tags", blog.getTag().split(","));
 		}
 		request.setAttribute("blog", blog);
 		forward(_reqCtxt, "/html/blog/blog_read.jsp");
@@ -111,7 +114,7 @@ public class BlogAction extends BaseAction {
 		// 对于长字符串，一定要用StringBuilder，否则调试起来太费劲了！
 		StringBuilder content = new StringBuilder();
 		content.append(request.getParameter("content").trim());
-		String tag = Tools.checkTag(request.getParameter("tag").trim(), "博文");
+		String tag = Tools.checkTag(request.getParameter("tag").trim());
 
 		if (Tools.isNullString(id)) {// 添加新文章
 			String sql = "INSERT INTO BLOG(TITLE, CONTENT, AUTHOR, CREATE_DATE, TAG) VALUES(?, ?, ?, now(), ?)";
@@ -131,6 +134,9 @@ public class BlogAction extends BaseAction {
 	 */
 	public void del(final RequestContext _reqCtxt) {
 		final HttpServletRequest request = _reqCtxt.request();
+		if (_reqCtxt.session().getAttribute("user") == null)
+			forward(_reqCtxt, "/login");
+
 		String id = request.getParameter("id");
 		log.info("delete blog-" + id);
 		String sql = "DELETE FROM BLOG WHERE ID = ?";
@@ -159,6 +165,12 @@ public class BlogAction extends BaseAction {
 	 * @param _ctxt
 	 */
 	public void init(ServletContext _ctxt) {
-		log.info("BlogAction init...");
+		super.init(_ctxt);
+		try {
+			DBManager.getConnection();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		DBManager.closeConnection();
 	}
 }

@@ -12,7 +12,9 @@
 	<tr> 
     	<td align="right" valign="middle" class="border_bottom_green" style="color:#CCC" height="20">
     		※&nbsp;<a href="#">${blog.author}</a>&nbsp;发布于&nbsp;<time dateteime='${blog.create_date}' pubdate>${blog.create_date}</time>&nbsp;※&nbsp;
-     		<a href="#">${blog.tag}</a>,&nbsp;※&nbsp;
+     		<c:forEach items='${tags}' var='tag'> 
+     			<a href="#">${tag}</a>,&nbsp;※&nbsp;
+     		</c:forEach>
             <c:if test='${user.role == "admin"}'>
             	<a href="${contextPath}/blog/edit/${blog.id}">编辑</a>&nbsp;※&nbsp;
             </c:if>

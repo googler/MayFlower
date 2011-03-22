@@ -53,6 +53,7 @@
                         </td>
                         <td style="PADDING-LEFT: 10px" vAlign=middle align=middle>
                             <form id="loginFm" name="loginFm" action="${contextPath}/login/doLogin" method="post">
+                            	<input type="hidden" name="r" value="${r}" />
                                 <TABLE cellSpacing=0 cellPadding=1 align=center
                                     border=0>
                                         <tr>
@@ -65,7 +66,7 @@
                                         <tr id=email-row>
                                           <td height="25" align="right" noWrap>电子邮件：</td>
                                             <td height="25" align="left">
-                                                <input type="email" class="val" id="email" size="22" name="email" value="${user.username}">
+                                                <input type="email" class="val" id="email" size="22" name="email" value="${user.username}" autofocus>
                                             </td>
                                         </tr>
                                         <tr class=enabled id=password-row>

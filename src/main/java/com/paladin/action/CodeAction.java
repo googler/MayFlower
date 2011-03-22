@@ -2,7 +2,6 @@ package com.paladin.action;
 
 import java.io.IOException;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
@@ -108,7 +107,7 @@ public class CodeAction extends BaseAction {
 		// 对于长字符串，一定要用StringBuilder，否则调试起来太费劲了！
 		StringBuilder content = new StringBuilder();
 		content.append(request.getParameter("content").trim());
-		String tag = Tools.checkTag(request.getParameter("tag").trim(), "代码");
+		String tag = Tools.checkTag(request.getParameter("tag").trim());
 		String language = request.getParameter("language").trim();
 
 		if (Tools.isNullString(id)) {// 添加新代码
@@ -134,14 +133,5 @@ public class CodeAction extends BaseAction {
 		String sql = "DELETE FROM CODE WHERE ID = ?";
 		QueryHelper.update(sql, new Object[] { id });
 		redirect(_reqCtxt, "/code");
-	}
-
-	/**
-	 * init
-	 * 
-	 * @param _ctxt
-	 */
-	public void init(ServletContext _ctxt) {
-		log.info("CodeAction init...");
 	}
 }

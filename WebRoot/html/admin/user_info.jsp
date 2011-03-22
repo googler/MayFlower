@@ -37,7 +37,6 @@
         <td align="left" valign="middle">
           <input type="submit" value=" 保  存 "/>
           &nbsp;&nbsp;
-          <input type="button" onClick="history.go(-1)" value=" 取  消 "/>
           <font color="#FA0">${msg}</font></td>
       </tr>
     </table>

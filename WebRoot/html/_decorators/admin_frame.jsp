@@ -32,13 +32,17 @@
         </tr> 
         <tr> 
           <td valign="top" class="border_right_green"><table width="100%"  border="0" cellpadding="0" cellspacing="0">
+              <c:if test='${user.role == "admin"}'>
+                  <tr>
+                      <td align="center">&nbsp;</td>	
+                      <td height="31" colspan="2" align="left">
+                          <a href="${contextPath}/admin/sysinfo">系统信息</a>
+                      </td>   
+                  </tr>
+              </c:if>
               <tr>
-				<td width="26%" align="center">&nbsp;</td>
-				<td width="74%" height="31" align="left"><a href="${contextPath}/admin">用户信息</a></td>
-              </tr>
-              <tr >
-              	  <td align="center" class="border_bottom_green">&nbsp;</td>	
-                  <td height="31" colspan="2" align="left" class="border_bottom_green"></td>
+				<td width="26%" align="center" class="border_bottom_green">&nbsp;</td>
+				<td width="74%" height="31" align="left" class="border_bottom_green"><a href="${contextPath}/admin">帐户信息</a></td>
               </tr>
               <tr>
                 <td colspan="3" align="center">&nbsp;</td>

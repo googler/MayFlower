@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -39,8 +40,10 @@ public class LoginAction extends BaseAction {
 	public void index(final RequestContext _reqCtxt) {
 		final HttpServletRequest request = _reqCtxt.request();
 		String ip = RequestUtils.getRemoteAddress(request);
+		String r = request.getParameter("r");
 		log.info("Hi, someone from " + ip + " get ready to login!");
 		_reqCtxt.session().removeAttribute("user");
+		request.setAttribute("r", r);
 		forward(_reqCtxt, "/html/login.jsp");
 	}
 
@@ -81,13 +84,18 @@ public class LoginAction extends BaseAction {
 		String email = request.getParameter("email").trim();
 		String pwd = request.getParameter("pwd").trim();
 		User user = getUser(email, pwd);
+
 		if (null == user) {
 			request.setAttribute("msg", "Oops! 你输入的帐户信息有误:(");
 			forward(_reqCtxt, "/html/login.jsp");
 			return;
 		}
 		session.setAttribute("user", user);
-		redirect(_reqCtxt, "/");
+		String r = request.getParameter("r");
+		if (StringUtils.isEmpty(r))
+			redirect(_reqCtxt, "/");
+		else
+			redirect(_reqCtxt, r);
 	}
 
 	public void exit(final RequestContext _reqCtxt) {
