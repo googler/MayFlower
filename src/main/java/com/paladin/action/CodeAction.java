@@ -5,10 +5,10 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.google.common.base.Strings;
 import com.paladin.bean.Code;
 import com.paladin.common.Constants;
 import com.paladin.common.Tools;
@@ -59,12 +59,13 @@ public class CodeAction extends BaseAction {
 		String sql = "SELECT * FROM CODE WHERE ID = ?";
 		Code code = QueryHelper.read(Code.class, sql, new Object[] { _id });
 		final HttpServletRequest request = _reqCtxt.request();
+		request.setAttribute("title", code.getTitle());
+		request.setAttribute("tags", code.getTag().split(","));
 
-		String q = request.getParameter("q");
-		if (StringUtils.isNotEmpty(q)) {
+		if (Strings.isNullOrEmpty(request.getParameter("q"))) {
+			String q = request.getParameter("q");
 			q = new String(q.getBytes("ISO-8859-1"), "UTF-8").replaceAll("<[^>]*>", "");
 			String title = code.getTitle().trim();
-			request.setAttribute("title", code.getTitle());
 			if (title.indexOf(q) >= 0) {
 				title = title.replaceAll(q, "<span style='background-color:#f00;'>" + q + "</span>");
 			}
@@ -72,6 +73,9 @@ public class CodeAction extends BaseAction {
 			request.setAttribute("q", q);
 		}
 		request.setAttribute("code", code);
+		// --------------------------------hits++
+		sql = "UPDATE CODE SET HITS = (HITS + 1) WHERE ID = ?";
+		QueryHelper.update(sql, _id);
 		forward(_reqCtxt, "/html/code/code_read.jsp");
 	}
 
@@ -111,7 +115,7 @@ public class CodeAction extends BaseAction {
 		String language = request.getParameter("language").trim();
 
 		if (Tools.isNullString(id)) {// 添加新代码
-			String sql = "INSERT INTO CODE(TITLE, CONTENT, AUTHOR, CREATE_DATE, TAG, LANGUAGE) VALUES(?, ?, ?, now(), ?, ?)";
+			String sql = "INSERT INTO CODE(TITLE, CONTENT, AUTHOR, CREATE_DATE, TAG, LANGUAGE, HITS) VALUES(?, ?, ?, now(), ?, ?, 1)";
 			QueryHelper.update(sql, new Object[] { title, content.toString(), "erhu", tag, language });
 			log.info("add new code success");
 			redirect(_reqCtxt, "/code");

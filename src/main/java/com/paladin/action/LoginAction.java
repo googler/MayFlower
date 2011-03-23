@@ -5,10 +5,10 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.google.common.base.Strings;
 import com.paladin.bean.User;
 import com.paladin.common.RequestUtils;
 import com.paladin.mvc.RequestContext;
@@ -92,7 +92,7 @@ public class LoginAction extends BaseAction {
 		}
 		session.setAttribute("user", user);
 		String r = request.getParameter("r");
-		if (StringUtils.isEmpty(r))
+		if (Strings.isBlank(r))
 			redirect(_reqCtxt, "/");
 		else
 			redirect(_reqCtxt, r);

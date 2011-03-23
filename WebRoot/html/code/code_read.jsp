@@ -34,13 +34,16 @@
         <td align="center" style="font-size:20px;height:34px;"><b>${code.title}</b></td> 
     </tr>
     <tr> 
-        <td align="right" valign="middle" class="border_bottom_green" style=" color:#CCC">
-            ※&nbsp;<a href="#">${code.author}</a>&nbsp;发布于&nbsp;${code.create_date}&nbsp;※&nbsp;
-            <a href="#">${code.tag}</a>&nbsp;※&nbsp;
+        <td align="right" valign="middle" class="border_bottom_green" style="color:#CCC" height="20">
+    		※&nbsp;<a href="#">${code.author}</a>&nbsp;发布于&nbsp;<time dateteime='${code.create_date}' pubdate>${code.create_date}</time>&nbsp;※&nbsp;
+     		<c:forEach items='${tags}' var='tag'> 
+     			<a href="#">${tag}</a>,
+     		</c:forEach>&nbsp;※
             <c:if test='${user.role == "admin"}'>
             	<a href="${contextPath}/code/edit/${code.id}">编辑</a>&nbsp;※
-            </c:if>&nbsp;
-        </td> 
+            </c:if>
+			[${code.hits}]
+    	</td> 
     </tr>
     <tr> 
         <td align="left"><pre class="brush: ${code.language};">${code.content}</pre></td> 

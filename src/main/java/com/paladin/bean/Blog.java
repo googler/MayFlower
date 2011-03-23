@@ -11,6 +11,7 @@ public class Blog {
 	protected String author;
 	protected Date create_date;
 	protected String tag;
+	protected String hits;
 
 	public int getId() {
 		return id;
@@ -61,6 +62,14 @@ public class Blog {
 		this.tag = tag;
 	}
 
+	public String getHits() {
+		return hits;
+	}
+
+	public void setHits(String hits) {
+		this.hits = hits;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		Blog tf = (Blog) obj;
@@ -71,4 +80,5 @@ public class Blog {
 	public int hashCode() {
 		return (this.id + "").hashCode();
 	}
+
 }

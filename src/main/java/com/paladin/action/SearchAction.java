@@ -56,7 +56,7 @@ public class SearchAction extends BaseAction {
 
 			// search from blog
 			StringBuilder sqlB = new StringBuilder();
-			sqlB.append("SELECT * FROM BLOG WHERE TITLE LIKE ? OR CONTENT LIKE ?");
+			sqlB.append("SELECT * FROM BLOG WHERE TITLE LIKE ? OR CONTENT LIKE ? ORDER BY HITS DESC");
 
 			for (String qq : q_arr) {
 				for (Blog b : QueryHelper.query(Blog.class, sqlB.toString(), new Object[] { qq, qq })) {
@@ -83,7 +83,7 @@ public class SearchAction extends BaseAction {
 			}
 			sqlB.setLength(0);
 			// search form code
-			sqlB.append("SELECT * FROM CODE WHERE TITLE LIKE ? OR CONTENT LIKE ? OR TAG LIKE ?");
+			sqlB.append("SELECT * FROM CODE WHERE TITLE LIKE ? OR CONTENT LIKE ? OR TAG LIKE ? ORDER BY HITS DESC");
 			for (String qq : q_arr) {
 				for (Code c : QueryHelper.query(Code.class, sqlB.toString(), new Object[] { qq, qq, qq })) {
 					if (!code_list.contains(c)) {

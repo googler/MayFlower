@@ -19,6 +19,8 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.google.common.base.Strings;
+
 /**
  * 业务处理方法入口，URI的映射逻辑： /action/xxxxxx/xxxx ->
  * com.dlog4j.action.XxxxxxAction.xxxx(req,res)
@@ -85,13 +87,15 @@ public final class ActionServlet extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
+			IOException {
 		RequestContext.begin(getServletContext(), req, resp);
 		process(RequestContext.get(), false);
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
+			IOException {
 		RequestContext.begin(getServletContext(), req, resp);
 		process(RequestContext.get(), true);
 	}
@@ -111,7 +115,7 @@ public final class ActionServlet extends HttpServlet {
 			_reqCtxt.response().setContentType("text/html;charset=utf-8");
 			if (!doProcess(_reqCtxt, _is_post)) {// failed to doProcess
 				String gp = _reqCtxt.param(GOTO_PAGE);
-				if (StringUtils.isNotBlank(gp))
+				if (!Strings.isBlank(gp))
 					_reqCtxt.redirect(gp);
 			}
 		} catch (InvocationTargetException e) {

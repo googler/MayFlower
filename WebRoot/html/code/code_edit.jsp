@@ -13,7 +13,7 @@
                 标签：
                 <input style="height:30px; " name="tag" type="text" size="30" maxlength="60" value="${code.tag}"  placeholder='这里写标签哈'/>*&nbsp;&nbsp;
                 语言：
-                <select name="language" style="height:25px; background-color:#CCC; width:120px;">
+                <select name="language" style="height:25px;width:120px;">
                     <option value="${code.language}">${code.language}</option>
                     <option value="java">java</option>
                     <option value="scala">scala</option>
@@ -25,7 +25,7 @@
             </td> 
         </tr>
         <tr> 
-        	<td><textarea cols="150" id="content" name="content" rows="16" placeholder='把你得意的代码贴在此处吧'>${code.content}</textarea><br>请粘贴你的代码</td> 
+        	<td><textarea cols="130" id="content" name="content" rows="16" placeholder='把你得意的代码贴在此处吧'>${code.content}</textarea><br>请粘贴你的代码</td> 
         </tr>
         <tr> 
 	        <td valign="middle"><input style="height:30px;" name="svBtn" type="button" onClick="save()" value="保 存"></td> 
