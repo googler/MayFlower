@@ -22,7 +22,7 @@
                       </td> 
                       <c:if test='${user.role == "admin"}'>
                           <td align="center" nowrap class="border_bottom_green_dotted">
-                            <a href="#" onClick="onDel(${file.id});">删除</a>
+                            <a href="#">删除</a>
                           </td> 
                       </c:if>
                   </form>

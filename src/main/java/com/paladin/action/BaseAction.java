@@ -17,12 +17,14 @@ import com.paladin.mvc.RequestContext;
  * @author Erhu
  * @since Mar 9th, 2011
  */
-public class BaseAction {
+public abstract class BaseAction {
 
 	public static Log log = LogFactory.getLog(BaseAction.class);
 
+	protected abstract void index(final RequestContext _reqCtxt);
+
 	protected User getUserFromSession(final RequestContext _reqCtxt) {
-		return (User) _reqCtxt.session().getAttribute("user");
+		return (User) _reqCtxt.sessionAttr("user");
 	}
 
 	protected void redirect(final RequestContext _reqCtxt, final String _uri) {

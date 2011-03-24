@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -142,8 +143,9 @@ public final class ActionServlet extends HttpServlet {
 	 */
 	private boolean doProcess(RequestContext _reqCtxt, boolean is_post) throws InstantiationException,
 			IllegalAccessException, IOException, IllegalArgumentException, InvocationTargetException {
+		String url = _DecodeURL(_reqCtxt.uri(), "UTF-8");
 		// split uri
-		String[] parts = StringUtils.split(_reqCtxt.uri(), '/');
+		String[] parts = StringUtils.split(url, '/');
 		if (parts.length < 1) {
 			_reqCtxt.not_found();
 			return false;
@@ -170,7 +172,8 @@ public final class ActionServlet extends HttpServlet {
 			method_of_action.invoke(action, _reqCtxt);
 			break;
 		case 2:// read(RequestContext, id)
-			method_of_action.invoke(action, _reqCtxt, NumberUtils.toLong(parts[2], -1L));
+			boolean isLong = method_of_action.getParameterTypes()[1].equals(long.class);
+			method_of_action.invoke(action, _reqCtxt, isLong ? NumberUtils.toLong(parts[2], -1L) : parts[2]);
 			break;
 		case 3:// search(RequestContext, id, q)
 				// method_of_action.invoke(action, _reqCtxt,
@@ -250,5 +253,22 @@ public final class ActionServlet extends HttpServlet {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * URL解码
+	 * 
+	 * @param url
+	 * @param charset
+	 * @return
+	 */
+	public static String _DecodeURL(String url, String charset) {
+		if (StringUtils.isEmpty(url))
+			return "";
+		try {
+			return URLDecoder.decode(url, charset);
+		} catch (Exception e) {
+		}
+		return url;
 	}
 }

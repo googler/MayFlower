@@ -2,7 +2,7 @@ package com.paladin.bean;
 
 import java.util.Date;
 
-import com.paladin.common.Tools;
+import com.google.common.base.Strings;
 
 public class Blog {
 	protected int id;
@@ -23,7 +23,7 @@ public class Blog {
 
 	public String getTitle() {
 
-		return Tools.null2String(title);
+		return Strings.nullToEmpty(title);
 	}
 
 	public void setTitle(String title) {
@@ -31,7 +31,7 @@ public class Blog {
 	}
 
 	public String getContent() {
-		return Tools.null2String(content);
+		return Strings.nullToEmpty(content);
 	}
 
 	public void setContent(String content) {
@@ -39,7 +39,7 @@ public class Blog {
 	}
 
 	public String getAuthor() {
-		return Tools.null2String(author);
+		return Strings.nullToEmpty(author);
 	}
 
 	public void setAuthor(String author) {
@@ -55,7 +55,7 @@ public class Blog {
 	}
 
 	public String getTag() {
-		return Tools.null2String(tag);
+		return Strings.nullToEmpty(tag);
 	}
 
 	public void setTag(String tag) {

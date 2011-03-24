@@ -12,7 +12,7 @@
             </c:if>
             &nbsp;&nbsp;
         	<a href="${contextPath}/chat" class=gb1>聊天室</a>&nbsp;&nbsp;
-            <a href="${contextPath}/api" class=gb1>常用API</a>&nbsp;&nbsp;
+            <a href="http://localhost/commonAPI" class=gb1>常用API</a>&nbsp;&nbsp;
             <!--<a href="#" class=gb1>游戏</a>&nbsp;
             <a href="#" class=gb1>待办事项</a>&nbsp;
             <a href="#" class=gb1>通讯录</a>&nbsp;
@@ -24,7 +24,7 @@
 		</c:if>
         <c:if test='${!(empty user)}'>
                 欢迎 <a href="${contextPath}/admin" title="${user.email}">${user.nickname}</a>&nbsp;|&nbsp;
-                <a href="${contextPath}/login/exit" class='gb4'>退出</a>
+                <a href="${contextPath}/login/exit/" class='gb4'>退出</a>
         </c:if>
         &nbsp;&nbsp;</nobr>
     </div> 

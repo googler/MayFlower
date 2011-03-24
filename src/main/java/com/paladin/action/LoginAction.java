@@ -81,6 +81,7 @@ public class LoginAction extends BaseAction {
 		final HttpServletRequest request = _reqCtxt.request();
 		final HttpSession session = _reqCtxt.session();
 		session.removeAttribute("user");
+		
 		String email = request.getParameter("email").trim();
 		String pwd = request.getParameter("pwd").trim();
 		User user = getUser(email, pwd);
@@ -101,11 +102,15 @@ public class LoginAction extends BaseAction {
 	public void exit(final RequestContext _reqCtxt) {
 		final HttpSession session = _reqCtxt.session();
 		session.removeAttribute("user");
-		redirect(_reqCtxt, "/login");
+		String r = _reqCtxt.request().getParameter("r");
+		if (Strings.isBlank(r))
+			redirect(_reqCtxt, "/login");
+		else
+			redirect(_reqCtxt, r);
 	}
 
 	private User getUserByIp(final String _ip) {
-		return QueryHelper.read(User.class, "SELECT * FROM USER WHERE FIRST_IP = ?", new Object[] { _ip });
+		return QueryHelper.read(User.class, "SELECT * FROM USER WHERE FIRST_IP = ?", _ip);
 	}
 
 	private User getUser(final String _email, final String _pwd) {

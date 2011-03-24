@@ -1,37 +1,13 @@
 package com.paladin.common;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.google.common.base.Strings;
+
 public class Tools {
-	/**
-	 * 判断字符串是否为空
-	 * 
-	 * @param str
-	 * @return
-	 */
-	public static boolean isNullString(String str) {
-		if (str == null || str.trim().equals("") || str.trim().equalsIgnoreCase("NULL"))
-			return true;
-		else
-			return false;
-	}
-
-	public static String null2String(String str) {
-		return str == null ? "" : str;
-	}
-
-	/**
-	 * 判断两个字符串是否为空,其实可以用不定参数函数代替
-	 * 
-	 * @param str
-	 * @param str2
-	 * @return
-	 */
-	public static boolean isNullString(String str, String str2) {
-		return isNullString(str) && isNullString(str2);
-	}
 
 	/**
 	 * 压缩字符串中的空白字符
@@ -41,7 +17,7 @@ public class Tools {
 	 */
 	public static String compressBlank(String str) {
 		str = str.trim();
-		if (Tools.isNullString(str))
+		if (Strings.isBlank(str))
 			return "";
 		StringBuilder str_bu = new StringBuilder();
 		char[] str_arr = str.toCharArray();
@@ -72,13 +48,22 @@ public class Tools {
 		List<String> tag_list = new ArrayList<String>();
 		for (String tag : _tags.split(",")) {
 			String _tag = Tools.compressBlank(tag);// 压缩标签中的空格
-			if (!Tools.isNullString(_tag) && !tag_list.contains(_tag))
+			if (!Strings.isBlank(_tag) && !tag_list.contains(_tag))
 				tag_list.add(_tag);
 		}
 		String tag = Arrays.toString((Object[]) tag_list.toArray());
 		return tag.substring(1, tag.length() - 1);
 	}
-	
+
+	public static String ISO885912UTF8(String _str) {
+		try {
+			return new String(_str.getBytes("ISO-8859-1"), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return "";
+	}
+
 	public static void main(String[] args) {
 
 	}

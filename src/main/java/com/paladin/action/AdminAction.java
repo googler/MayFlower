@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.google.common.base.Strings;
 import com.paladin.bean.User;
-import com.paladin.common.Tools;
 import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.QueryHelper;
 
@@ -86,7 +86,7 @@ public class AdminAction extends BaseAction {
 
 		StringBuilder sql_builder = new StringBuilder();
 
-		if (Tools.isNullString(id)) {// 添加新代码
+		if (Strings.isBlank(id)) {// 添加新代码
 			sql_builder.append("INSERT INTO USER(USERNAME, PASSWORD, NICKNAME, EMAIL, REG_DATE, ");
 			sql_builder.append("LASTLOGIN_DATE, FIRST_IP, ROLE, PROFILE) VALUES (?, ?, ?, ?, ");
 			sql_builder.append("NOW(), NOW(), ?, 'visitor', ?)");

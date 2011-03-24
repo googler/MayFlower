@@ -1,7 +1,6 @@
 package com.paladin.action;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 
 import javax.servlet.ServletContext;
@@ -50,7 +49,7 @@ public class BlogAction extends BaseAction {
 		final HttpServletRequest request = _reqCtxt.request();
 		// 当前页面
 		String current_page = request.getParameter("c_page");
-		if (Tools.isNullString(current_page))
+		if (Strings.isBlank(current_page))
 			current_page = "1";
 		int page_num = Integer.parseInt(current_page);
 
@@ -71,14 +70,14 @@ public class BlogAction extends BaseAction {
 		Blog blog = QueryHelper.read(Blog.class, sql, _id);
 		final HttpServletRequest request = _reqCtxt.request();
 		request.setAttribute("title", blog.getTitle());
-		
+		request.setAttribute("tags", Strings.isBlank(blog.getTag()) ? null : blog.getTag().split(","));
+
 		if (!Strings.isNullOrEmpty(request.getParameter("q"))) {
-			String q = request.getParameter("q");
+			String q = Tools.ISO885912UTF8(request.getParameter("q"));
 			request.setAttribute("title", blog.getTitle());
 			dealBlogWhenQ(blog, q);
 			request.setAttribute("q", q);
 		}
-		request.setAttribute("tags", blog.getTag().split(","));
 		request.setAttribute("blog", blog);
 		// --------------------------------hits++
 		sql = "UPDATE BLOG SET HITS = (HITS + 1) WHERE ID = ?";
@@ -120,7 +119,7 @@ public class BlogAction extends BaseAction {
 		content.append(request.getParameter("content").trim());
 		String tag = Tools.checkTag(request.getParameter("tag").trim());
 
-		if (Tools.isNullString(id)) {// 添加新文章
+		if (Strings.isBlank(id)) {// 添加新文章
 			String sql = "INSERT INTO BLOG(TITLE, CONTENT, AUTHOR, CREATE_DATE, TAG, HITS) VALUES(?, ?, ?, now(), ?, 1)";
 			QueryHelper.update(sql, new Object[] { title, content.toString(), "erhu", tag });
 			log.info("add blog success");
@@ -138,7 +137,7 @@ public class BlogAction extends BaseAction {
 	 */
 	public void del(final RequestContext _reqCtxt) {
 		final HttpServletRequest request = _reqCtxt.request();
-		if (_reqCtxt.session().getAttribute("user") == null)
+		if (_reqCtxt.sessionAttr("user") == null)
 			forward(_reqCtxt, "/login");
 
 		String id = request.getParameter("id");
@@ -149,11 +148,7 @@ public class BlogAction extends BaseAction {
 	}
 
 	private void dealBlogWhenQ(Blog _blog, String _q) {
-		try {
-			_q = new String(_q.getBytes("ISO-8859-1"), "UTF-8").replaceAll("<[^>]*>", "");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
+		_q = Tools.ISO885912UTF8(_q).replaceAll("<[^>]*>", "");
 		String title = _blog.getTitle().trim();
 		if (title.indexOf(_q) >= 0) {
 			title = title.replaceAll(_q, "<span style='background-color:#f00;'>" + _q + "</span>");

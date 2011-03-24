@@ -39,7 +39,7 @@ public class CodeAction extends BaseAction {
 		final HttpServletRequest request = _reqCtxt.request();
 		// 当前页面
 		String current_page = request.getParameter("c_page");
-		if (Tools.isNullString(current_page))
+		if (Strings.isBlank(current_page))
 			current_page = "1";
 		int page_num = Integer.parseInt(current_page);
 
@@ -60,11 +60,11 @@ public class CodeAction extends BaseAction {
 		Code code = QueryHelper.read(Code.class, sql, new Object[] { _id });
 		final HttpServletRequest request = _reqCtxt.request();
 		request.setAttribute("title", code.getTitle());
-		request.setAttribute("tags", code.getTag().split(","));
+		request.setAttribute("tags", Strings.isBlank(code.getTag()) ? null : code.getTag().split(","));
 
-		if (Strings.isNullOrEmpty(request.getParameter("q"))) {
+		if (!Strings.isNullOrEmpty(request.getParameter("q"))) {
 			String q = request.getParameter("q");
-			q = new String(q.getBytes("ISO-8859-1"), "UTF-8").replaceAll("<[^>]*>", "");
+			q = Tools.ISO885912UTF8(q).replaceAll("<[^>]*>", "");
 			String title = code.getTitle().trim();
 			if (title.indexOf(q) >= 0) {
 				title = title.replaceAll(q, "<span style='background-color:#f00;'>" + q + "</span>");
@@ -114,7 +114,7 @@ public class CodeAction extends BaseAction {
 		String tag = Tools.checkTag(request.getParameter("tag").trim());
 		String language = request.getParameter("language").trim();
 
-		if (Tools.isNullString(id)) {// 添加新代码
+		if (Strings.isBlank(id)) {// 添加新代码
 			String sql = "INSERT INTO CODE(TITLE, CONTENT, AUTHOR, CREATE_DATE, TAG, LANGUAGE, HITS) VALUES(?, ?, ?, now(), ?, ?, 1)";
 			QueryHelper.update(sql, new Object[] { title, content.toString(), "erhu", tag, language });
 			log.info("add new code success");

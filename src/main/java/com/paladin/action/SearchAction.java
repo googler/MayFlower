@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.logging.Log;
@@ -19,7 +18,7 @@ import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.QueryHelper;
 
 /**
- * Serache Action
+ * Search Action
  * 
  * @author Erhu
  * @since Mar 12th, 2011
@@ -44,7 +43,7 @@ public class SearchAction extends BaseAction {
 		HttpServletRequest request = _reqCtxt.request();
 		String q = request.getParameter("q");
 		if (!Strings.isNullOrEmpty(q)) {
-			q = new String(q.getBytes("ISO-8859-1"), "utf-8");
+			q = Tools.ISO885912UTF8(q);
 			request.setAttribute("q", q);
 
 			q = q.replaceAll("<[^>]*>", "");
@@ -127,8 +126,9 @@ public class SearchAction extends BaseAction {
 		List<HFile> file_list = new ArrayList<HFile>();
 		HttpServletRequest request = _reqCtxt.request();
 		String q = request.getParameter("q");
+		
 		if (!Strings.isNullOrEmpty(q)) {
-			q = new String(q.getBytes("ISO-8859-1"), "utf-8");
+			q = Tools.ISO885912UTF8(q);
 			request.setAttribute("q", q);
 			q = q.replaceAll("<[^>]*>", "");
 			q = Tools.compressBlank(q);

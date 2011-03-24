@@ -11,7 +11,7 @@ import com.paladin.mvc.RequestContext;
 public class ChatAction extends BaseAction {
 
 	public void index(final RequestContext _reqCtxt) {
-		if (_reqCtxt.session().getAttribute("user") != null) {
+		if (_reqCtxt.sessionAttr("user") != null) {
 			forward(_reqCtxt, "/html/chat/room.jsp");
 		} else {
 			forward(_reqCtxt, "/login?r=/chat");

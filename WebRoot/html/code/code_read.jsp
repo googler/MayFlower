@@ -35,14 +35,16 @@
     </tr>
     <tr> 
         <td align="right" valign="middle" class="border_bottom_green" style="color:#CCC" height="20">
-    		※&nbsp;<a href="#">${code.author}</a>&nbsp;发布于&nbsp;<time dateteime='${code.create_date}' pubdate>${code.create_date}</time>&nbsp;※&nbsp;
-     		<c:forEach items='${tags}' var='tag'> 
-     			<a href="#">${tag}</a>,
-     		</c:forEach>&nbsp;※
-            <c:if test='${user.role == "admin"}'>
-            	<a href="${contextPath}/code/edit/${code.id}">编辑</a>&nbsp;※
+    		<c:if test='${!(empty tags)}'>
+            ※
+            <c:forEach items='${tags}' var='tag'> 
+     			<a href="${contextPath}/search/bc/?q=${tag}">${tag}</a>,
+     		</c:forEach>
             </c:if>
-			[${code.hits}]
+            <c:if test='${user.role == "admin"}'>
+            	※&nbsp;<a href="${contextPath}/code/edit/${code.id}">编 辑</a>&nbsp;※
+            </c:if>
+            [${code.hits}]
     	</td> 
     </tr>
     <tr> 
@@ -52,10 +54,11 @@
         <form action="${contextPath}/code/del" method='post' name='${code.id}' id='${code.id}'>
             <input type="hidden" name="id" value="${code.id}"/>
             <td align="right" class="border_bottom_green" style=" color:#999">
-            <c:if test='${user.role == "admin"}'>
-    	           ※&nbsp;<a href="#" onClick="onDel(${code.id});">删除</a>&nbsp;
+            ※&nbsp;<a href="#">${code.author}</a>&nbsp;发布于&nbsp;<time dateteime='${code.create_date}' pubdate>${code.create_date}</time>&nbsp;
+            	<c:if test='${user.role == "admin"}'>
+    	           	 ※&nbsp;<a href="#" onClick="onDel(${code.id});">删除</a>
                 </c:if>
-            ※&nbsp;<a href="#top">顶部</a>&nbsp;※
+                ※&nbsp;<a href="#top">顶部</a>&nbsp;※
             </td>
         </form>
     </tr>

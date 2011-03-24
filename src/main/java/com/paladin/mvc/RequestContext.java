@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 
@@ -13,12 +12,10 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -139,14 +136,6 @@ public class RequestContext {
 		header("Expires", 0L);
 	}
 
-	public long id() {
-		return param("id", 0L);
-	}
-
-	/*
-	 * public String ip(){ return RequestUtils.getRemoteAddr(request); }
-	 */
-
 	@SuppressWarnings("unchecked")
 	public Enumeration<String> params() {
 		return request.getParameterNames();
@@ -199,12 +188,6 @@ public class RequestContext {
 			e.printStackTrace();
 		}
 	}
-
-	/*
-	 * public void include(String uri) throws ServletException, IOException {
-	 * RequestDispatcher rd = context.getRequestDispatcher(uri);
-	 * rd.include(request, response); }
-	 */
 
 	/**
 	 * 输出信息到浏览器
@@ -277,113 +260,4 @@ public class RequestContext {
 	public void header(String name, long value) {
 		response.setDateHeader(name, value);
 	}
-
-	/**
-	 * 返回当前登录的用户资料
-	 * 
-	 * @return
-	 */
-	/*
-	 * public IUser user() { return User.GetLoginUser(request); }
-	 */
-
-	/**
-	 * 保存登录信息
-	 * 
-	 * @param req
-	 * @param res
-	 * @param user
-	 * @param save
-	 * 
-	 *            public void saveUserInCookie(IUser user, boolean save) {
-	 *            String new_value = _GenLoginKey(user, ip(),
-	 *            header("user-agent")); int max_age = save ? MAX_AGE : -1;
-	 *            deleteCookie(COOKIE_LOGIN, true);
-	 *            cookie(COOKIE_LOGIN,new_value,max_age,true); }
-	 * 
-	 *            public void deleteUserInCookie() { deleteCookie(COOKIE_LOGIN,
-	 *            true); }
-	 */
-
-	/**
-	 * 自动解码
-	 * 
-	 * @author liudong
-	 */
-	private static class RequestProxy extends HttpServletRequestWrapper {
-		private String uri_encoding;
-
-		RequestProxy(HttpServletRequest request, String encoding) {
-			super(request);
-			this.uri_encoding = encoding;
-		}
-
-		/**
-		 * 重载getParameter
-		 */
-		public String getParameter(String paramName) {
-			String value = super.getParameter(paramName);
-			return _DecodeParamValue(value);
-		}
-
-		/**
-		 * 重载getParameterMap
-		 */
-		@SuppressWarnings({ "unchecked", "rawtypes" })
-		public Map<String, Object> getParameterMap() {
-			Map params = super.getParameterMap();
-			HashMap<String, Object> new_params = new HashMap<String, Object>();
-			Iterator<String> iter = params.keySet().iterator();
-			while (iter.hasNext()) {
-				String key = (String) iter.next();
-				Object oValue = params.get(key);
-				if (oValue.getClass().isArray()) {
-					String[] values = (String[]) params.get(key);
-					String[] new_values = new String[values.length];
-					for (int i = 0; i < values.length; i++)
-						new_values[i] = _DecodeParamValue(values[i]);
-
-					new_params.put(key, new_values);
-				} else {
-					String value = (String) params.get(key);
-					String new_value = _DecodeParamValue(value);
-					if (new_value != null)
-						new_params.put(key, new_value);
-				}
-			}
-			return new_params;
-		}
-
-		/**
-		 * 重载getParameterValues
-		 */
-		public String[] getParameterValues(String arg0) {
-			String[] values = super.getParameterValues(arg0);
-			for (int i = 0; values != null && i < values.length; i++)
-				values[i] = _DecodeParamValue(values[i]);
-			return values;
-		}
-
-		/**
-		 * 参数转码
-		 * 
-		 * @param value
-		 * @return
-		 */
-		private String _DecodeParamValue(String value) {
-			if (StringUtils.isBlank(value) || StringUtils.isBlank(uri_encoding) || StringUtils.isNumeric(value))
-				return value;
-			try {
-				return new String(value.getBytes("8859_1"), uri_encoding);
-			} catch (Exception e) {
-			}
-			return value;
-		}
-
-	}
-
-	public final static String COOKIE_LOGIN = "oscid";
-	// private final static int MAX_AGE = 86400 * 365;
-	// private final static byte[] E_KEY = new byte[] { '1', '2', '3', '4', '5',
-	// '6', '7', '8' };
 }

@@ -29,15 +29,7 @@
         <tr> 
           <td valign="top" class="border_right_green"><table width="100%"  border="0" cellpadding="0" cellspacing="0">
               <tr>
-				<td width="26%" align="center">&nbsp;</td>
-				<td width="74%" height="31" align="left"><a href="">博文欣赏</a></td>
-              </tr>
-              <tr >
-              	  <td align="center" class="border_bottom_green">&nbsp;</td>	
-                  <td height="31" colspan="2" align="left" class="border_bottom_green"><a href="">代码片段</a></td>
-              </tr>
-              <tr>
-                <td colspan="3" align="center">&nbsp;</td>
+                  <td height="31" align="center" class="border_bottom_green"><a href="">当前在线</a></td>
               </tr>
             </table></td> 
           <td valign="top" style='padding-left:5px;'>
