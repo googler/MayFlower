@@ -49,7 +49,7 @@ public class BlogAction extends BaseAction {
 		final HttpServletRequest request = _reqCtxt.request();
 		// 当前页面
 		String current_page = request.getParameter("c_page");
-		if (Strings.isBlank(current_page))
+		if (Strings.isNullOrEmpty(current_page))
 			current_page = "1";
 		int page_num = Integer.parseInt(current_page);
 
@@ -70,7 +70,7 @@ public class BlogAction extends BaseAction {
 		Blog blog = QueryHelper.read(Blog.class, sql, _id);
 		final HttpServletRequest request = _reqCtxt.request();
 		request.setAttribute("title", blog.getTitle());
-		request.setAttribute("tags", Strings.isBlank(blog.getTag()) ? null : blog.getTag().split(","));
+		request.setAttribute("tags", Strings.isNullOrEmpty(blog.getTag()) ? null : blog.getTag().split(","));
 
 		if (!Strings.isNullOrEmpty(request.getParameter("q"))) {
 			String q = Tools.ISO885912UTF8(request.getParameter("q"));
@@ -119,7 +119,7 @@ public class BlogAction extends BaseAction {
 		content.append(request.getParameter("content").trim());
 		String tag = Tools.checkTag(request.getParameter("tag").trim());
 
-		if (Strings.isBlank(id)) {// 添加新文章
+		if (Strings.isNullOrEmpty(id)) {// 添加新文章
 			String sql = "INSERT INTO BLOG(TITLE, CONTENT, AUTHOR, CREATE_DATE, TAG, HITS) VALUES(?, ?, ?, now(), ?, 1)";
 			QueryHelper.update(sql, new Object[] { title, content.toString(), "erhu", tag });
 			log.info("add blog success");

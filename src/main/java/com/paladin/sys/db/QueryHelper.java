@@ -133,7 +133,7 @@ public class QueryHelper {
 			throw new IllegalArgumentException("Illegal parameter of 'page' or 'count', Must be positive.");
 		int from = (_currentPage - 1) * count;
 		count = (count > 0) ? count : Integer.MAX_VALUE;
-		return query(beanClass, _sql + " LIMIT ?, ?", ArrayUtils.addAll(params, new Integer[] { from, count }));
+		return query(beanClass, _sql + " LIMIT ?, ?", ArrayUtils.addAll(params, new Object[]{new Integer[]{from, count}}));
 	}
 
 	/**

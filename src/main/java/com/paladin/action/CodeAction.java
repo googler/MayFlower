@@ -39,7 +39,7 @@ public class CodeAction extends BaseAction {
 		final HttpServletRequest request = _reqCtxt.request();
 		// 当前页面
 		String current_page = request.getParameter("c_page");
-		if (Strings.isBlank(current_page))
+		if (Strings.isNullOrEmpty(current_page))
 			current_page = "1";
 		int page_num = Integer.parseInt(current_page);
 
@@ -60,7 +60,7 @@ public class CodeAction extends BaseAction {
 		Code code = QueryHelper.read(Code.class, sql, new Object[] { _id });
 		final HttpServletRequest request = _reqCtxt.request();
 		request.setAttribute("title", code.getTitle());
-		request.setAttribute("tags", Strings.isBlank(code.getTag()) ? null : code.getTag().split(","));
+		request.setAttribute("tags", Strings.isNullOrEmpty(code.getTag()) ? null : code.getTag().split(","));
 
 		if (!Strings.isNullOrEmpty(request.getParameter("q"))) {
 			String q = request.getParameter("q");
@@ -114,7 +114,7 @@ public class CodeAction extends BaseAction {
 		String tag = Tools.checkTag(request.getParameter("tag").trim());
 		String language = request.getParameter("language").trim();
 
-		if (Strings.isBlank(id)) {// 添加新代码
+		if (Strings.isNullOrEmpty(id)) {// 添加新代码
 			String sql = "INSERT INTO CODE(TITLE, CONTENT, AUTHOR, CREATE_DATE, TAG, LANGUAGE, HITS) VALUES(?, ?, ?, now(), ?, ?, 1)";
 			QueryHelper.update(sql, new Object[] { title, content.toString(), "erhu", tag, language });
 			log.info("add new code success");

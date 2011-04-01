@@ -116,7 +116,7 @@ public final class ActionServlet extends HttpServlet {
 			_reqCtxt.response().setContentType("text/html;charset=utf-8");
 			if (!doProcess(_reqCtxt, _is_post)) {// failed to doProcess
 				String gp = _reqCtxt.param(GOTO_PAGE);
-				if (!Strings.isBlank(gp))
+				if (!Strings.isNullOrEmpty(gp))
 					_reqCtxt.redirect(gp);
 			}
 		} catch (InvocationTargetException e) {

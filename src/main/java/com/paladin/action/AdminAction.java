@@ -86,7 +86,7 @@ public class AdminAction extends BaseAction {
 
 		StringBuilder sql_builder = new StringBuilder();
 
-		if (Strings.isBlank(id)) {// 添加新代码
+		if (Strings.isNullOrEmpty(id)) {// 添加新代码
 			sql_builder.append("INSERT INTO USER(USERNAME, PASSWORD, NICKNAME, EMAIL, REG_DATE, ");
 			sql_builder.append("LASTLOGIN_DATE, FIRST_IP, ROLE, PROFILE) VALUES (?, ?, ?, ?, ");
 			sql_builder.append("NOW(), NOW(), ?, 'visitor', ?)");

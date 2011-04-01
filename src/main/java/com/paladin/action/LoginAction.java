@@ -25,8 +25,6 @@ public class LoginAction extends BaseAction {
 
 	/**
 	 * forward to login page
-	 * 
-	 * @param ctx
 	 * @throws IOException
 	 */
 	public void auto(final RequestContext _reqCtxt) {
@@ -50,7 +48,7 @@ public class LoginAction extends BaseAction {
 	/**
 	 * get/generate user by ip
 	 * 
-	 * @param _ip
+	 * @param
 	 */
 	private void genUserByIp(final RequestContext _reqCtxt) {
 		final HttpServletRequest request = _reqCtxt.request();
@@ -93,7 +91,7 @@ public class LoginAction extends BaseAction {
 		}
 		session.setAttribute("user", user);
 		String r = request.getParameter("r");
-		if (Strings.isBlank(r))
+		if (Strings.isNullOrEmpty(r))
 			redirect(_reqCtxt, "/");
 		else
 			redirect(_reqCtxt, r);
@@ -103,7 +101,7 @@ public class LoginAction extends BaseAction {
 		final HttpSession session = _reqCtxt.session();
 		session.removeAttribute("user");
 		String r = _reqCtxt.request().getParameter("r");
-		if (Strings.isBlank(r))
+		if (Strings.isNullOrEmpty(r))
 			redirect(_reqCtxt, "/login");
 		else
 			redirect(_reqCtxt, r);

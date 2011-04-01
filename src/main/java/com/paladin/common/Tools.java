@@ -17,7 +17,7 @@ public class Tools {
 	 */
 	public static String compressBlank(String str) {
 		str = str.trim();
-		if (Strings.isBlank(str))
+		if (Strings.isNullOrEmpty(str))
 			return "";
 		StringBuilder str_bu = new StringBuilder();
 		char[] str_arr = str.toCharArray();
@@ -48,7 +48,7 @@ public class Tools {
 		List<String> tag_list = new ArrayList<String>();
 		for (String tag : _tags.split(",")) {
 			String _tag = Tools.compressBlank(tag);// 压缩标签中的空格
-			if (!Strings.isBlank(_tag) && !tag_list.contains(_tag))
+			if (!Strings.isNullOrEmpty(_tag) && !tag_list.contains(_tag))
 				tag_list.add(_tag);
 		}
 		String tag = Arrays.toString((Object[]) tag_list.toArray());
