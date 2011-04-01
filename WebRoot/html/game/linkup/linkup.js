@@ -4,35 +4,39 @@
  * @since Mar 28th, 2011
  *------------------------------------------*/
 var gCanvas;
-var gImages;
-var gImgCopys = 10;// 每张图片2份拷贝
-var gPreImg;// 前一个选择的格子
+var gGrids;
+var gImgCopys = 2;// 每张图片2份拷贝
+var gPreGrid;// 前一个选择的格子
 var oneResult;// 一个可行解
 /**
  * init game
+ * @param canvasElem
+ * @param rowNums
+ * @param colNums
+ * @param rowH
+ * @param colW
  */
-function init(canvasElem, timeRemainsElem, rowNums/*总行数*/, colNums/*总列数*/, rowH/*行高*/, colW/*列宽*/) {
+function init(canvasElem, rowNums, colNums, rowH, colW) {
     gCanvas = new HCanvas(rowNums, colNums, rowH, colW, canvasElem);
-    /*var helpBtn = document.createElement("input");
-     helpBtn.id = "linkup_canvas";
-     helpBtn.type = 'button';
-     helpBtn.value = '提醒';
-     helpBtn.onclick = function() {
-     // 清除所有选中状态
-     for (var i = 0; i < gGrid.length; i ++) {
-     for (var j = 0; j < gGrid[i].length; j ++) {
-     gGrid[i][j].selected = false;
-     }
-     }
-     drawCanvas();
-     if (oneResult != undefined && oneResult.length > 1) {
-     reverseImgColor(oneResult[0]);
-     reverseImgColor(oneResult[1]);
-     setTimeout(drawCanvas, 1000);
-     }
-     };
-     document.body.appendChild(helpBtn);
-     */
+    var helpBtn = document.createElement("input");
+    helpBtn.id = "linkup_canvas";
+    helpBtn.type = 'button';
+    helpBtn.value = '提醒';
+    helpBtn.onclick = function() {
+        // 清除所有选中状态
+        for (var i = 0; i < gGrids.length; i ++) {
+            for (var j = 0; j < gGrids[i].length; j ++) {
+                gGrids[i][j].selected = false;
+            }
+        }
+        drawCanvas();
+        if (oneResult != undefined && oneResult.length > 1) {
+            reverseImgColor(oneResult[0]);
+            reverseImgColor(oneResult[1]);
+            setTimeout(drawCanvas, 1000);
+        }
+    };
+    document.body.appendChild(helpBtn);
     initImages();
     drawCanvas();
 }
@@ -54,13 +58,13 @@ function initImages() {
             }
         }
     }
-    // 将图片随机分配给gImages
-    gImages = new Array(gCanvas.rowNums);
-    for (var i = 0; i < gCanvas.rowNums; i ++) {
-        gImages[i] = new Array(gCanvas.colNums);
-        for (var j = 0; j < gImages[i].length; j ++) {
+    // 将图片随机分配给gGrids
+    gGrids = new Array(gCanvas.rowNums);
+    for (var m = 0; m < gCanvas.rowNums; m ++) {
+        gGrids[m] = new Array(gCanvas.colNums);
+        for (var n = 0; n < gGrids[m].length; n ++) {
             var t_num = Math.floor(Math.random() * images.length);
-            gImages[i][j] = new HImage(i, j, images[t_num]);
+            gGrids[m][n] = new HGrid(m, n, images[t_num]);
             images = images.slice(0, t_num).concat(images.slice(t_num + 1, images.length));
         }
     }
@@ -72,7 +76,7 @@ function initImages() {
 function drawCanvas() {
     gCanvas.clear();
     gCanvas.drawLines();
-    gCanvas.drawImages(gImages);
+    gCanvas.drawImages(gGrids);
 }
 /*============================*/
 /*----------类定义------------*/
@@ -139,19 +143,19 @@ HCanvas.prototype.drawTxt = function(txt) {
     this.context.font = 'italic 80px sans-serif';
     this.context.textBaseline = 'top';
     this.context.strokeText(txt, 120, 245);
-}
+};
 /**
  * 绘图片
  */
-HCanvas.prototype.drawImages = function(imgs) {
+HCanvas.prototype.drawImages = function(grids) {
     var finished = true;
-    for (var i = 0; i < gCanvas.rowNums; i ++) {
-        for (var j = 0; j < gCanvas.colNums; j ++) {
-            if (imgs[i][j].visible) {
+    for (var p = 0; p < gCanvas.rowNums; p ++) {
+        for (var q = 0; q < gCanvas.colNums; q ++) {
+            if (grids[p][q].visible) {
                 finished = false;
-                this.context.drawImage(imgs[i][j].img, imgs[i][j].x(), imgs[i][j].y(), gCanvas.colW, gCanvas.rowH);
-                if (imgs[i][j].selected)
-                    reverseImgColor(imgs[i][j]);
+                this.context.drawImage(grids[p][q].img, grids[p][q].x(), grids[p][q].y(), gCanvas.colW, gCanvas.rowH);
+                if (grids[p][q].selected)
+                    reverseImgColor(grids[p][q]);
             }
         }
     }
@@ -160,15 +164,14 @@ HCanvas.prototype.drawImages = function(imgs) {
     else {// 检查棋盘是否有解
         for (var i = 0; i < gCanvas.rowNums; i ++) {
             for (var j = 0; j < gCanvas.colNums; j ++) {
-                var imgA = imgs[i][j];
-                if (imgA.visible) {
-                    var img = imgA.img;
-                    var coll = getVisiualImgs(imgA).concat(
-                            getVisiualImgsByArr(getUnVisibleImgs(imgA))).concat(
-                            getVisiualImgsByArr(getUnVisiualImgsByArr(getUnVisibleImgs(imgA))));
+                var gridA = grids[i][j];
+                if (gridA.visible) {
+                    var coll = getVisiualImgs(gridA).concat(
+                            getVisiualImgsByArr(getUnVisibleImgs(gridA))).concat(
+                            getVisiualImgsByArr(getUnVisiualImgsByArr(getUnVisibleImgs(gridA))));
                     for (var k = 0; k < coll.length; k ++) {
-                        if (coll[k].src = img.src) {
-                            oneResult = new Array(imgA, coll[k]);
+                        if (coll[k] != gridA && coll[k].img.src == gridA.img.src) {
+                            oneResult = new Array(gridA, coll[k]);
                             return;
                         }
                     }
@@ -176,7 +179,7 @@ HCanvas.prototype.drawImages = function(imgs) {
             }
         }
         this.drawTxt('棋局已死!');
-        // setTimeout(resetGrids, 2000);
+        setTimeout(resetGrids, 2000);
     }
 };
 /**
@@ -189,9 +192,9 @@ function getVisiualImgs(img) {
     // 上
     var arrow = row;// 箭头
     while (arrow - 1 >= 0) {
-        var t_img = gImages[arrow - 1][column];
-        if (t_img.visible) {// 图片可见
-            coll.push(t_img);
+        var t_img_1 = gGrids[arrow - 1][column];
+        if (t_img_1.visible) {// 图片可见
+            coll.push(t_img_1);
             break;
         }
         arrow --;
@@ -199,9 +202,9 @@ function getVisiualImgs(img) {
     // 下
     arrow = row;
     while (1 + arrow < gCanvas.rowNums) {
-        var t_grid = gImages[arrow + 1][column];
-        if (t_grid.visible) {
-            coll.push(t_grid);
+        var t_img = gGrids[arrow + 1][column];
+        if (t_img.visible) {
+            coll.push(t_img);
             break;
         }
         arrow ++;
@@ -209,9 +212,9 @@ function getVisiualImgs(img) {
     // 左
     arrow = column;
     while (arrow - 1 >= 0) {
-        var t_grid = gImages[row][arrow - 1];
-        if (t_grid.visible) {
-            coll.push(t_grid);
+        var tt_img = gGrids[row][arrow - 1];
+        if (tt_img.visible) {
+            coll.push(tt_img);
             break;
         }
         arrow --;
@@ -219,7 +222,7 @@ function getVisiualImgs(img) {
     // 右
     arrow = column;
     while (arrow + 1 < gCanvas.colNums) {
-        var t_grid = gImages[row][arrow + 1];
+        var t_grid = gGrids[row][arrow + 1];
         if (t_grid.visible) {
             coll.push(t_grid);
             break;
@@ -247,26 +250,26 @@ function getUnVisibleImgs(img) {
     var column = img.col;
     // 上
     var arrow = row;// 箭头
-    while (arrow - 1 >= 0 && !gImages[arrow - 1][column].visible) {
-        coll.push(gImages[arrow - 1][column]);
+    while (arrow - 1 >= 0 && !gGrids[arrow - 1][column].visible) {
+        coll.push(gGrids[arrow - 1][column]);
         arrow --;
     }
     // 下
     arrow = row;
-    while (1 + arrow < gCanvas.rowNums && !gImages[arrow + 1][column].visible) {
-        coll.push(gImages[arrow + 1][column]);
+    while (1 + arrow < gCanvas.rowNums && !gGrids[arrow + 1][column].visible) {
+        coll.push(gGrids[arrow + 1][column]);
         arrow ++;
     }
     // 左
     arrow = column;
-    while (arrow - 1 >= 0 && !gImages[row][arrow - 1].visible) {
-        coll.push(gImages[row][arrow - 1]);
+    while (arrow - 1 >= 0 && !gGrids[row][arrow - 1].visible) {
+        coll.push(gGrids[row][arrow - 1]);
         arrow --;
     }
     // 右
     arrow = column;
-    while (arrow + 1 < gCanvas.colNums && !gImages[row][arrow + 1].visible) {
-        coll.push(gImages[row][arrow + 1]);
+    while (arrow + 1 < gCanvas.colNums && !gGrids[row][arrow + 1].visible) {
+        coll.push(gGrids[row][arrow + 1]);
         arrow ++;
     }
     return coll;
@@ -283,6 +286,30 @@ function getUnVisiualImgsByArr(_grid_arr) {
                 arr.push(t_arr[j]);
     }
     return arr;
+}
+/**
+ * 重置棋盘
+ */
+function resetGrids() {
+    // 取可见的图片
+    var visible_img = new Array();
+    for (var mm = 0; mm < gGrids.length; mm ++) {
+        for (var nn = 0; nn < gGrids[mm].length; nn ++) {
+            if (gGrids[mm][nn].visible)
+                visible_img.push(gGrids[mm][nn].img);
+        }
+    }
+    //  随机分配可见的图片到可见的格子
+    for (var m = 0; m < gCanvas.rowNums; m ++) {
+        for (var n = 0; n < gGrids[m].length; n ++) {
+            if (gGrids[m][n].visible) {
+                var t_num = Math.floor(Math.random() * visible_img.length);
+                gGrids[m][n].img = visible_img[t_num];
+                visible_img = visible_img.slice(0, t_num).concat(visible_img.slice(t_num + 1, visible_img.length));
+            }
+        }
+    }
+    drawCanvas();
 }
 /**
  * 单击事件处理函数
@@ -306,31 +333,31 @@ function getImgClicked(e) {
     // 行列值
     var column = Math.floor(click_x / gCanvas.colW);
     var row = Math.floor(click_y / gCanvas.rowH);
-    return gImages[row][column];
+    return gGrids[row][column];
 }
 /**
  * 检测用户点击行为
  */
-function checkClick(img) {
-    if (gPreImg == undefined) {
-        gPreImg = img;
-        img.selected = true;
+function checkClick(hImage) {
+    if (gPreGrid == undefined) {
+        gPreGrid = hImage;
+        hImage.selected = true;
     } else {
-        if (img.src != gPreImg.src) {// 如果两格子的图片不相同,选中新的格子
-            gPreImg.selected = false;
-            img.selected = true;
-            gPreImg = img;
-        } else if (img == gPreImg) {//如果选择了上次选择的格子,则取消上次的选择
-            img.selected = false;
-            gPreImg = undefined;
+        if (hImage.img.src != gPreGrid.img.src) {// 如果两格子的图片不相同,选中新的格子
+            gPreGrid.selected = false;
+            hImage.selected = true;
+            gPreGrid = hImage;
+        } else if (hImage == gPreGrid) {//如果选择了上次选择的格子,则取消上次的选择
+            hImage.selected = false;
+            gPreGrid = undefined;
         } else {
-            if (!checkImg(gPreImg, img)) {// 图片相同,但不可消去
-                gPreImg.selected = false;
-                img.selected = true;
-                gPreImg = img;
+            if (!checkImg(gPreGrid, hImage)) {// 图片相同,但不可消去
+                gPreGrid.selected = false;
+                hImage.selected = true;
+                gPreGrid = hImage;
             } else {
-                gPreImg.visible = img.visible = false;
-                gPreImg = undefined;
+                gPreGrid.visible = hImage.visible = false;
+                gPreGrid = undefined;
             }
         }
     }
@@ -357,19 +384,19 @@ function checkImg(imgA, imgB) {
 }
 
 /**
- * 图片
+ * 格子
  */
-function HImage(row, col, img) {
+function HGrid(row, col, img) {
     this.row = row;
     this.col = col;
     this.img = img;
     this.visible = true;
     this.selected = false;
 }
-HImage.prototype.x = function() {
+HGrid.prototype.x = function() {
     return this.col * gCanvas.colW;
 };
-HImage.prototype.y = function() {
+HGrid.prototype.y = function() {
     return this.row * gCanvas.rowH;
 };
 /*============================*/
@@ -378,15 +405,15 @@ HImage.prototype.y = function() {
 /**
  * 反色
  */
-function reverseImgColor(img) {
-    var imgd = gCanvas.context.getImageData(img.x() + 1, img.y() + 1, gCanvas.colW - 1, gCanvas.rowH - 1);// +-1除去边线
+function reverseImgColor(grid) {
+    var imgd = gCanvas.context.getImageData(grid.x() + 1, grid.y() + 1, gCanvas.colW - 1, gCanvas.rowH - 1);// +-1除去边线
     var pix = imgd.data;
     for (var i = 0; i < pix.length; i += 4) {
         pix[i] = 255 - pix[i]; // red
         pix[i + 1] = 255 - pix[i + 1]; // green
         pix[i + 2] = 255 - pix[i + 2]; // blue
     }
-    gCanvas.context.putImageData(imgd, img.x() + 1, img.y() + 1);
+    gCanvas.context.putImageData(imgd, grid.x() + 1, grid.y() + 1);
 }
 
 /**
@@ -413,7 +440,9 @@ function getRandom(nums, low, high) {
     return random_nums;
 }
 function ArrContains(arr, ele) {
+    var flag = false;
     for (var i = 0; i < arr.length; i ++)
         if (arr[i] == ele)
-            return true;
+            flag = true;
+    return flag;
 }
