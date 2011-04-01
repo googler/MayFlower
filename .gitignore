@@ -2,3 +2,6 @@
 /WebRoot/WEB-INF/classes
 /test
 /WebRoot/WEB-INF/classes
+/WebRoot/WEB-INF/classes/jsr166y
+/WebRoot/WEB-INF/classes/com/paladin
+/WebRoot/WEB-INF/classes/com/paladin/bean
