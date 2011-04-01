@@ -148,7 +148,8 @@ public class BlogAction extends BaseAction {
 	}
 
 	private void dealBlogWhenQ(Blog _blog, String _q) {
-		_q = Tools.ISO885912UTF8(_q).replaceAll("<[^>]*>", "");
+		//_q = Tools.ISO885912UTF8(_q).replaceAll("<[^>]*>", "");
+        _q = _q.replaceAll("<[^>]*>", "");
 		String title = _blog.getTitle().trim();
 		if (title.indexOf(_q) >= 0) {
 			title = title.replaceAll(_q, "<span style='background-color:#f00;'>" + _q + "</span>");
