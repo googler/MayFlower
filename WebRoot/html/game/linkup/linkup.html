@@ -1,18 +1,16 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="UTF-8">
-    <title>Linkup</title>
-    <script src="linkup.js"></script>
-    <script>
-        /*var arr_1 = new Array("12", "34", "3s");
-        ar_1.slice(1, 1);
-*/
-    </script>
+<script src="linkup.js"></script>
 </head>
-<body onload='init(null, 10, 10, 48, 48);'>
-<h1>连连看!</h1>
+<body>
+    <canvas id='canvas'>
+    </canvas>
+    <input type="button" id="helpBtn" value="help"/>
+    <script>
+        var img = new Image();
+        img.src = 'images/img_0.png';
+        img.onLoad = init('canvas', 'helpBtn', 10, 10, 48, 48);
+    </script>
 </body>
 </html>
-

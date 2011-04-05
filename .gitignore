@@ -5,3 +5,6 @@
 /WebRoot/WEB-INF/classes/jsr166y
 /WebRoot/WEB-INF/classes/com/paladin
 /WebRoot/WEB-INF/classes/com/paladin/bean
+/WebRoot/WEB-INF/classes
+/tomcat-6.0.29
+/CommonAPI

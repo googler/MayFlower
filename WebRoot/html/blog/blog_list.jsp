@@ -15,6 +15,7 @@
                       <td width="77%" valign="middle" nowrap class="border_bottom_green_dotted">
                           <img src="${contextPath}/images/dev-java.png" width="16">&nbsp;
                           <a href="${contextPath}/blog/read/${blog.id}">${blog.title}</a>
+                          <c:if test='${blog.top == 1}'><span style='color:#EE0;'>[顶]</span></c:if>
                       </td> 
                       <td width="15%" align="right" nowrap class="border_bottom_green_dotted">
                           ${blog.create_date}&nbsp;

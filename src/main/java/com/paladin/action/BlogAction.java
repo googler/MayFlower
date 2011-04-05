@@ -1,15 +1,5 @@
 package com.paladin.action;
 
-import java.io.IOException;
-import java.sql.SQLException;
-
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import com.google.common.base.Strings;
 import com.paladin.bean.Blog;
 import com.paladin.common.Constants;
@@ -17,6 +7,14 @@ import com.paladin.common.Tools;
 import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.DBManager;
 import com.paladin.sys.db.QueryHelper;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * Blog Action
@@ -54,7 +52,7 @@ public class BlogAction extends BaseAction {
 		int page_num = Integer.parseInt(current_page);
 
 		// 获取页面数据
-		String sql = "SELECT * FROM BLOG ORDER BY CREATE_DATE DESC";
+		String sql = "SELECT * FROM BLOG ORDER BY TOP DESC, LASTMODIFY_DATE DESC, CREATE_DATE DESC";
 		request.setAttribute("blogs",
 				QueryHelper.query_slice(Blog.class, sql, page_num, Constants.NUM_PER_PAGE, new Object[] {}));
 		forward(_reqCtxt, "/html/blog/blog_list.jsp");
@@ -118,15 +116,15 @@ public class BlogAction extends BaseAction {
 		StringBuilder content = new StringBuilder();
 		content.append(request.getParameter("content").trim());
 		String tag = Tools.checkTag(request.getParameter("tag").trim());
-
+        String top = (String)request.getParameter("top");
 		if (Strings.isNullOrEmpty(id)) {// 添加新文章
-			String sql = "INSERT INTO BLOG(TITLE, CONTENT, AUTHOR, CREATE_DATE, TAG, HITS) VALUES(?, ?, ?, now(), ?, 1)";
-			QueryHelper.update(sql, new Object[] { title, content.toString(), "erhu", tag });
+			String sql = "INSERT INTO BLOG(TITLE, CONTENT, AUTHOR, CREATE_DATE, TAG, HITS, TOP) VALUES(?, ?, ?, now(), ?, 1, ?)";
+			QueryHelper.update(sql, new Object[] { title, content.toString(), "erhu", tag, top });
 			log.info("add blog success");
 			redirect(_reqCtxt, "/blog");
 		} else {// 修改文章
-			String sql = "UPDATE BLOG SET TITLE = ?, CONTENT = ?, TAG = ?, LASTMODIFY_DATE = NOW() WHERE ID = ?";
-			QueryHelper.update(sql, new Object[] { title, content.toString(), tag, id });
+			String sql = "UPDATE BLOG SET TITLE = ?, CONTENT = ?, TAG = ?, LASTMODIFY_DATE = NOW(), TOP = ? WHERE ID = ?";
+			QueryHelper.update(sql, new Object[] { title, content.toString(), tag, top, id });
 			log.info("update blog success");
 			redirect(_reqCtxt, "/blog/read/" + id);
 		}
