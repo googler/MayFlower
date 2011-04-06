@@ -1,6 +1,7 @@
 package com.paladin.action;
 
 import com.google.common.base.Strings;
+import com.paladin.bean.BaseBlog;
 import com.paladin.bean.Blog;
 import com.paladin.common.Constants;
 import com.paladin.common.Tools;
@@ -54,7 +55,7 @@ public class BlogAction extends BaseAction {
         // 获取页面数据
         String sql = "SELECT * FROM BLOG ORDER BY TOP DESC, LASTMODIFY_DATE DESC, CREATE_DATE DESC";
         request.setAttribute("blogs",
-                QueryHelper.query_slice(Blog.class, sql, page_num, Constants.NUM_PER_PAGE, new Object[]{}));
+                QueryHelper.query_slice(BaseBlog.class, sql, page_num, Constants.NUM_PER_PAGE, new Object[]{}));
         forward(_reqCtxt, "/html/blog/blog_list.jsp");
     }
 

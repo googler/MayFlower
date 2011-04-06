@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
+import com.paladin.bean.BaseBlog;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -46,7 +47,7 @@ public class CodeAction extends BaseAction {
 		// 获取页面数据
 		String sql = "SELECT * FROM CODE ORDER BY CREATE_DATE DESC";
 		request.setAttribute("codes",
-				QueryHelper.query_slice(Code.class, sql, page_num, Constants.NUM_PER_PAGE, new Object[] {}));
+				QueryHelper.query_slice(BaseBlog.class, sql, page_num, Constants.NUM_PER_PAGE, new Object[] {}));
 		forward(_reqCtxt, "/html/code/code_list.jsp");
 	}
 
