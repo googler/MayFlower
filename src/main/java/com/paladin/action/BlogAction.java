@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Blog Action
@@ -50,12 +51,16 @@ public class BlogAction extends BaseAction {
         String current_page = request.getParameter("c_page");
         if (Strings.isNullOrEmpty(current_page))
             current_page = "1";
-        int page_num = Integer.parseInt(current_page);
-
+        int page_NO = Integer.parseInt(current_page);
+        // 获取博客条数
+        String sql = "SELECT COUNT(*) COUNT FROM BLOG";
+        long total_page = (QueryHelper.stat(sql) + Constants.NUM_PER_PAGE - 1) / Constants.NUM_PER_PAGE;
         // 获取页面数据
-        String sql = "SELECT * FROM BLOG ORDER BY TOP DESC, LASTMODIFY_DATE DESC, CREATE_DATE DESC";
-        request.setAttribute("blogs",
-                QueryHelper.query_slice(BaseBlog.class, sql, page_num, Constants.NUM_PER_PAGE, new Object[]{}));
+        sql = "SELECT * FROM BLOG ORDER BY TOP DESC, LASTMODIFY_DATE DESC, CREATE_DATE DESC";
+        List<BaseBlog> blogs = QueryHelper.query_slice(BaseBlog.class, sql, page_NO, Constants.NUM_PER_PAGE, new Object[]{});
+
+        request.setAttribute("total_page", total_page);
+        request.setAttribute("blogs", blogs);
         forward(_reqCtxt, "/html/blog/blog_list.jsp");
     }
 
@@ -89,7 +94,6 @@ public class BlogAction extends BaseAction {
      */
     public void edit(final RequestContext _reqCtxt, final long _id) {
         log.info("get read to edit blog-" + _id);
-
         String sql = "SELECT * FROM BLOG WHERE ID = ?";
         Blog blog = QueryHelper.read(Blog.class, sql, new Object[]{_id});
         _reqCtxt.request().setAttribute("blog", blog);
@@ -120,7 +124,7 @@ public class BlogAction extends BaseAction {
         String top = (String) request.getParameter("top");
         top = top == null ? "0" : top;
         if (Strings.isNullOrEmpty(id)) {// 添加新文章
-            String sql = "INSERT INTO BLOG(TITLE, CONTENT, AUTHOR, CREATE_DATE, TAG, HITS, TOP) VALUES(?, ?, ?, now(), ?, 1, ?)";
+            String sql = "INSERT INTO BLOG(TITLE, CONTENT, AUTHOR, CREATE_DATE, LASTMODIFY_DATE, TAG, HITS, TOP) VALUES(?, ?, ?, now(), now(), ?, 1, ?)";
             QueryHelper.update(sql, new Object[]{title, content.toString(), "erhu", tag, top});
             log.info("Add blog success");
             redirect(_reqCtxt, "/blog");

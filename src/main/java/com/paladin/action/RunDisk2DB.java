@@ -16,7 +16,7 @@ public class RunDisk2DB {
 
 	/**
 	 * 建立索引
-	 * 
+	 *
 	 * @throws IOException
 	 */
 	public static void index() {
@@ -52,7 +52,7 @@ public class RunDisk2DB {
 						file_type = file_name.substring(index_of_dot + 1, file_name.length()).toLowerCase();
 					else
 						file_type = "Any";
-					if (!Constants.includeFileType.contains(file_type)) {
+					if (!Constant.includeFileType.contains(file_type)) {
 						data_line.setLength(0);
 						continue;
 					}
@@ -68,7 +68,7 @@ public class RunDisk2DB {
 
 	private static void writeRec(String[] _par) {
 		dataList2Write.add(_par);
-		if (dataList2Write.size() > Constants.lines2write) {
+		if (dataList2Write.size() > Constant.lines2write) {
 			String[][] params = new String[dataList2Write.size()][];
 			dataList2Write.toArray(params);
 			QueryHelper.batch(sql, params);
@@ -86,7 +86,7 @@ public class RunDisk2DB {
 	}
 }
 
-class Constants {
+class Constant {
 	public static int lines2write = 1000;// 每1,000条记录写一次文件
 	public static String split = ":";
 	public static List<String> includeFileType = new ArrayList<String>();

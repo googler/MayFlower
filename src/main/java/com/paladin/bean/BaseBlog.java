@@ -4,13 +4,14 @@ import java.util.Date;
 
 import com.google.common.base.Strings;
 
-public class BaseBlog {
+/**
+ * 查询列表时使用的Bean类
+ */
+public abstract class BaseBlog {
     protected int id;
     protected String title;
-    protected String author;
     protected Date create_date;
-    protected String tag;
-    protected String hits;
+    protected Date lastmodify_date;
     protected int top;
 
     public int getId() {
@@ -30,14 +31,6 @@ public class BaseBlog {
         this.title = title;
     }
 
-    public String getAuthor() {
-        return Strings.nullToEmpty(author);
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public Date getCreate_date() {
         return create_date;
     }
@@ -46,26 +39,17 @@ public class BaseBlog {
         create_date = createDate;
     }
 
-    public String getTag() {
-        return Strings.nullToEmpty(tag);
+    public int getTop() {
+        return top;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
-
-    public String getHits() {
-        return hits;
-    }
-
-    public void setHits(String hits) {
-        this.hits = hits;
+    public void setTop(int top) {
+        this.top = top;
     }
 
     @Override
     public boolean equals(Object obj) {
-        Blog tf = (Blog) obj;
-        return this.id == tf.id;
+        return this.id == ((Blog) obj).id;
     }
 
     @Override
@@ -73,11 +57,11 @@ public class BaseBlog {
         return (this.id + "").hashCode();
     }
 
-    public int getTop() {
-        return top;
+    public Date getLastmodify_date() {
+        return lastmodify_date;
     }
 
-    public void setTop(int top) {
-        this.top = top;
+    public void setLastmodify_date(Date lastmodify_date) {
+        this.lastmodify_date = lastmodify_date;
     }
 }

@@ -35,8 +35,7 @@
     </tr>
     <tr> 
         <td align="right" valign="middle" class="border_bottom_green" style="color:#CCC" height="20">
-    		<c:if test='${!(empty tags)}'>
-            ※
+    		<c:if test='${!empty tags}'><img src="${contextPath}/images/ejbEntity.png"/>
             <c:forEach items='${tags}' var='tag'> 
      			<a href="${contextPath}/search/bc/?q=${tag}">${tag}</a>,
      		</c:forEach>
@@ -44,7 +43,7 @@
             <c:if test='${user.role == "admin"}'>
             	※&nbsp;<a href="${contextPath}/code/edit/${code.id}">编 辑</a>&nbsp;※
             </c:if>
-            [${code.hits}]
+            <img src="${contextPath}/images/emblem-development.png"/>[${code.hits}]&nbsp;
     	</td> 
     </tr>
     <tr> 
