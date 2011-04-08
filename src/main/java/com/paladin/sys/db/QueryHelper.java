@@ -8,15 +8,16 @@ package com.paladin.sys.db;
 import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.BeanHandler;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
-import org.apache.commons.dbutils.handlers.ColumnListHandler;
-import org.apache.commons.dbutils.handlers.ScalarHandler;
+import org.apache.commons.dbutils.ResultSetHandler;
+import org.apache.commons.dbutils.handlers.*;
 import org.apache.commons.lang3.ArrayUtils;
 
 /**
@@ -134,7 +135,7 @@ public class QueryHelper {
             throw new IllegalArgumentException("Illegal parameter of 'page' or 'count', Must be positive.");
         int from = (_currentPage - 1) * count;
         count = (count > 0) ? count : Integer.MAX_VALUE;
-        return query(beanClass, _sql + " LIMIT ?, ?", ArrayUtils.addAll(params, new Integer[]{from, count}));
+        return query(beanClass, _sql + " LIMIT ?, ?", ArrayUtils.addAll(params, new Object[]{from, count}));
     }
 
     /**
@@ -184,6 +185,33 @@ public class QueryHelper {
     public static int[] batch(String sql, Object[][] params) {
         try {
             return RUNNER.batch(getConnection(), sql, params);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            DBManager.closeConnection();
+        }
+        return null;
+    }
+
+    // --------------------------------------------------------------------------
+    public static List<Map<String, Object>> queryList(String _sql, Object... _par) {
+        MapListHandler handler = new MapListHandler() {
+            @Override
+            protected Map<String, Object> handleRow(ResultSet __rs) throws SQLException {
+                if (__rs.next()) {
+                    Map<String, Object> map = new HashMap<String, Object>();
+                    ResultSetMetaData meta = __rs.getMetaData();
+                    for (int i = 1; i <= meta.getColumnCount(); i++) {
+                        String col_name = meta.getColumnName(i);
+                        map.put(col_name, (String) __rs.getObject(col_name));
+                    }
+                    return map;
+                }
+                return null;
+            }
+        };
+        try {
+            return RUNNER.query(getConnection(), _sql, handler, _par);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

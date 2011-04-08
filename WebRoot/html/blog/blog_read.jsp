@@ -13,13 +13,13 @@
     	<td align="right" valign="middle" class="border_bottom_green" style="color:#CCC">
             <c:if test='${!empty tags}'><img src="${contextPath}/images/icq_online.png"/>
             <c:forEach items='${tags}' var='tag'> 
-     			<a href="${contextPath}/search/bc/?q=${tag}">${tag}</a>,
+     			<a href="${contextPath}/search/bc/?q=${tag}">${tag}</a>&nbsp;
      		</c:forEach>
             </c:if>
             <c:if test='${user.role == "admin"}'>
-            	※&nbsp;<a href="${contextPath}/blog/edit/${blog.id}">编 辑</a>&nbsp;※
+            	&nbsp;<a href="${contextPath}/blog/edit/${blog.id}"><img title='编辑' src='${contextPath}/images/emblem-development.png'/></a>&nbsp;
             </c:if>
-            <img src="${contextPath}/images/emblem-development.png"/>[${blog.hits}]&nbsp;
+            V_${blog.hits}&nbsp;
     	</td> 
 	</tr>
 	<tr>
@@ -33,7 +33,7 @@
             	<c:if test='${user.role == "admin"}'>
     	           	 ※&nbsp;<a href="#" onClick="onDel(${blog.id});">删除</a>
                 </c:if>
-                ※&nbsp;<a href="#top">顶部</a>&nbsp;※
+                ※&nbsp;<a href="#top">Top</a>&nbsp;※
             </td>
 		</form>
 	</tr>

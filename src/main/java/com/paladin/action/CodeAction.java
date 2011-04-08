@@ -1,11 +1,13 @@
 package com.paladin.action;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 import com.paladin.bean.BaseBlog;
+import com.paladin.bean.Blog;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -38,16 +40,28 @@ public class CodeAction extends BaseAction {
 	public void list(final RequestContext _reqCtxt) {
 		log.info("get code list.");
 		final HttpServletRequest request = _reqCtxt.request();
-		// 当前页面
-		String current_page = request.getParameter("c_page");
-		if (Strings.isNullOrEmpty(current_page))
-			current_page = "1";
-		int page_num = Integer.parseInt(current_page);
+        // 当前页面
+        String current_page = request.getParameter("p");
+        if (Strings.isNullOrEmpty(current_page))
+            current_page = "1";
+        int page_NO = Integer.parseInt(current_page);
+        // 获取博客条数
+        String sql = "SELECT COUNT(*) COUNT FROM CODE";
+        int total_page = (int) (QueryHelper.stat(sql) + Constants.NUM_PER_PAGE - 1) / Constants.NUM_PER_PAGE;
+        page_NO = page_NO < 1 ? 1 : page_NO;
+        page_NO = page_NO > total_page ? total_page : page_NO;
+        // 获取页面数据
+        sql = "SELECT * FROM CODE ORDER BY LASTMODIFY_DATE DESC, CREATE_DATE DESC";
+        List<BaseBlog> codes = QueryHelper.query_slice(BaseBlog.class, sql, page_NO, Constants.NUM_PER_PAGE, new Object[]{});
+        // 计算显示的页码数
+        int p_start = page_NO - 5 > 0 ? page_NO - 5 : 1;
+        int p_end = p_start + 10 > total_page ? total_page : p_start + 10;
 
-		// 获取页面数据
-		String sql = "SELECT * FROM CODE ORDER BY CREATE_DATE DESC";
-		request.setAttribute("codes",
-				QueryHelper.query_slice(BaseBlog.class, sql, page_num, Constants.NUM_PER_PAGE, new Object[] {}));
+        request.setAttribute("p_start", p_start);
+        request.setAttribute("p_end", p_end);
+        request.setAttribute("curr_page", page_NO);
+        request.setAttribute("total_page", total_page);
+        request.setAttribute("codes", codes);
 		forward(_reqCtxt, "/html/code/code_list.jsp");
 	}
 

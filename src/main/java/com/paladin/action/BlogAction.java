@@ -48,17 +48,25 @@ public class BlogAction extends BaseAction {
         log.info("get blog list.");
         final HttpServletRequest request = _reqCtxt.request();
         // 当前页面
-        String current_page = request.getParameter("c_page");
+        String current_page = request.getParameter("p");
         if (Strings.isNullOrEmpty(current_page))
             current_page = "1";
         int page_NO = Integer.parseInt(current_page);
         // 获取博客条数
         String sql = "SELECT COUNT(*) COUNT FROM BLOG";
-        long total_page = (QueryHelper.stat(sql) + Constants.NUM_PER_PAGE - 1) / Constants.NUM_PER_PAGE;
+        int total_page = (int) (QueryHelper.stat(sql) + Constants.NUM_PER_PAGE - 1) / Constants.NUM_PER_PAGE;
+        page_NO = page_NO < 1 ? 1 : page_NO;
+        page_NO = page_NO > total_page ? total_page : page_NO;
         // 获取页面数据
         sql = "SELECT * FROM BLOG ORDER BY TOP DESC, LASTMODIFY_DATE DESC, CREATE_DATE DESC";
         List<BaseBlog> blogs = QueryHelper.query_slice(BaseBlog.class, sql, page_NO, Constants.NUM_PER_PAGE, new Object[]{});
+        // 计算显示的页码数
+        int p_start = page_NO - 5 > 0 ? page_NO - 5 : 1;
+        int p_end = p_start + 10 > total_page ? total_page : p_start + 10;
 
+        request.setAttribute("p_start", p_start);
+        request.setAttribute("p_end", p_end);
+        request.setAttribute("curr_page", page_NO);
         request.setAttribute("total_page", total_page);
         request.setAttribute("blogs", blogs);
         forward(_reqCtxt, "/html/blog/blog_list.jsp");
@@ -123,6 +131,7 @@ public class BlogAction extends BaseAction {
         String tag = Tools.checkTag(request.getParameter("tag").trim());
         String top = (String) request.getParameter("top");
         top = top == null ? "0" : top;
+
         if (Strings.isNullOrEmpty(id)) {// 添加新文章
             String sql = "INSERT INTO BLOG(TITLE, CONTENT, AUTHOR, CREATE_DATE, LASTMODIFY_DATE, TAG, HITS, TOP) VALUES(?, ?, ?, now(), now(), ?, 1, ?)";
             QueryHelper.update(sql, new Object[]{title, content.toString(), "erhu", tag, top});

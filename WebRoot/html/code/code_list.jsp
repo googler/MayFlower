@@ -24,6 +24,21 @@
                     </tr>
                <%}%>
             </c:forEach>
+            <tr>
+        <%
+            int total_page = Integer.parseInt(request.getAttribute("total_page").toString());
+            int p_start = Integer.parseInt(request.getAttribute("p_start").toString());
+            int p_end = Integer.parseInt(request.getAttribute("p_end").toString());
+         %>
+        <td width='10%' align="left" style="color:lightgray;">
+            [<a href='${contextPath}/code/?p=<%=p_start-10%>'>上一屏</a>
+            第<%for(int ii = p_start; ii <= p_end - 1; ii ++) {%><a href="${contextPath}/code/?p=<%=ii%>"><%=ii%></a>,&nbsp;<%}%><a href="${contextPath}/code/?p=<%=p_end%>">${p_end}</a>页
+            <a href='${contextPath}/code/?p=<%=p_start+10%>'>下一屏</a>]
+        </td>
+        <td align="left" style="color:lightgray;">
+            [第${curr_page}页/共${total_page}页]
+        </td>
+      </tr>
         </table>
     </c:when>
     <c:otherwise>
