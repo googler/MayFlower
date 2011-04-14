@@ -23,7 +23,7 @@
     	</td> 
 	</tr>
 	<tr>
-    	<td align="left" valign="top"><div style="padding-left:10px;background-color:#FFF;color:black;">${blog.content}</div></td> 
+    	<td align="left" valign="top"><div style="padding-left:10px;background-color:#FFF;color:black;" >${blog.content}</div></td>
 	</tr>
     <tr>
         <form name='${blog.id}' id='${blog.id}' action='${contextPath}/blog/del' method='post'>

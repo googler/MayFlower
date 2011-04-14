@@ -40,7 +40,7 @@
             int p_start = Integer.parseInt(request.getAttribute("p_start").toString());
             int p_end = Integer.parseInt(request.getAttribute("p_end").toString());
          %>
-        <td width='10%' align="left" style="color:lightgray;">
+        <td width='10%' align="right">
             [<a href='${contextPath}/blog/?p=<%=p_start-10%>'>上一屏</a>
             第<%
                 for(int ii = p_start; ii <= p_end - 1; ii ++) {%><a href="${contextPath}/blog/?p=<%=ii%>"><%=ii%></a>,&nbsp;
@@ -48,7 +48,7 @@
             <a href="${contextPath}/blog/?p=<%=p_end%>">${p_end}</a>页&nbsp;
             <a href='${contextPath}/blog/?p=<%=p_start+10%>'>下一屏</a>]
         </td>
-        <td align="left" style="color:lightgray;">
+        <td align="left">
             [第${curr_page}页/共${total_page}页]
         </td>
       </tr>

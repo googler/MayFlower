@@ -101,6 +101,8 @@ public class BlogAction extends BaseAction {
      * 转到编辑页面
      */
     public void edit(final RequestContext _reqCtxt, final long _id) {
+       if (super.getUserFromSession(_reqCtxt) == null)
+            redirect(_reqCtxt, "/login?r=/blog/edit/" + _id);
         log.info("get read to edit blog-" + _id);
         String sql = "SELECT * FROM BLOG WHERE ID = ?";
         Blog blog = QueryHelper.read(Blog.class, sql, new Object[]{_id});
@@ -114,6 +116,8 @@ public class BlogAction extends BaseAction {
      * @return
      */
     public void toAdd(final RequestContext _reqCtxt) {
+        if (super.getUserFromSession(_reqCtxt) == null)
+            redirect(_reqCtxt, "/login?r=/blog/toAdd");
         log.info("to add a new blog");
         forward(_reqCtxt, "/html/blog/blog_edit.jsp");
     }
@@ -154,6 +158,11 @@ public class BlogAction extends BaseAction {
             forward(_reqCtxt, "/login");
 
         String id = request.getParameter("id");
+        if (Strings.isNullOrEmpty(id)) {
+            log.info("the blog's id is null when del.");
+            redirect(_reqCtxt, "/blog");
+        }
+
         log.info("delete blog-" + id);
         String sql = "DELETE FROM BLOG WHERE ID = ?";
         QueryHelper.update(sql, new Object[]{id});

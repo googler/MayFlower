@@ -22,28 +22,28 @@
                         <tr align="left" valign="middle">
                           <form name="${blog.id}" id="${blog.id}" action="${contextPath}/blog/del" method="post">
                               <input type="hidden" name="id" value="${blog.id}"/>
-                              <td width="68%" valign="middle" nowrap class="border_bottom_green_dotted">
-                                  <img src="${contextPath}/images/dev-java.png" width="16">&nbsp;
+                              <td width="68%" valign="middle" nowrap class="">
+                                  <img src="${contextPath}/images/default_activity.png" width="16">&nbsp;
                                   <a href="${contextPath}/blog/read/${blog.id}/?q=${q}"><font color="#66CCFF" size="+1"><b>${blog.title}</b></font></a>
                               </td>
-                              <td width="9%" align="right" nowrap class="border_bottom_green_dotted">
+                              <td width="9%" align="right" nowrap class="">
                                   ${blog.tag}&nbsp;
                               </td> 
-                              <td width="15%" align="right" nowrap class="border_bottom_green_dotted">
+                              <td width="15%" align="right" nowrap>
                                   ${blog.create_date}&nbsp;
                               </td>
                               <c:if test='${user.role == "admin"}'>
-                                  <td width="4%" align="center" nowrap class="border_bottom_green_dotted">
+                                  <td width="4%" align="center" nowrap class="">
                                       <a href="${contextPath}/blog/edit/${blog.id}">编辑</a>
                                   </td> 
-                                  <td width="4%" align="center" nowrap class="border_bottom_green_dotted">
+                                  <td width="4%" align="center" nowrap class="">
                                       <a href="#" onClick="onDel(${blog.id});">删除</a>
                                   </td>
                               </c:if>
                           </form>
                       </tr>
                       <tr align="left" valign="middle">
-                          <td colspan="5" style="background-color:#666">${blog.content}</td> 
+                          <td colspan="5" class="border_bottom_green_dotted">${blog.content}</td>
                       </tr>
                     </c:forEach>
 		        </table>
@@ -55,7 +55,7 @@
                           <form name="${code.id}" id="${code.id}" action="${contextPath}/code/del" method="post">
                               <input type="hidden" name="id" value="${code.id}"/>
                               <td width="68%" valign="middle" nowrap class="border_bottom_green_dotted">
-                                  <img src="${contextPath}/images/dev-java.png" width="16">&nbsp;
+                                  <img src="${contextPath}/images/default_activity.png" width="16">&nbsp;
                                   <a href="${contextPath}/code/read/${code.id}/?q=${q}"><font color="#FF99CC" size="+1">${code.title}</font></a>
                               </td>
                               <td width="9%" align="right" nowrap class="border_bottom_green_dotted">

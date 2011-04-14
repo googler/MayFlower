@@ -21,7 +21,6 @@ public class BaseBlog {
     }
 
     public String getTitle() {
-
         return Strings.nullToEmpty(title);
     }
 

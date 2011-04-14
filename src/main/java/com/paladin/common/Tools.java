@@ -42,6 +42,8 @@ public class Tools {
 
 	/** check tag */
 	public static String checkTag(String _tags) {
+        if (Strings.isNullOrEmpty(_tags))
+            return "";
 		// 替换全角逗号分隔符
 		_tags = _tags.replace("，", ",");
 		// 删除重复的tag
