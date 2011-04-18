@@ -2,23 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ad811d2-f712-469f-b102-9328f12e606c" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\MayFlower\db_bak\paladin 20110401 0859.sql" afterPath="" />
-      <change type="DELETED" beforePath="D:\MayFlower\db_bak\paladin 20110402 1642.sql" afterPath="" />
-      <change type="DELETED" beforePath="D:\MayFlower\db_bak\paladin 20110402 1725.sql" afterPath="" />
-      <change type="DELETED" beforePath="D:\MayFlower\db_bak\paladin 20110405 1418.sql" afterPath="" />
-      <change type="DELETED" beforePath="D:\MayFlower\db_bak\paladin 20110405 1615.sql" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WebRoot/attached/20110408202104_791.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WebRoot/attached/20110408202206_519.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WebRoot/attached/20110411085802_280.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WebRoot/attached/20110412132819_56.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WebRoot/attached/20110412132832_50.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db_bak/paladin 20110408 1700.sql" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db_bak/paladin 20110412 1329.sql" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db_bak/paladin 20110413 0838.sql" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db_bak/paladin 20110414 1026.sql" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db_bak/paladin 20110414 1523.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MayFlower.iml" afterPath="$PROJECT_DIR$/MayFlower.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/WebRoot/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/blog/blog_list.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/blog/blog_list.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/blog/blog_read.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/blog/blog_read.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/search/search_bc.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/search/search_bc.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/kindEditor/kindeditor.js" afterPath="$PROJECT_DIR$/WebRoot/kindEditor/kindeditor.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/blog/blog_edit.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/blog/blog_edit.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/inc/top.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/inc/top.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/BlogAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/BlogAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/CodeAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/CodeAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/bean/BaseBlog.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/bean/BaseBlog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/common/Tools.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/common/Tools.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/mvc/ActionServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/mvc/ActionServlet.java" />
     </list>
     <ignored path="MayFlower.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -105,8 +104,8 @@
       <property name="field_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByClasses" value="true" />
       <property name="exception_breakpoints_viewId" value="TABLE" />
-      <property name="field_breakpoints_viewId" value="TABLE" />
       <property name="exception_breakpoints_groupByClasses" value="true" />
+      <property name="field_breakpoints_viewId" value="TABLE" />
       <property name="method_breakpoints_groupByMethods" value="false" />
     </ui_properties>
   </component>
@@ -118,16 +117,25 @@
       <file leaf-file-name="demo.jsp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebRoot/kindEditor/jsp/demo.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="83" selection-start="399" selection-end="399" vertical-scroll-proportion="-6.785714">
+            <state line="10" column="83" selection-start="399" selection-end="399" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="blog_edit.jsp" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="blog_edit.jsp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/WebRoot/html/blog/blog_edit.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="4" selection-start="1920" selection-end="2288" vertical-scroll-proportion="0.22093023">
+            <state line="24" column="6" selection-start="921" selection-end="921" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BlogAction.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/BlogAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="72" column="5" selection-start="2364" selection-end="2364" vertical-scroll-proportion="0.3604336">
               <folding />
             </state>
           </provider>
@@ -161,11 +169,11 @@
         <option value="$PROJECT_DIR$/WebRoot/html/blog/blog_read.jsp" />
         <option value="$PROJECT_DIR$/WebRoot/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/paladin/common/Tools.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paladin/action/BlogAction.java" />
         <option value="$PROJECT_DIR$/WebRoot/kindEditor/kindeditor-min.js" />
         <option value="$PROJECT_DIR$/WebRoot/kindEditor/kindeditor.js" />
-        <option value="$PROJECT_DIR$/WebRoot/html/blog/blog_edit.jsp" />
         <option value="$PROJECT_DIR$/WebRoot/kindEditor/jsp/demo.jsp" />
+        <option value="$PROJECT_DIR$/WebRoot/html/blog/blog_edit.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/paladin/action/BlogAction.java" />
       </list>
     </option>
   </component>
@@ -228,7 +236,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Favorites" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -247,7 +254,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -256,103 +262,23 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebRoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebRoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kindEditor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebRoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="html" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebRoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="html" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="blog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="132" />
-    <property name="OverrideImplement.combined" value="true" />
-    <property name="project.structure.proportion" value="0.15" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="134" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="OverrideImplement.combined" value="true" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="recentsLimit" value="5" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="141" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="recentsLimit" value="5" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="D:/openSource/EaselJS_v0_3_2/examples" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="148" />
@@ -368,8 +294,8 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
     <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
@@ -415,14 +341,6 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" adl_options="" air_descriptor_path="" air_program_params="" air_publisher_id="" air_root_dir_path="" air_run_mode="AppDescriptor" browser_family="FIREFOX" class_name="" debugger_sdk="Module SDK" html_or_swf_file_path="" launcher_type="OSDefault" main_class_name="" method_name="" module_name="" output_log_level="" package_name="" player_path="FlashPlayer.exe" port="0" run_mode="HtmlOrSwfFile" run_trusted="false" scope="Class" socket_policy_port="0" url_to_launch="http://">
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
     <configuration default="true" type="SpecsRunConfiguration" factoryName="Specs">
       <module name="" />
       <setting name="path" value="" />
@@ -432,6 +350,14 @@
       <setting name="workingDirectory" value="$PROJECT_DIR$" />
       <setting name="sysFilter" value=".*" />
       <setting name="exampleFilter" value=".*" />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" adl_options="" air_descriptor_path="" air_program_params="" air_publisher_id="" air_root_dir_path="" air_run_mode="AppDescriptor" browser_family="FIREFOX" class_name="" debugger_sdk="Module SDK" html_or_swf_file_path="" launcher_type="OSDefault" main_class_name="" method_name="" module_name="" output_log_level="" package_name="" player_path="FlashPlayer.exe" port="0" run_mode="HtmlOrSwfFile" run_trusted="false" scope="Class" socket_policy_port="0" url_to_launch="http://">
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -488,6 +414,28 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="FtpUpload" enabled="false">
+          <server_id />
+          <server_name />
+        </option>
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" />
       <module name="" />
@@ -514,25 +462,18 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
-      <JSDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSDebuggerConfigurationSettings>
+    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="version" value="false" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="FtpUpload" enabled="false">
-          <server_id />
-          <server_name />
-        </option>
+        <option name="Make" enabled="true" />
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
@@ -544,21 +485,6 @@
       </server-settings>
       <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
-      <module name="" />
-      <setting name="path" value="" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="version" value="false" />
-      <setting name="workingDirectory" value="$PROJECT_DIR$" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -685,23 +611,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="50" y="-4" width="1320" height="776" extended-state="6" />
+    <frame x="54" y="0" width="1312" height="768" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24960381" sideWeight="0.68327975" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33601287" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="262" y="566" width="1025" height="421" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33441558" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="262" y="566" width="1025" height="421" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296355" sideWeight="0.68327975" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2857143" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28617364" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.21221864" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32884312" sideWeight="0.21864952" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32884312" sideWeight="0.661859" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296355" sideWeight="0.659164" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39936608" sideWeight="0.68327975" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22187005" sideWeight="0.66398716" order="0" side_tool="false" content_ui="tabs" x="207" y="135" width="315" height="622" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.330941" sideWeight="0.66558444" order="0" side_tool="false" content_ui="tabs" x="207" y="135" width="315" height="622" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -726,7 +652,7 @@
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="[update]1、完成分页功能；" />
+    <option name="LAST_COMMIT_MESSAGE" value="[debug]1、Top.jsp的COMMAPI链接；" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -750,6 +676,8 @@
     <MESSAGE value="[update]1、新增 BaseBlog类（删除content），用于加载文章列表；2、删除3月份的数据备份；" />
     <MESSAGE value="[update]1、美化图标；" />
     <MESSAGE value="[update]1、完成分页功能；" />
+    <MESSAGE value="[debug]1、修正了在未登录的情况下通过地址栏也可以编辑文章的Bug；1、更改Editor红色显示；" />
+    <MESSAGE value="[debug]1、Top.jsp的COMMAPI链接；" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -781,21 +709,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WebRoot/html/blog/blog_read.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="102" selection-start="1001" selection-end="1001" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="25" column="102" selection-start="1001" selection-end="1001" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebRoot/WEB-INF/web.xml">
       <provider editor-type-id="text-editor">
-        <state line="39" column="26" selection-start="1347" selection-end="1347" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
-        <state />
+        <state line="39" column="26" selection-start="1347" selection-end="1347" vertical-scroll-proportion="0.0" />
       </provider>
       <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
         <state />
       </provider>
       <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
@@ -804,42 +728,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/common/Tools.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="43" selection-start="1155" selection-end="1155" vertical-scroll-proportion="0.5792208">
+        <state line="50" column="43" selection-start="1155" selection-end="1155" vertical-scroll-proportion="0.5792208" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/kindEditor/kindeditor-min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="419" selection-start="2443" selection-end="2443" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/kindEditor/kindeditor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="39" selection-start="2423" selection-end="2423" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/kindEditor/jsp/demo.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="83" selection-start="399" selection-end="399" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/html/blog/blog_edit.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="6" selection-start="921" selection-end="921" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/BlogAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="38" selection-start="4882" selection-end="4882" vertical-scroll-proportion="0.62857145">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/kindEditor/kindeditor-min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="419" selection-start="2443" selection-end="2443" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/kindEditor/kindeditor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="39" selection-start="2423" selection-end="2423" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/kindEditor/jsp/demo.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="83" selection-start="399" selection-end="399" vertical-scroll-proportion="-6.785714">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/html/blog/blog_edit.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="4" selection-start="1920" selection-end="2288" vertical-scroll-proportion="0.22093023">
+        <state line="72" column="5" selection-start="2364" selection-end="2364" vertical-scroll-proportion="0.3604336">
           <folding />
         </state>
       </provider>

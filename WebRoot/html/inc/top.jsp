@@ -13,7 +13,7 @@
             &nbsp;&nbsp;
         	<a href="${contextPath}/chat" class=gb1>聊天室</a>&nbsp;&nbsp;
         	<a href="${contextPath}/game" class=gb1>游戏</a>&nbsp;&nbsp;
-            <a href="http://localhost/commonAPI" class=gb1>常用API</a>&nbsp;&nbsp;
+            <a href="${contextPath}/commonAPI" class=gb1>常用API</a>&nbsp;&nbsp;
             <!--<a href="#" class=gb1>游戏</a>&nbsp;
             <a href="#" class=gb1>待办事项</a>&nbsp;
             <a href="#" class=gb1>通讯录</a>&nbsp;
