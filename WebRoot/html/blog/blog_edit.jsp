@@ -23,9 +23,9 @@
     </script>
 </head>
 <body>
-<form name="blogForm" id="blogForm" action="${contextPath}/blog/save" method="post">
+
+    <table width="100%" border="0" align="center" cellpadding="2" cellspacing="0"><form name="blogForm" id="blogForm" action="${contextPath}/blog/save" method="post">
     <input type="hidden" name="id" value="${blog.id}">
-    <table width="100%" border="0" cellspacing="0" cellpadding="2">
         <tr>
             <td><textarea id="content" name="content" cols="130" rows="8" style="height:450px;"
                           placeholder='这里面输入内容哦!'>${blog.content}</textarea></td>
@@ -45,9 +45,9 @@
             </c:choose>
                 <input style="height:30px;" name="svBtn" type="button" onClick="doSave()"
                        value="     发                          布     "></td>
-        </tr>
+        </tr></form>
     </table>
-</form>
+
 <script>
     function doSave() {
         var fm = document.blogForm;

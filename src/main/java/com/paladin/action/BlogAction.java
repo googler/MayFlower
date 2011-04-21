@@ -16,7 +16,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Blog Action
@@ -58,7 +61,7 @@ public class BlogAction extends BaseAction {
         page_NO = page_NO < 1 ? 1 : page_NO;
         page_NO = page_NO > total_page ? total_page : page_NO;
         // 获取页面数据
-        sql = "SELECT * FROM BLOG ORDER BY TOP DESC, CREATE_DATE DESC";
+        sql = "SELECT * FROM BLOG ORDER BY TOP DESC, HITS DESC, CREATE_DATE DESC";
         List<BaseBlog> blogs = QueryHelper.query_slice(BaseBlog.class, sql, page_NO, Constants.NUM_PER_PAGE, new Object[]{});
         // 计算显示的页码数
         int p_start = page_NO - 5 > 0 ? page_NO - 5 : 1;
@@ -69,6 +72,8 @@ public class BlogAction extends BaseAction {
         request.setAttribute("curr_page", page_NO);
         request.setAttribute("total_page", total_page);
         request.setAttribute("blogs", blogs);
+        // 提取热门tag
+        request.setAttribute("hotTag", hotTag().subList(0, 15));
         forward(_reqCtxt, "/html/blog/blog_list.jsp");
     }
 
@@ -101,7 +106,7 @@ public class BlogAction extends BaseAction {
      * 转到编辑页面
      */
     public void edit(final RequestContext _reqCtxt, final long _id) {
-       if (super.getUserFromSession(_reqCtxt) == null)
+        if (super.getUserFromSession(_reqCtxt) == null)
             redirect(_reqCtxt, "/login?r=/blog/edit/" + _id);
         log.info("get read to edit blog-" + _id);
         String sql = "SELECT * FROM BLOG WHERE ID = ?";
@@ -169,6 +174,9 @@ public class BlogAction extends BaseAction {
         redirect(_reqCtxt, "/blog");
     }
 
+    /**
+     * 搜索时给关键字作标记
+     */
     private void dealBlogWhenQ(Blog _blog, String _q) {
         //_q = Tools.ISO885912UTF8(_q).replaceAll("<[^>]*>", "");
         _q = _q.replaceAll("<[^>]*>", "");
@@ -182,10 +190,35 @@ public class BlogAction extends BaseAction {
     }
 
     /**
-     * init
-     *
-     * @param _ctxt
+     * 获取热门tag
      */
+    private List<String> hotTag() {
+        // 从数据库中取出所有tag
+        String sql = "SELECT TAG FROM BLOG";
+        List<Map<String, Object>> list = QueryHelper.queryList(sql);
+        Map<String, Integer> tag_map = new HashMap<String, Integer>();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) != null && !Strings.isNullOrEmpty(list.get(i).get("TAG").toString())) {
+                for (String tag : list.get(i).get("TAG").toString().split(",")) {
+                    tag = tag.trim();
+                    if (tag_map.get(tag) == null)
+                        tag_map.put(tag, 1);
+                    else
+                        tag_map.put(tag, tag_map.get(tag) + 1);
+                }
+            }
+        }
+        // 排序并返回
+        List<String> list_return = new ArrayList<String>();
+        String[] key_arr = new String[tag_map.keySet().size()];
+        tag_map.keySet().toArray(key_arr);
+        Tools.quickSort(tag_map, key_arr, 0, key_arr.length - 1);
+        for (String str : key_arr)
+            list_return.add(str + ":=:" + tag_map.get(str));
+        return list_return;
+    }
+
+
     public void init(ServletContext _ctxt) {
         super.init(_ctxt);
         try {

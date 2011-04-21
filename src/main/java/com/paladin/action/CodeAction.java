@@ -51,7 +51,7 @@ public class CodeAction extends BaseAction {
         page_NO = page_NO < 1 ? 1 : page_NO;
         page_NO = page_NO > total_page ? total_page : page_NO;
         // 获取页面数据
-        sql = "SELECT * FROM CODE ORDER BY LASTMODIFY_DATE DESC, CREATE_DATE DESC";
+        sql = "SELECT * FROM CODE ORDER BY HITS DESC, CREATE_DATE DESC";
         List<BaseBlog> codes = QueryHelper.query_slice(BaseBlog.class, sql, page_NO, Constants.NUM_PER_PAGE, new Object[]{});
         // 计算显示的页码数
         int p_start = page_NO - 5 > 0 ? page_NO - 5 : 1;

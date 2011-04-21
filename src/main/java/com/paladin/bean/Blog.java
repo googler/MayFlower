@@ -7,7 +7,6 @@ import com.google.common.base.Strings;
 public class Blog extends BaseBlog {
     protected String tag;
     protected String content;
-    protected String hits;
     protected String author;
     protected Date create_date;
     protected Date lastmodify_date;
@@ -26,14 +25,6 @@ public class Blog extends BaseBlog {
 
     public void setTag(String tag) {
         this.tag = tag;
-    }
-
-    public String getHits() {
-        return hits;
-    }
-
-    public void setHits(String hits) {
-        this.hits = hits;
     }
 
     public String getAuthor() {

@@ -11,6 +11,15 @@ public class BaseBlog {
     protected int id;
     protected String title;
     protected int top;
+    protected String hits;
+
+    public String getHits() {
+        return hits;
+    }
+
+    public void setHits(String hits) {
+        this.hits = hits;
+    }
 
     public int getId() {
         return id;

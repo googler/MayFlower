@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.base.Strings;
+import com.paladin.common.Tools;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
 import org.apache.commons.dbutils.handlers.*;
@@ -198,16 +200,7 @@ public class QueryHelper {
         MapListHandler handler = new MapListHandler() {
             @Override
             protected Map<String, Object> handleRow(ResultSet __rs) throws SQLException {
-                if (__rs.next()) {
-                    Map<String, Object> map = new HashMap<String, Object>();
-                    ResultSetMetaData meta = __rs.getMetaData();
-                    for (int i = 1; i <= meta.getColumnCount(); i++) {
-                        String col_name = meta.getColumnName(i);
-                        map.put(col_name, (String) __rs.getObject(col_name));
-                    }
-                    return map;
-                }
-                return null;
+                return getMapFromRs(__rs);
             }
         };
         try {
@@ -218,5 +211,28 @@ public class QueryHelper {
             DBManager.closeConnection();
         }
         return null;
+    }
+
+    /**
+     * 取得所有的记录
+     *
+     * @param rs 结果集
+     * @return Map<String, String>  Map对象
+     * @throws SQLException
+     */
+    public static Map<String, Object> getMapFromRs(final ResultSet rs) {
+        Map<String, Object> tmap = new HashMap<String, Object>();
+        int columnCount = 0;
+        try {
+            columnCount = rs.getMetaData().getColumnCount();// 取得字段数目
+            // 获取每个字段的名称
+            for (int i = 0; i < columnCount; i++) {
+                tmap.put(rs.getMetaData().getColumnName(i + 1).toUpperCase(),
+                        Tools.null2String(rs.getString(i + 1)));// 将字段名和对应的值存入map
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tmap;
     }
 }

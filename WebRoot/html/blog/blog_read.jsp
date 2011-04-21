@@ -5,9 +5,9 @@
     <title>${title}</title>
 </head>
 <body> 
-<table width="100%" cellspacing="2">
+<table width="99%" align="center" cellspacing="2">
 	<tr>
-    	<td align="center" style="font-size:22px; height:34px;" title=''><b>${blog.title}</b></td> 
+    	<td align="center" style="font-size:22px;" title='${blog.title}'><b>${blog.title}</b></td> 
 	</tr>
 	<tr> 
     	<td align="right" valign="middle" class="border_bottom_green" style="color:#CCC">

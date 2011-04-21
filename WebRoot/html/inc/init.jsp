@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ page import="java.util.List" %>
 <% String contextPath = request.getContextPath(); %>
 <link rel="shortcut icon" href="${contextPath}/images/paladinIco.png"/>
 <link rel="Bookmark" href="${contextPath}/images/paladinIco.png"/>
@@ -18,7 +19,7 @@
 			width:100%;}
 		.lineBottom{
 			border-top:1px solid #ccccff;
-			font-size:1px;a
+			font-size:1px;
 			position:absolute;
 			bottom:2px;
 			width:100%;

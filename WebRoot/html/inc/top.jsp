@@ -3,14 +3,8 @@
 <input type="hidden" name="r"/>
 <div>
 	<div id=gbar><nobr>&nbsp;&nbsp;<a href="${contextPath}/" class=gb1>主页</a>&nbsp;&nbsp;
-            <a href="${contextPath}/blog" class=gb1>博文</a>
-			<c:if test='${user.role == "admin"}'>(<a href="${contextPath}/blog/toAdd">发布博文</a>)
-            </c:if>
-			&nbsp;&nbsp;
-            <a href="${contextPath}/code" class=gb1>代码</a>
-            <c:if test='${user.role == "admin"}'>(<a href="${contextPath}/code/toAdd">分享代码</a>)
-            </c:if>
-            &nbsp;&nbsp;
+            <a href="${contextPath}/blog" class=gb1>博文</a>&nbsp;&nbsp;
+            <a href="${contextPath}/code" class=gb1>代码</a>&nbsp;&nbsp;
         	<a href="${contextPath}/chat" class=gb1>聊天室</a>&nbsp;&nbsp;
         	<a href="${contextPath}/game" class=gb1>游戏</a>&nbsp;&nbsp;
             <a href="${contextPath}/commonAPI" class=gb1>常用API</a>&nbsp;&nbsp;
