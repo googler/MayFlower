@@ -33,9 +33,6 @@ public class BlogAction extends BaseAction {
 
     /**
      * 默认页面
-     *
-     * @param _reqCtxt
-     * @return
      */
     public void index(final RequestContext _reqCtxt) {
         list(_reqCtxt);
@@ -43,37 +40,17 @@ public class BlogAction extends BaseAction {
 
     /**
      * 博文列表
-     *
-     * @param _reqCtxt
-     * @return
      */
     public void list(final RequestContext _reqCtxt) {
         log.info("get blog list.");
-        final HttpServletRequest request = _reqCtxt.request();
-        // 当前页面
-        String current_page = request.getParameter("p");
-        if (Strings.isNullOrEmpty(current_page))
-            current_page = "1";
-        int page_NO = Integer.parseInt(current_page);
-        // 获取博客条数
-        String sql = "SELECT COUNT(*) COUNT FROM BLOG";
-        int total_page = (int) (QueryHelper.stat(sql) + Constants.NUM_PER_PAGE - 1) / Constants.NUM_PER_PAGE;
-        page_NO = page_NO < 1 ? 1 : page_NO;
-        page_NO = page_NO > total_page ? total_page : page_NO;
+        // 分页
+        super.doPage(_reqCtxt.request(), "SELECT COUNT(*) COUNT FROM BLOG");
         // 获取页面数据
-        sql = "SELECT * FROM BLOG ORDER BY TOP DESC, HITS DESC, CREATE_DATE DESC";
+        String sql = "SELECT * FROM BLOG ORDER BY TOP DESC, CREATE_DATE DESC";
         List<BaseBlog> blogs = QueryHelper.query_slice(BaseBlog.class, sql, page_NO, Constants.NUM_PER_PAGE, new Object[]{});
-        // 计算显示的页码数
-        int p_start = page_NO - 5 > 0 ? page_NO - 5 : 1;
-        int p_end = p_start + 10 > total_page ? total_page : p_start + 10;
 
-        request.setAttribute("p_start", p_start);
-        request.setAttribute("p_end", p_end);
-        request.setAttribute("curr_page", page_NO);
-        request.setAttribute("total_page", total_page);
-        request.setAttribute("blogs", blogs);
-        // 提取热门tag
-        request.setAttribute("hotTag", hotTag().subList(0, 15));
+        _reqCtxt.request().setAttribute("blogs", blogs);
+        _reqCtxt.request().setAttribute("hotTag", hotTag().subList(0, 15));// 提取热门tag
         forward(_reqCtxt, "/html/blog/blog_list.jsp");
     }
 
@@ -83,8 +60,7 @@ public class BlogAction extends BaseAction {
     public void read(final RequestContext _reqCtxt, final long _id) throws ServletException, IOException {
         log.info("get blog detail, the id = " + _id);
 
-        String sql = "SELECT * FROM BLOG WHERE ID = ?";
-        Blog blog = QueryHelper.read(Blog.class, sql, _id);
+        Blog blog = QueryHelper.read(Blog.class, "SELECT * FROM BLOG WHERE ID = ?", _id);
         final HttpServletRequest request = _reqCtxt.request();
         request.setAttribute("title", blog.getTitle());
         request.setAttribute("tags", Strings.isNullOrEmpty(blog.getTag()) ? null : blog.getTag().split(","));
@@ -97,8 +73,7 @@ public class BlogAction extends BaseAction {
         }
         request.setAttribute("blog", blog);
         // --------------------------------hits++
-        sql = "UPDATE BLOG SET HITS = (HITS + 1) WHERE ID = ?";
-        QueryHelper.update(sql, _id);
+        QueryHelper.update("UPDATE BLOG SET HITS = (HITS + 1) WHERE ID = ?", _id);
         forward(_reqCtxt, "/html/blog/blog_read.jsp");
     }
 
@@ -106,8 +81,10 @@ public class BlogAction extends BaseAction {
      * 转到编辑页面
      */
     public void edit(final RequestContext _reqCtxt, final long _id) {
-        if (super.getUserFromSession(_reqCtxt) == null)
+        if (super.getUserFromSession(_reqCtxt) == null) {
             redirect(_reqCtxt, "/login?r=/blog/edit/" + _id);
+            return;
+        }
         log.info("get read to edit blog-" + _id);
         String sql = "SELECT * FROM BLOG WHERE ID = ?";
         Blog blog = QueryHelper.read(Blog.class, sql, new Object[]{_id});
@@ -117,12 +94,12 @@ public class BlogAction extends BaseAction {
 
     /**
      * 转到添加博文页面
-     *
-     * @return
      */
     public void toAdd(final RequestContext _reqCtxt) {
-        if (super.getUserFromSession(_reqCtxt) == null)
+        if (super.getUserFromSession(_reqCtxt) == null) {
             redirect(_reqCtxt, "/login?r=/blog/toAdd");
+            return;
+        }
         log.info("to add a new blog");
         forward(_reqCtxt, "/html/blog/blog_edit.jsp");
     }
@@ -182,11 +159,11 @@ public class BlogAction extends BaseAction {
         _q = _q.replaceAll("<[^>]*>", "");
         String title = _blog.getTitle().trim();
         if (title.indexOf(_q) >= 0) {
-            title = title.replaceAll(_q, "<span style='background-color:#f00;'>" + _q + "</span>");
+            title = title.replaceAll(_q, Tools.standOutStr(_q));
         }
         _blog.setTitle(title);
         String content = _blog.getContent();
-        _blog.setContent(content.replace(_q, "<span style='background-color:#f00;'>" + _q + "</span>"));
+        _blog.setContent(content.replace(_q, Tools.standOutStr(_q)));
     }
 
     /**
@@ -198,34 +175,26 @@ public class BlogAction extends BaseAction {
         List<Map<String, Object>> list = QueryHelper.queryList(sql);
         Map<String, Integer> tag_map = new HashMap<String, Integer>();
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) != null && !Strings.isNullOrEmpty(list.get(i).get("TAG").toString())) {
-                for (String tag : list.get(i).get("TAG").toString().split(",")) {
-                    tag = tag.trim();
-                    if (tag_map.get(tag) == null)
-                        tag_map.put(tag, 1);
-                    else
-                        tag_map.put(tag, tag_map.get(tag) + 1);
-                }
+            String tags = list.get(i).get("TAG").toString();
+            if (!Strings.isNullOrEmpty(tags)) {
+                for (String tag : tags.split(","))
+                    tag_map.put(tag, tag_map.get(tag) == null ? 1 : tag_map.get(tag) + 1);
             }
         }
         // 排序并返回
-        List<String> list_return = new ArrayList<String>();
         String[] key_arr = new String[tag_map.keySet().size()];
         tag_map.keySet().toArray(key_arr);
         Tools.quickSort(tag_map, key_arr, 0, key_arr.length - 1);
+
+        List<String> list_return = new ArrayList<String>();
         for (String str : key_arr)
             list_return.add(str + ":=:" + tag_map.get(str));
         return list_return;
     }
 
-
     public void init(ServletContext _ctxt) {
         super.init(_ctxt);
-        try {
-            DBManager.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        DBManager.getConnection();
         DBManager.closeConnection();
     }
 }

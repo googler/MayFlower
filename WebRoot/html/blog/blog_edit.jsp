@@ -52,11 +52,11 @@
     function doSave() {
         var fm = document.blogForm;
         if (fm.title.value == '') {
-            alert("Hi, you can't submit a blog without title:)");
+            alert("Hi, 你忘记填写标题了:)");
             return false;
         }
         if (fm.content.value == '') {
-            alert("oh, you can't submit a blog without content:)");
+            alert("oh, 内容是不可以不填的啊:)");
             return false;
         }
         if (fm.top.checked == true)

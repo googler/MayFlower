@@ -81,7 +81,7 @@
     </tr>
     <tr>
         <td align="center">
-            <%@ include file="/html/inc/bottom.jsp" %>
+            <!--<%@ include file="/html/inc/bottom.jsp" %>-->
         </td>
     </tr>
 </table>

@@ -18,14 +18,14 @@ import com.paladin.common.Tools;
 import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.QueryHelper;
 
+/**
+ * 代码业务类
+ */
 public class CodeAction extends BaseAction {
     private static final Log log = LogFactory.getLog(CodeAction.class);
 
     /**
      * 默认页面
-     *
-     * @param _reqCtxt
-     * @return
      */
     public void index(final RequestContext _reqCtxt) {
         list(_reqCtxt);
@@ -33,35 +33,13 @@ public class CodeAction extends BaseAction {
 
     /**
      * 代码列表
-     *
-     * @param _reqCtxt
-     * @return
      */
     public void list(final RequestContext _reqCtxt) {
         log.info("get code list.");
-        final HttpServletRequest request = _reqCtxt.request();
-        // 当前页面
-        String current_page = request.getParameter("p");
-        if (Strings.isNullOrEmpty(current_page))
-            current_page = "1";
-        int page_NO = Integer.parseInt(current_page);
-        // 获取博客条数
-        String sql = "SELECT COUNT(*) COUNT FROM CODE";
-        int total_page = (int) (QueryHelper.stat(sql) + Constants.NUM_PER_PAGE - 1) / Constants.NUM_PER_PAGE;
-        page_NO = page_NO < 1 ? 1 : page_NO;
-        page_NO = page_NO > total_page ? total_page : page_NO;
+        // 分页
+        super.doPage(_reqCtxt.request(), "SELECT COUNT(*) COUNT FROM CODE");
         // 获取页面数据
-        sql = "SELECT * FROM CODE ORDER BY HITS DESC, CREATE_DATE DESC";
-        List<BaseBlog> codes = QueryHelper.query_slice(BaseBlog.class, sql, page_NO, Constants.NUM_PER_PAGE, new Object[]{});
-        // 计算显示的页码数
-        int p_start = page_NO - 5 > 0 ? page_NO - 5 : 1;
-        int p_end = p_start + 10 > total_page ? total_page : p_start + 10;
-
-        request.setAttribute("p_start", p_start);
-        request.setAttribute("p_end", p_end);
-        request.setAttribute("curr_page", page_NO);
-        request.setAttribute("total_page", total_page);
-        request.setAttribute("codes", codes);
+        _reqCtxt.request().setAttribute("codes", QueryHelper.query_slice(BaseBlog.class, "SELECT * FROM CODE ORDER BY CREATE_DATE DESC", page_NO, Constants.NUM_PER_PAGE, new Object[]{}));
         forward(_reqCtxt, "/html/code/code_list.jsp");
     }
 
@@ -70,7 +48,6 @@ public class CodeAction extends BaseAction {
      */
     public void read(final RequestContext _reqCtxt, final long _id) throws ServletException, IOException {
         log.info("get code detail, the id = " + _id);
-
         String sql = "SELECT * FROM CODE WHERE ID = ?";
         Code code = QueryHelper.read(Code.class, sql, new Object[]{_id});
         final HttpServletRequest request = _reqCtxt.request();
@@ -81,16 +58,14 @@ public class CodeAction extends BaseAction {
             String q = request.getParameter("q");
             q = Tools.ISO885912UTF8(q).replaceAll("<[^>]*>", "");
             String title = code.getTitle().trim();
-            if (title.indexOf(q) >= 0) {
+            if (title.indexOf(q) >= 0)
                 title = title.replaceAll(q, "<span style='background-color:#f00;'>" + q + "</span>");
-            }
             code.setTitle(title);
             request.setAttribute("q", q);
         }
         request.setAttribute("code", code);
         // --------------------------------hits++
-        sql = "UPDATE CODE SET HITS = (HITS + 1) WHERE ID = ?";
-        QueryHelper.update(sql, _id);
+        QueryHelper.update("UPDATE CODE SET HITS = (HITS + 1) WHERE ID = ?", _id);
         forward(_reqCtxt, "/html/code/code_read.jsp");
     }
 
@@ -109,8 +84,6 @@ public class CodeAction extends BaseAction {
 
     /**
      * 转到添加代码页面
-     *
-     * @return
      */
     public void toAdd(final RequestContext _reqCtxt) {
         log.info("to add a new code");

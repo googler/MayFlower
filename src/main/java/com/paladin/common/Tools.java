@@ -1,20 +1,17 @@
 package com.paladin.common;
 
+import com.google.common.base.Strings;
+
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.base.Strings;
-
 public class Tools {
 
     /**
      * 压缩字符串中的空白字符
-     *
-     * @param str
-     * @return
      */
     public static String compressBlank(String str) {
         str = str.trim();
@@ -33,9 +30,6 @@ public class Tools {
 
     /**
      * 判断某字符是否是空白字符
-     *
-     * @param c
-     * @return
      */
     public static boolean isBlank(char c) {
         return (int) c == 9 || (int) c == 32;
@@ -80,7 +74,7 @@ public class Tools {
     }
 
     /**
-     * 快速排序tag
+     * 快速排序tag_Desc
      */
     public static void quickSort(Map<String, Integer> _map, String[] _arr, int _start, int _end) {
         if (_start < _end) {
@@ -99,6 +93,19 @@ public class Tools {
             quickSort(_map, _arr, _start, j - 1);
             quickSort(_map, _arr, j + 1, _end);
         }
+    }
+
+    public static String standOutStr(String _str) {
+        return "<span style='background-color:#f00;'>" + _str
+                + "</span>";
+    }
+
+    public static String[] q2qArr(String _q) {
+        _q = Tools.compressBlank(_q.replaceAll("<[^>]*>", ""));
+        String[] q_arr = _q.split(" ");
+        for (int i = 0; i < q_arr.length; i++)
+            q_arr[i] = "%".concat(q_arr[i]).concat("%");
+        return q_arr;
     }
 
     public static void main(String[] args) {

@@ -20,8 +20,6 @@ public class GameAction extends BaseAction {
 
     /**
      * 连连看
-     *
-     * @param _reqCtxt
      */
     public void linkup(final RequestContext _reqCtxt) {
         index(_reqCtxt);

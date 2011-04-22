@@ -72,12 +72,7 @@ public class QueryHelper {
      * @return
      */
     public static Connection getConnection() {
-        try {
-            return DBManager.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return DBManager.getConnection();
     }
 
     /**

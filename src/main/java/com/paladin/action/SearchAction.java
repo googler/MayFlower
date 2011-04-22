@@ -1,21 +1,20 @@
 package com.paladin.action;
 
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import com.google.common.base.Strings;
 import com.paladin.bean.Blog;
 import com.paladin.bean.Code;
 import com.paladin.bean.HFile;
+import com.paladin.common.Constants;
 import com.paladin.common.Tools;
 import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.QueryHelper;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Search Action
@@ -125,39 +124,25 @@ public class SearchAction extends BaseAction {
      */
     public void b(final RequestContext _reqCtxt) throws UnsupportedEncodingException {
         List<Blog> blog_list = new ArrayList<Blog>();
-        List<Code> code_list = new ArrayList<Code>();
         HttpServletRequest request = _reqCtxt.request();
         String q = request.getParameter("q");
         if (!Strings.isNullOrEmpty(q)) {
             q = Tools.ISO885912UTF8(q).trim();
             request.setAttribute("q", q);
-            q = Tools.compressBlank(q.replaceAll("<[^>]*>", ""));
-
-            String[] q_arr = q.split(" ");
-            for (int i = 0; i < q_arr.length; i++)
-                q_arr[i] = "%".concat(q_arr[i]).concat("%");
-
             // search from blog
-            StringBuilder sqlB = new StringBuilder();
-            sqlB.append("SELECT * FROM BLOG WHERE TITLE LIKE ? OR CONTENT LIKE ? OR TAG LIKE ? ORDER BY HITS DESC");
 
-            for (String qq : q_arr) {
-                for (Blog b : QueryHelper.query(Blog.class, sqlB.toString(), new Object[]{qq, qq, qq})) {
+            for (String qq : Tools.q2qArr(q)) {
+                String sql = "SELECT * FROM BLOG WHERE TITLE LIKE ? OR CONTENT LIKE ? OR TAG LIKE ? ORDER BY HITS DESC";
+                for (Blog b : QueryHelper.query(Blog.class, sql, new Object[]{qq, qq, qq})) {
                     if (!blog_list.contains(b)) {
                         String title = b.getTitle().trim();
-                        if (title.indexOf(q) >= 0) {
-                            title = title.replaceAll(q, "<span style='background-color:#f00;'>" + q
-                                    + "</span>");
-                            b.setTitle(title);
-                        }
                         String tag = b.getTag().trim();
-                        if (tag.indexOf(q) >= 0) {
-                            tag = tag.replaceAll(q, "<span style='background-color:#f00;'>" + q
-                                    + "</span>");
-                            b.setTag(tag);
-                        }
+                        String content = b.getContent().trim();
+                        if (title.indexOf(q) >= 0)
+                            b.setTitle(title.replaceAll(q, Tools.standOutStr(q)));
+                        if (tag.indexOf(q) >= 0)
+                            b.setTag(tag.replaceAll(q, Tools.standOutStr(q)));
 
-                        String content = b.getContent();
                         content = content.replaceAll("<[^>]*>", "");
                         int first_index = content.indexOf(q);
                         int last_index = content.lastIndexOf(q);
@@ -165,11 +150,17 @@ public class SearchAction extends BaseAction {
                             content = content.substring(first_index, last_index + q.length() + 20);
                         if (content.length() > 1200)
                             content = content.substring(0, 1200);
-                        b.setContent(content.replace(q, "<span style='background-color:#f00;'>" + q
-                                + "</span>"));
+                        b.setContent(content.replace(q, Tools.standOutStr(q)));
                         blog_list.add(b);
                     }
                 }
+            }
+            {//分页
+                int num_per_page = 5;// 每页显示5条搜索结果
+                super.doPage(request, blog_list.size(), num_per_page);
+                int begin = (page_NO - 1) * 5;
+                int end = page_NO * num_per_page > blog_list.size() ? blog_list.size() : page_NO * num_per_page;
+                blog_list = blog_list.subList(begin, end);
             }
         }
         log.info("q = " + q);
@@ -185,27 +176,18 @@ public class SearchAction extends BaseAction {
         List<HFile> file_list = new ArrayList<HFile>();
         HttpServletRequest request = _reqCtxt.request();
         String q = request.getParameter("q");
-
         if (!Strings.isNullOrEmpty(q)) {
             q = Tools.ISO885912UTF8(q);
             request.setAttribute("q", q);
-            q = q.replaceAll("<[^>]*>", "");
-            q = Tools.compressBlank(q);
-
-            String[] q_arr = q.split(" ");
-            for (int i = 0; i < q_arr.length; i++)
-                q_arr[i] = "%".concat(q_arr[i]).concat("%");
-            StringBuilder sqlB = new StringBuilder();
+            String[] q_arr = Tools.q2qArr(q);
             // search from local file system
-            sqlB.append("SELECT * FROM HFILE WHERE FILENAME LIKE ? LIMIT 1000");
+            String sql = "SELECT * FROM HFILE WHERE FILENAME LIKE ? LIMIT 1000";
             for (String qq : q_arr) {
-                for (HFile f : QueryHelper.query(HFile.class, sqlB.toString(), new Object[]{qq})) {
+                for (HFile f : QueryHelper.query(HFile.class, sql, new Object[]{qq}))
                     if (!file_list.contains(f)) {
-                        f.setFileName(f.getFileName().replace(q,
-                                "<span style='background-color:#f00;'>" + q + "</span>"));
+                        f.setFileName(f.getFileName().replace(q, Tools.standOutStr(q)));
                         file_list.add(f);
                     }
-                }
             }
         }
         log.info("q = " + q);

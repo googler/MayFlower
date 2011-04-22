@@ -15,17 +15,17 @@
                             <img src="${contextPath}/images/default_activity.png" width="16">&nbsp;
                             <a href="${contextPath}/blog/read/${blog.id}/?q=${q}"><b>${blog.title}</b></a>
                         </td>
-                        <td width="9%" align="right" nowrap class="">
+                        <td width="9%" align="right" nowrap>
                                 ${blog.tag}&nbsp;
                         </td>
                         <td width="15%" align="right" nowrap>
                                 ${blog.create_date}&nbsp;
                         </td>
                         <c:if test='${user.role == "admin"}'>
-                            <td width="4%" align="center" nowrap class="">
+                            <td width="4%" align="center" nowrap>
                                 <a href="${contextPath}/blog/edit/${blog.id}">编辑</a>
                             </td>
-                            <td width="4%" align="center" nowrap class="">
+                            <td width="4%" align="center" nowrap>
                                 <a href="#" onClick="onDel(${blog.id});">删除</a>
                             </td>
                         </c:if>
@@ -35,6 +35,33 @@
                     <td colspan="5" class="border_bottom_green_dotted" style="color:#CCC;">${blog.content}</td>
                 </tr>
             </c:forEach>
+            <tr>
+                <td colspan="5">
+                    <table width="100%" border="0" align="right" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <%
+                                //int total_page = Integer.parseInt(request.getAttribute("total_page").toString());
+                                int p_start = Integer.parseInt(request.getAttribute("p_start").toString());
+                                int p_end = Integer.parseInt(request.getAttribute("p_end").toString());
+                            %>
+                            <td align=left width="50%" nowrap>
+                                <a href='${contextPath}/search/b/?q=${q}&p=${curr_page-1}'>上一页</a>&nbsp;&nbsp;
+                                <a href='${contextPath}/search/b/?q=${q}&p=${curr_page+1}'>下一页</a></td>
+                            <td width="100%" align="right" nowrap>
+                                <a href='${contextPath}/search/b/?q=${q}&p=<%=p_start-10%>'>上一屏</a>
+                                [第<%
+                                for (int ii = p_start; ii <= p_end - 1; ii++) {%><a
+                                    href="${contextPath}/search/b/?q=${q}&p=<%=ii%>"><%=ii%> 
+                            </a>&nbsp;
+                                <%}%>
+                                <a href="${contextPath}/search/b/?q=${q}&p=<%=p_end%>">${p_end}</a>页]
+                                <a href='${contextPath}/search/b/?q=${q}&p=<%=p_start+10%>'>下一屏</a>
+                                [第${curr_page}页/共${total_page}页]
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
         </table>
     </c:when>
     <c:otherwise>

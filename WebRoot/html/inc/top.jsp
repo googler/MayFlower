@@ -13,12 +13,12 @@
             <a href="#" class=gb1>通讯录</a>&nbsp;
             <a href="#" class=gb1>常用工具</a>--> </nobr>
     </div>
-    <div id=guser><nobr><font color="#FFFF00">奋斗改变命运，梦想让我们与众不同! </font>| 
+    <div id=guser><nobr><font color="#FFFF00">奋斗改变命运，梦想让我们与众不同! </font>
     	<c:if test='${empty user}'>
                 <a onclick="toLogin()" href="#" class='gb4'>登录</a>
 		</c:if>
         <c:if test='${!(empty user)}'>
-                欢迎 <a href="${contextPath}/admin" title="${user.email}">${user.nickname}</a>&nbsp;|&nbsp;
+                <img src="${contextPath}/images/actor.png"/><a href="${contextPath}/admin" title="${user.email}">${user.nickname}</a>&nbsp;&nbsp;|
                 <a href="${contextPath}/login/exit/" class='gb4'>退出</a>
         </c:if>
         &nbsp;&nbsp;</nobr>

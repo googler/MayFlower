@@ -35,7 +35,7 @@
     </tr>
     <tr> 
         <td align="right" valign="middle" class="border_bottom_green" style="color:#CCC" height="20">
-    		<c:if test='${!empty tags}'><img src="${contextPath}/images/icq_online.png"/>
+    		<c:if test='${!empty tags}'><img src="${contextPath}/images/label.png"/>
             <c:forEach items='${tags}' var='tag'> 
      			<a href="${contextPath}/search/bc/?q=${tag}">${tag}</a>&nbsp;
      		</c:forEach>
