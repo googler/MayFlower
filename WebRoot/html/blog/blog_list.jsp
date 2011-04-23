@@ -50,15 +50,20 @@
                                         <%}%>
                                     </td>
                                     <td width="10%" align="right" nowrap>
-                                        <a href='${contextPath}/blog/?p=<%=p_start-10%>'>上一屏</a>
-                                        [第<%
+                                        <a href='${contextPath}/blog/?p=${curr_page-1}'>上一页</a>
+                                        /
+		                                <a href='${contextPath}/blog/?p=${curr_page+1}'>下一页</a>
+                                        |
+                                        <!--<a href='${contextPath}/blog/?p=<%=p_start-10%>'>上一屏</a>-->
+                                        第<%
                                             for (int ii = p_start; ii <= p_end - 1; ii++) {%><a
                                                 href="${contextPath}/blog/?p=<%=ii%>"><%=ii%>
                                         </a>,
                                         <%}%>
-                                        <a href="${contextPath}/blog/?p=<%=p_end%>">${p_end}</a>页] <a
-                                                href='${contextPath}/blog/?p=<%=p_start+10%>'>下一屏</a>
-                                        第${curr_page}页/共${total_page}页
+                                        <a href="${contextPath}/blog/?p=<%=p_end%>">${p_end}</a>页
+                                        |
+                                        <!--<a href='${contextPath}/blog/?p=<%=p_start+10%>'>下一屏</a>-->
+                                        当前第${curr_page}页/共${total_page}页
                                     </td>
                                 </tr>
                             </table>

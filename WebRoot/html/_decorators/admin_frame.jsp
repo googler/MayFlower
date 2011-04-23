@@ -19,16 +19,20 @@
           	<img src="${contextPath}/images/mayFlower_small.png" alt="MayFlower:五月花!" title="MayFlower:五月花!" 
           	onClick="window.location='${contextPath}/blog'")>
           </td>
-          <td align="left" valign="middle"><table><tr>
-            <td align="left"><form action="" method="get">
-              <table>
-                <tr>
-                  <td><input name="q" type="search" style="height:25px;"
-                  		placeholder='请输入要查询的人名(Email,昵称)..' title="请输入要查询的人名(Email,昵称).."  size="70" maxlength="70" value="${q}" /></td>
-                  <td><input type="submit" style="height:30px;" id='Sbtn' value="   找 朋 友   "></td>
-                 </tr>
-              </table>
-            </form></td></tr></table></td> 
+          <td align="left" valign="middle"><form action="${contextPath}/search/f" method="get">
+                                        <table align="left">
+                                            <tr>
+                                                <td><input name="q" type="search" style="height:25px;"
+                                                           placeholder='要查询的文件(我们只返回1000条记录哦)'
+                                                           title="要查询的文件(我们只返回1000条记录哦)" size="70" maxlength="2048"
+                                                           value="${q}"/></td>
+                                                <td><input type="submit" style="height:30px;" id="sBtn2"
+                                                           value="  找 文 件  "></td>
+                                                <td valign="middle" nowrap><c:if test='${user.role == "admin"}'><br>
+                                                </c:if></td>
+                                            </tr>
+                                        </table>
+          </form></td> 
         </tr> 
         <tr> 
           <td valign="top" class="border_right_green"><table width="100%"  border="0" cellpadding="0" cellspacing="0">

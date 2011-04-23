@@ -45,18 +45,24 @@
                                 int p_end = Integer.parseInt(request.getAttribute("p_end").toString());
                             %>
                             <td align=left width="50%" nowrap>
-                                <a href='${contextPath}/search/b/?q=${q}&p=${curr_page-1}'>上一页</a>&nbsp;&nbsp;
+                                <a href='${contextPath}/search/b/?q=${q}&p=${curr_page-1}'>上一页</a>
+                                /
                                 <a href='${contextPath}/search/b/?q=${q}&p=${curr_page+1}'>下一页</a></td>
                             <td width="100%" align="right" nowrap>
                                 <a href='${contextPath}/search/b/?q=${q}&p=<%=p_start-10%>'>上一屏</a>
-                                [第<%
+                                |
+                                第<%
                                 for (int ii = p_start; ii <= p_end - 1; ii++) {%><a
                                     href="${contextPath}/search/b/?q=${q}&p=<%=ii%>"><%=ii%> 
                             </a>&nbsp;
                                 <%}%>
-                                <a href="${contextPath}/search/b/?q=${q}&p=<%=p_end%>">${p_end}</a>页]
+                                <a href="${contextPath}/search/b/?q=${q}&p=<%=p_end%>">${p_end}</a>页
+                                |
                                 <a href='${contextPath}/search/b/?q=${q}&p=<%=p_start+10%>'>下一屏</a>
-                                [第${curr_page}页/共${total_page}页]
+                                |
+                                当前第${curr_page}页
+                                /
+                                共${total_page}页
                             </td>
                         </tr>
                     </table>

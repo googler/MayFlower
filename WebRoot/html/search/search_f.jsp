@@ -14,7 +14,7 @@
                   <form name="${file.id}" id="${file.id}" action="${contextPath}/file/del" method="post">
                       <input type="hidden" name="id" value="${file.id}"/>
                       <td valign="left" class="border_bottom_green_dotted">
-                          <img src="${contextPath}/images/dev-java.png" width="16">&nbsp;
+                          <img src="${contextPath}/images/default_activity.png" width="16">&nbsp;
                           ${file.fileName}
                       </td> 
                       <td align="left" class="border_bottom_green_dotted">

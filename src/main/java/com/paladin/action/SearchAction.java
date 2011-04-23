@@ -148,18 +148,17 @@ public class SearchAction extends BaseAction {
                         int last_index = content.lastIndexOf(q);
                         if (first_index >= 0 && content.length() >= last_index + q.length() + 20)
                             content = content.substring(first_index, last_index + q.length() + 20);
-                        if (content.length() > 1200)
-                            content = content.substring(0, 1200);
+                        if (content.length() > Constants.LENGTH_OF_SEARCH_CONTENT)
+                            content = content.substring(0, Constants.LENGTH_OF_SEARCH_CONTENT);
                         b.setContent(content.replace(q, Tools.standOutStr(q)));
                         blog_list.add(b);
                     }
                 }
             }
             {//分页
-                int num_per_page = 5;// 每页显示5条搜索结果
-                super.doPage(request, blog_list.size(), num_per_page);
+                super.doPage(request, blog_list.size(), Constants.NUM_PER_PAGE_SEARCH);
                 int begin = (page_NO - 1) * 5;
-                int end = page_NO * num_per_page > blog_list.size() ? blog_list.size() : page_NO * num_per_page;
+                int end = page_NO * Constants.NUM_PER_PAGE_SEARCH > blog_list.size() ? blog_list.size() : page_NO * Constants.NUM_PER_PAGE_SEARCH;
                 blog_list = blog_list.subList(begin, end);
             }
         }
