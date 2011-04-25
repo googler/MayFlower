@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2ad811d2-f712-469f-b102-9328f12e606c" name="Default" comment="[update]博文搜索结果分页；">
+    <list default="true" id="2ad811d2-f712-469f-b102-9328f12e606c" name="Default" comment="[update]1、重新设计博文和博文搜索结果的分页栏；2、去掉在博文页面可搜索代码的难看功能；">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MayFlower.iml" afterPath="$PROJECT_DIR$/MayFlower.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/_decorators/admin_frame.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/_decorators/admin_frame.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/_decorators/blog_frame.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/_decorators/blog_frame.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/blog/blog_list.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/blog/blog_list.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/blog/blog_read.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/blog/blog_read.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/code/code_read.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/code/code_read.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/inc/top.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/inc/top.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/search/search_b.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/search/search_b.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/search/search_f.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/search/search_f.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/common/Constants.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/common/Constants.java" />
     </list>
@@ -82,8 +82,8 @@
       <property name="field_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByClasses" value="true" />
       <property name="exception_breakpoints_viewId" value="TABLE" />
-      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="field_breakpoints_viewId" value="TABLE" />
+      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByMethods" value="false" />
     </ui_properties>
   </component>
@@ -92,10 +92,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SearchAction.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="SearchAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="164" column="29" selection-start="7571" selection-end="7571" vertical-scroll-proportion="0.6828644">
+            <state line="167" column="18" selection-start="7687" selection-end="7687" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -104,7 +104,43 @@
       <file leaf-file-name="Constants.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/common/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="0" selection-start="259" selection-end="259" vertical-scroll-proportion="0.0">
+            <state line="6" column="1" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search_b.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebRoot/html/search/search_b.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="53" column="33" selection-start="2938" selection-end="2938" vertical-scroll-proportion="-22.321428">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="blog_list.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebRoot/html/blog/blog_list.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="48" column="45" selection-start="2716" selection-end="2716" vertical-scroll-proportion="-9.75">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="blog_read.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebRoot/html/blog/blog_read.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="16" selection-start="1307" selection-end="1307" vertical-scroll-proportion="-8.964286">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="code_read.jsp" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WebRoot/html/code/code_read.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="9" selection-start="2618" selection-end="2618" vertical-scroll-proportion="0.0121951215">
               <folding />
             </state>
           </provider>
@@ -134,15 +170,15 @@
         <option value="$PROJECT_DIR$/src/main/java/com/paladin/action/CodeAction.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/paladin/action/BaseAction.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/paladin/action/BlogAction.java" />
-        <option value="$PROJECT_DIR$/WebRoot/html/inc/top.jsp" />
         <option value="$PROJECT_DIR$/WebRoot/html/search/search_b.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/paladin/bean/BaseBlog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/paladin/bean/Blog.java" />
+        <option value="$PROJECT_DIR$/WebRoot/html/inc/top.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/paladin/common/Constants.java" />
         <option value="$PROJECT_DIR$/WebRoot/html/blog/blog_list.jsp" />
         <option value="$PROJECT_DIR$/WebRoot/html/blog/blog_read.jsp" />
         <option value="$PROJECT_DIR$/WebRoot/html/code/code_read.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paladin/bean/BaseBlog.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paladin/bean/Blog.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paladin/common/Constants.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java" />
       </list>
     </option>
   </component>
@@ -205,7 +241,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Favorites" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -220,6 +255,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Favorites" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -256,146 +292,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebRoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebRoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="html" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebRoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="html" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="blog" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="paladin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="paladin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bean" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="paladin" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="action" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -403,14 +299,14 @@
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="132" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="134" />
-    <property name="project.structure.proportion" value="0.15" />
     <property name="OverrideImplement.combined" value="true" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="134" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="141" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="141" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="D:/openSource/EaselJS_v0_3_2/examples" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="148" />
@@ -426,16 +322,16 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="options.lastSelected" value="reference.settings.ide.settings.webservices" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="dynamic.classpath" value="false" />
     <property name="options.searchVisible" value="true" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -841,22 +737,22 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24960381" sideWeight="0.68327975" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3437014" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="262" y="566" width="1025" height="421" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34332833" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="262" y="566" width="1025" height="421" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296355" sideWeight="0.68327975" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2857143" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3281493" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28615862" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.21221864" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23923445" sideWeight="0.21617419" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296355" sideWeight="0.659164" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39936608" sideWeight="0.68327975" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23923445" sideWeight="0.6718507" order="0" side_tool="false" content_ui="tabs" x="207" y="135" width="315" height="622" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23923445" sideWeight="0.6562986" order="0" side_tool="false" content_ui="tabs" x="207" y="135" width="315" height="622" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32970452" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32503888" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" x="75" y="393" width="1258" height="104" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3281493" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24960127" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -876,7 +772,7 @@
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="[update]博文搜索结果分页；" />
+    <option name="LAST_COMMIT_MESSAGE" value="[update]1、重新设计博文和博文搜索结果的分页栏；2、去掉在博文页面可搜索代码的难看功能；" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -904,6 +800,7 @@
     <MESSAGE value="[debug]1、Top.jsp的COMMAPI链接；" />
     <MESSAGE value="[update]优化博文浏览界面，增加tag导航!" />
     <MESSAGE value="[update]博文搜索结果分页；" />
+    <MESSAGE value="[update]1、重新设计博文和博文搜索结果的分页栏；2、去掉在博文页面可搜索代码的难看功能；" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -923,11 +820,6 @@
         <state line="99" column="12" selection-start="3538" selection-end="3538" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/html/inc/top.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="42" selection-start="1343" selection-end="1343" vertical-scroll-proportion="0.45225224" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/CodeAction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="50" column="40" selection-start="1494" selection-end="1494" vertical-scroll-proportion="0.0" />
@@ -940,77 +832,70 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/BaseAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="45" selection-start="1465" selection-end="1465" vertical-scroll-proportion="0.047029704">
-          <folding />
-        </state>
+        <state line="46" column="45" selection-start="1465" selection-end="1465" vertical-scroll-proportion="0.047029704" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/sys/db/QueryHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="22" selection-start="4455" selection-end="4455" vertical-scroll-proportion="0.047029704">
-          <folding />
-        </state>
+        <state line="150" column="22" selection-start="4455" selection-end="4455" vertical-scroll-proportion="0.047029704" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/common/Tools.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="20" selection-start="2640" selection-end="2640" vertical-scroll-proportion="0.047029704">
+        <state line="88" column="20" selection-start="2640" selection-end="2640" vertical-scroll-proportion="0.047029704" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/bean/BaseBlog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="26" selection-start="239" selection-end="239" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/bean/Blog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="15" selection-start="106" selection-end="106" vertical-scroll-proportion="0.047029704" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/html/inc/top.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="39" selection-start="564" selection-end="564" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="167" column="18" selection-start="7687" selection-end="7687" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/common/Constants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="1" selection-start="258" selection-end="258" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebRoot/html/search/search_b.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="36" selection-start="3158" selection-end="3158" vertical-scroll-proportion="0.36702126">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/html/blog/blog_read.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="14" selection-start="206" selection-end="206" vertical-scroll-proportion="0.47107437">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/html/code/code_read.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="50" selection-start="2850" selection-end="2850" vertical-scroll-proportion="0.1046832">
+        <state line="53" column="33" selection-start="2938" selection-end="2938" vertical-scroll-proportion="-22.321428">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/WebRoot/html/blog/blog_list.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="22" selection-start="3949" selection-end="3949" vertical-scroll-proportion="-2.7142856">
+        <state line="48" column="45" selection-start="2716" selection-end="2716" vertical-scroll-proportion="-9.75">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/bean/BaseBlog.java">
+    <entry file="file://$PROJECT_DIR$/WebRoot/html/blog/blog_read.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="26" selection-start="239" selection-end="239" vertical-scroll-proportion="0.0">
+        <state line="31" column="16" selection-start="1307" selection-end="1307" vertical-scroll-proportion="-8.964286">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/bean/Blog.java">
+    <entry file="file://$PROJECT_DIR$/WebRoot/html/code/code_read.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="15" selection-start="106" selection-end="106" vertical-scroll-proportion="0.047029704">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/common/Constants.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="259" selection-end="259" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="164" column="29" selection-start="7571" selection-end="7571" vertical-scroll-proportion="0.6828644">
+        <state line="35" column="9" selection-start="2618" selection-end="2618" vertical-scroll-proportion="0.0121951215">
           <folding />
         </state>
       </provider>

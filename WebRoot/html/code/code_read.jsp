@@ -53,11 +53,11 @@
         <form action="${contextPath}/code/del" method='post' name='${code.id}' id='${code.id}'>
             <input type="hidden" name="id" value="${code.id}"/>
             <td align="right" class="border_bottom_green" style=" color:#999">
-            ※&nbsp;<a href="#">${code.author}</a>&nbsp;发布于&nbsp;<time dateteime='${code.create_date}' pubdate>${code.create_date}</time>&nbsp;
+            <a href="#">${code.author}</a>&nbsp;发布于&nbsp;<time dateteime='${code.create_date}' pubdate>${code.create_date}</time>&nbsp;
             	<c:if test='${user.role == "admin"}'>
-    	           	 ※&nbsp;<a href="#" onClick="onDel(${code.id});">删除</a>
+    	           	 |&nbsp;<a href="#" onClick="onDel(${code.id});">删除</a>
                 </c:if>
-                ※&nbsp;<a href="#top">Top</a>&nbsp;※
+                |&nbsp;<a href="#top">Top</a>
             </td>
         </form>
     </tr>

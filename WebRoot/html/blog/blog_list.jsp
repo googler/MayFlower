@@ -45,8 +45,7 @@
                                             for (String str : list) {
                                                 String[] arr = str.split(":=:");
                                         %>
-                                        <a href="${contextPath}/search/b/?q=<%=arr[0]%>" title="<%=arr[1]%>"><%=arr[0]%>
-                                        </a>
+                                        <a href="${contextPath}/search/b/?q=<%=arr[0]%>" title="<%=arr[1]%>"><%=arr[0]%></a>&nbsp;
                                         <%}%>
                                     </td>
                                     <td width="10%" align="right" nowrap>
