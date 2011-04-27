@@ -9,13 +9,13 @@
     <table width="100%" border="0" cellspacing="0" cellpadding="2">
         <tr>
             <td valign="middle">标题：
-                <input style="height:30px; " name="title" type="text" size="50" maxlength="100" value="${code.title}"
-                       placeholder='这里写标题哦'/>*&nbsp;&nbsp;
+                <input style="height:30px; " name="title" type="text" size="60" maxlength="100" value="${code.title}"
+                       placeholder='这里写标题'/>*&nbsp;&nbsp;
                 标签：
-                <input style="height:30px; " name="tag" type="text" size="30" maxlength="60" value="${code.tag}"
-                       placeholder='这里写标签哈'/>*&nbsp;&nbsp;
+                <input style="height:30px; " name="tag" type="text" size="35" maxlength="60" value="${code.tag}"
+                       placeholder='这里写标签'/>*&nbsp;&nbsp;
                 语言：
-                <select name="language" style="height:25px;width:120px;">
+                <select name="language" style="height:30px;width:120px;">
                     <option value="${code.language}">${code.language}</option>
                     <option value="java">java</option>
                     <option value="scala">scala</option>
@@ -31,7 +31,7 @@
                           placeholder='把你得意的代码贴在此处吧'>${code.content}</textarea></td>
         </tr>
         <tr>
-            <td valign="middle"><input style="height:30px;width:81%" name="svBtn" type="button" onClick="save()"
+            <td valign="middle"><input style="height:30px;width:935px" name="svBtn" type="button" onClick="save()"
                                        value="保      存"></td>
         </tr>
     </table>

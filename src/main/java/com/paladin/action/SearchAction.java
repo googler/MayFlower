@@ -157,9 +157,10 @@ public class SearchAction extends BaseAction {
             }
             {//分页
                 super.doPage(request, blog_list.size(), Constants.NUM_PER_PAGE_SEARCH);
-                int begin = (page_NO - 1) * 5;
+                int begin = (page_NO - 1) * Constants.NUM_PER_PAGE_SEARCH;
                 begin = begin < 0 ? 0 : begin;
-                int end = page_NO * Constants.NUM_PER_PAGE_SEARCH > blog_list.size() ? blog_list.size() : page_NO * Constants.NUM_PER_PAGE_SEARCH;
+                int end = page_NO * Constants.NUM_PER_PAGE_SEARCH > blog_list.size() ?
+                        blog_list.size() : page_NO * Constants.NUM_PER_PAGE_SEARCH;
                 blog_list = blog_list.subList(begin, end);
             }
         }

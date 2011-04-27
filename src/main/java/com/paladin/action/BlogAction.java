@@ -158,9 +158,8 @@ public class BlogAction extends BaseAction {
         //_q = Tools.ISO885912UTF8(_q).replaceAll("<[^>]*>", "");
         _q = _q.replaceAll("<[^>]*>", "");
         String title = _blog.getTitle().trim();
-        if (title.indexOf(_q) >= 0) {
+        if (title.indexOf(_q) >= 0)
             title = title.replaceAll(_q, Tools.standOutStr(_q));
-        }
         _blog.setTitle(title);
         String content = _blog.getContent();
         _blog.setContent(content.replace(_q, Tools.standOutStr(_q)));
