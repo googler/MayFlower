@@ -1,4 +1,17 @@
 /**
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *          http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/**
  * OSChina 使用的是 dbutils 这个JDBC的封装类库来进行数据库操作。
  * 而 QueryHelper 则是在 dbutils 的基础上进行一级简单的封装，
  * 提供一些常用的数据库操作方法和对数据缓存的支持。数据库连接的释放方法请看这里。
@@ -25,7 +38,8 @@ import org.apache.commons.lang3.ArrayUtils;
 /**
  * 数据库查询助手
  *
- * @author Erhu <br>
+ * @author Winter Lau (http://my.oschina.net/javayou)<br>
+ * @modify Erhu
  */
 @SuppressWarnings("unchecked")
 public class QueryHelper {

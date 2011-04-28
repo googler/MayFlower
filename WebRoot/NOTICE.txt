@@ -1,0 +1,5 @@
+MayFlower
+Copyright 2010-2011 Erhu Inc.
+
+This product includes software developed by Erhu (erhu.com@gmail.com).
+

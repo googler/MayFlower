@@ -1,3 +1,18 @@
+/**
+ * Copyright (C) 2011 Erhu Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *          http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.paladin.action;
 
 import java.io.IOException;
@@ -17,7 +32,7 @@ import com.paladin.mvc.RequestContext;
 import sun.misc.Request;
 
 /**
- * base action
+ * Base action
  *
  * @author Erhu
  * @since Mar 9th, 2011
@@ -25,10 +40,10 @@ import sun.misc.Request;
 public abstract class BaseAction {
 
     public static Log log = LogFactory.getLog(BaseAction.class);
-    protected int total_page;
-    protected int page_NO;
-    protected int p_end;
-    protected int p_start;
+    protected int total_page;// 总页数
+    protected int page_NO;// 页号
+    protected int p_end;// 最后页(用于分屏)
+    protected int p_start;// 最前页(用于分屏)
 
     protected abstract void index(final RequestContext _reqCtxt);
 
@@ -36,25 +51,20 @@ public abstract class BaseAction {
      * 用sql分页
      */
     protected void doPage(HttpServletRequest request, final String _sql, Object... _para) {
-        page_NO = Integer.parseInt(getCurrentPage(request));
         total_page = (int) (QueryHelper.stat(_sql, _para) + Constants.NUM_PER_PAGE - 1) / Constants.NUM_PER_PAGE;
-        page_NO = page_NO < 1 ? 1 : page_NO;
-        page_NO = page_NO > total_page ? total_page : page_NO;
-        // 计算显示的页码数
-        p_start = page_NO - 5 > 0 ? page_NO - 5 : 1;
-        p_end = p_start + 10 > total_page ? total_page : p_start + 10;
-        request.setAttribute("p_start", p_start);
-        request.setAttribute("p_end", p_end);
-        request.setAttribute("curr_page", page_NO);
-        request.setAttribute("total_page", total_page);
+        _doPage(request);
     }
 
     /**
      * 用list分页
      */
     protected void doPage(HttpServletRequest request, final int size, final int _num_per_page) {
-        page_NO = Integer.parseInt(getCurrentPage(request));
         total_page = (size + _num_per_page - 1) / _num_per_page;
+        _doPage(request);
+    }
+
+    private void _doPage(HttpServletRequest request) {
+        page_NO = Integer.parseInt(getCurrentPage(request));
         page_NO = page_NO < 1 ? 1 : page_NO;
         page_NO = page_NO > total_page ? total_page : page_NO;
         // 计算显示的页码数
