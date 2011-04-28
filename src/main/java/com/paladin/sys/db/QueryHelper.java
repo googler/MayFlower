@@ -18,22 +18,19 @@
  */
 package com.paladin.sys.db;
 
+import com.paladin.common.Tools;
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.*;
+import org.apache.commons.lang3.ArrayUtils;
+
 import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.google.common.base.Strings;
-import com.paladin.common.Tools;
-import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.ResultSetHandler;
-import org.apache.commons.dbutils.handlers.*;
-import org.apache.commons.lang3.ArrayUtils;
 
 /**
  * 数据库查询助手
@@ -62,7 +59,9 @@ public class QueryHelper {
             return obj;
         }
     };
-
+    /**
+     * 这个语法很特别啊
+     */
     private final static List<Class<?>> PRIMITIVE_CLASSES = new ArrayList<Class<?>>() {
         private static final long serialVersionUID = 1L;
 
@@ -204,7 +203,13 @@ public class QueryHelper {
         return null;
     }
 
-    // --------------------------------------------------------------------------
+    /**
+     * 类似Spring框架的queryForList，获取结果集合
+     *
+     * @param _sql
+     * @param _par
+     * @return
+     */
     public static List<Map<String, Object>> queryList(String _sql, Object... _par) {
         MapListHandler handler = new MapListHandler() {
             @Override

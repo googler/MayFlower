@@ -15,21 +15,18 @@
  */
 package com.paladin.action;
 
-import java.io.IOException;
-
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-
 import com.google.common.base.Strings;
+import com.paladin.bean.User;
 import com.paladin.common.Constants;
+import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.QueryHelper;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.paladin.bean.User;
-import com.paladin.mvc.RequestContext;
-import sun.misc.Request;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * Base action

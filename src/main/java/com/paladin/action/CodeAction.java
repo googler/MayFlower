@@ -15,23 +15,19 @@
  */
 package com.paladin.action;
 
-import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-
-import com.paladin.bean.BaseBlog;
-import com.paladin.bean.Blog;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import com.google.common.base.Strings;
+import com.paladin.bean.BaseBlog;
 import com.paladin.bean.Code;
 import com.paladin.common.Constants;
 import com.paladin.common.Tools;
 import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.QueryHelper;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * 代码业务类
@@ -54,7 +50,8 @@ public class CodeAction extends BaseAction {
         // 分页
         super.doPage(_reqCtxt.request(), "SELECT COUNT(*) COUNT FROM CODE");
         // 获取页面数据
-        _reqCtxt.request().setAttribute("codes", QueryHelper.query_slice(BaseBlog.class, "SELECT * FROM CODE ORDER BY CREATE_DATE DESC", page_NO, Constants.NUM_PER_PAGE, new Object[]{}));
+        _reqCtxt.request().setAttribute("codes", QueryHelper.query_slice(BaseBlog.class,
+                "SELECT * FROM CODE ORDER BY CREATE_DATE DESC", page_NO, Constants.NUM_PER_PAGE, new Object[]{}));
         forward(_reqCtxt, "/html/code/code_list.jsp");
     }
 

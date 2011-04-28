@@ -25,14 +25,23 @@ package com.paladin.bean;
 public class Motto {
     private int id;
     private String content;
-    private String autohr;
+    private String author;
+    private String tag;
 
-    public String getAutohr() {
-        return autohr;
+    public String getTag() {
+        return tag;
     }
 
-    public void setAutohr(String autohr) {
-        this.autohr = autohr;
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public int getId() {

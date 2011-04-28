@@ -18,10 +18,7 @@ package com.paladin.common;
 import com.google.common.base.Strings;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Tools {
 
@@ -123,8 +120,81 @@ public class Tools {
         return q_arr;
     }
 
+    /**
+     * 在[_from, _to]区间取一随机整数
+     *
+     * @param _from
+     * @param _to
+     * @return
+     */
+    public static long random(long _from, long _to) {
+        if (_from > _to)
+            return random(_to, _from);
+        else
+            return _from + (int) (Math.random() * (_to - _from + 1));
+    }
+
+    public static String getSysTime() {
+        GregorianCalendar lgc = new GregorianCalendar();
+        String hour = String.valueOf(lgc.get(Calendar.HOUR_OF_DAY));
+        if (hour.length() == 1)
+            hour = "0" + hour;
+        String minute = String.valueOf(lgc.get(Calendar.MINUTE));
+        if (minute.length() == 1)
+            minute = "0" + minute;
+        String second = String.valueOf(lgc.get(Calendar.SECOND));
+        if (second.length() == 1)
+            second = "0" + second;
+        String millisecond = String.valueOf(lgc.get(Calendar.MILLISECOND));
+
+        return hour + ":" + minute + ":" + second + ":" + millisecond;
+    }
+
+    /**
+     * 取时间差(秒)
+     *
+     * @param gc1
+     * @param gc2
+     * @return
+     */
+    public static double getSecondsBetweenTwoDate(GregorianCalendar gc1, GregorianCalendar gc2) {
+        long milliSeconds = Math.abs(gc1.getTimeInMillis() - gc2.getTimeInMillis());
+        return milliSeconds / 1000.0;
+    }
+
+    /**
+     * 取平均值
+     *
+     * @param args
+     * @return
+     */
+    public static double getAverage(double[] args) {
+        double sum = 0;
+        for (double num : args)
+            sum += num;
+        return sum / (double) args.length;
+    }
+
+    /**
+     * 交换数组中的元素
+     *
+     * @param _arr
+     * @param i
+     * @param j
+     */
+    public static void swap(int[] _arr, int i, int j) {
+        if (i < 0 || j < 0 || i >= _arr.length || j > _arr.length || i == j)
+            return;
+        int temp = _arr[i];
+        _arr[i] = _arr[j];
+        _arr[j] = temp;
+    }
+
     public static void main(String[] args) {
         String str = "  as b ";
         System.out.println(str.trim());
+        for (int i = 0; i < 100; i++) {
+            System.out.print(random(17, 11) + " ");
+        }
     }
 }

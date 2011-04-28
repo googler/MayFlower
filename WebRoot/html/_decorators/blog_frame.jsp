@@ -61,7 +61,7 @@
                                 <td width="74%" height="31" align="left" class="border_bottom_green"><a href="${contextPath}/code" class=gb1>代码集锦</a></td>
                             </tr>
                             <tr>
-                                <td colspan="3" align="center">&nbsp;</td>
+                                <td colspan="3" align="left" style="padding:5px 5px 0px 10px;color:#FF0;" title="From '${motto.author}'">${motto.content}</td>
                             </tr>
                         </table>
                     </td>

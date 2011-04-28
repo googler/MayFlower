@@ -30,7 +30,7 @@
 		</init-param>
 		<init-param>
 			<param-name>initial_actions</param-name><!-- 使用逗号分隔 -->
-			<param-value>blog,code,admin,login,search</param-value>
+			<param-value>blog,code,admin,login,search,motto</param-value>
 		</init-param>
 		<load-on-startup>2</load-on-startup>
 	</servlet>
@@ -77,10 +77,6 @@
 		<taglib>
 			<taglib-uri>http://java.sun.com/jstl/core_rt</taglib-uri>
 			<taglib-location>/WEB-INF/tld/c-rt.tld</taglib-location>
-		</taglib>
-		<taglib>
-			<taglib-uri>http://java.sun.com/jstl/fmt_rt</taglib-uri>
-			<taglib-location>/WEB-INF/tld/fmt-rt.tld</taglib-location>
 		</taglib>
 		<taglib>
 			<taglib-uri>http://java.sun.com/jstl/xml_rt</taglib-uri>

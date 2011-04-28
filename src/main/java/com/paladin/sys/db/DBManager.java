@@ -32,7 +32,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * 数据库管理
  *
- * @author Winter Lau (http://my.oschina.net/javayou)<br>
+ * @author Winter Lau (http://my.oschina.net/javayou)
  * @modify Erhu
  * @modifyDate 2010-2-2 下午10:18:50
  */

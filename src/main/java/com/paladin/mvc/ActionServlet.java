@@ -118,7 +118,6 @@ public final class ActionServlet extends HttpServlet {
 	 * 执行Action方法并进行返回处理、异常处理
 	 * 
 	 * @param _reqCtxt
-	 * @param resp
 	 * @param _is_post
 	 * @throws ServletException
 	 * @throws IOException
@@ -144,8 +143,6 @@ public final class ActionServlet extends HttpServlet {
 	 * 业务逻辑处理
 	 * 
 	 * @param _reqCtxt
-	 * @param resp
-	 * @param is_post_method
 	 * @throws IllegalAccessException
 	 * @throws InstantiationException
 	 * @throws IOException

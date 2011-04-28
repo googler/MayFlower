@@ -30,7 +30,6 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,15 +56,17 @@ public class BlogAction extends BaseAction {
      * 博文列表
      */
     public void list(final RequestContext _reqCtxt) {
+        final HttpServletRequest request = _reqCtxt.request();
         log.info("get blog list.");
         // 分页
-        super.doPage(_reqCtxt.request(), "SELECT COUNT(*) COUNT FROM BLOG");
+        super.doPage(request, "SELECT COUNT(*) COUNT FROM BLOG");
         // 获取页面数据
         String sql = "SELECT * FROM BLOG ORDER BY TOP DESC, CREATE_DATE DESC";
         List<BaseBlog> blogs = QueryHelper.query_slice(BaseBlog.class, sql, page_NO, Constants.NUM_PER_PAGE, new Object[]{});
 
-        _reqCtxt.request().setAttribute("blogs", blogs);
-        _reqCtxt.request().setAttribute("hotTag", hotTag().subList(0, 15));// 提取热门tag
+        request.setAttribute("blogs", blogs);
+        request.setAttribute("hotTag", hotTag().subList(0, 15));// 提取热门tag
+        request.setAttribute("motto", MottoAction.getRandomMotto());// 提取一条箴言
         forward(_reqCtxt, "/html/blog/blog_list.jsp");
     }
 
@@ -87,8 +88,9 @@ public class BlogAction extends BaseAction {
             request.setAttribute("q", q);
         }
         request.setAttribute("blog", blog);
-        // --------------------------------hits++
+        // -------------------------------- hits++
         QueryHelper.update("UPDATE BLOG SET HITS = (HITS + 1) WHERE ID = ?", _id);
+        request.setAttribute("motto", MottoAction.getRandomMotto());// 提取一条箴言
         forward(_reqCtxt, "/html/blog/blog_read.jsp");
     }
 
@@ -100,7 +102,7 @@ public class BlogAction extends BaseAction {
             redirect(_reqCtxt, "/login?r=/blog/edit/" + _id);
             return;
         }
-        log.info("get read to edit blog-" + _id);
+        log.info("get read to edit blog - " + _id);
         String sql = "SELECT * FROM BLOG WHERE ID = ?";
         Blog blog = QueryHelper.read(Blog.class, sql, new Object[]{_id});
         _reqCtxt.request().setAttribute("blog", blog);
@@ -190,10 +192,9 @@ public class BlogAction extends BaseAction {
         Map<String, Integer> tag_map = new HashMap<String, Integer>();
         for (int i = 0; i < list.size(); i++) {
             String tags = list.get(i).get("TAG").toString();
-            if (!Strings.isNullOrEmpty(tags)) {
+            if (!Strings.isNullOrEmpty(tags))
                 for (String tag : tags.split(","))
                     tag_map.put(tag, tag_map.get(tag) == null ? 1 : tag_map.get(tag) + 1);
-            }
         }
         // 排序并返回
         String[] key_arr = new String[tag_map.keySet().size()];

@@ -9,3 +9,10 @@
 /tomcat-6.0.29
 /CommonAPI
 /WebRoot/WEB-INF/classes
+/WebRoot/WEB-INF/classes/com/paladin/sys
+/WebRoot/WEB-INF/classes/com/paladin/sys/cache/CacheProvider.class
+/WebRoot/WEB-INF/classes/com/paladin/sys/cache/Cache.class
+/WebRoot/WEB-INF/classes/com/paladin/sys/cache/CacheException.class
+/WebRoot/WEB-INF/classes/com/paladin/sys/db
+/WebRoot/WEB-INF/classes/com/paladin
+/WebRoot/WEB-INF/classes
