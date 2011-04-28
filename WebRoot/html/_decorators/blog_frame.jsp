@@ -33,13 +33,17 @@
                                                            placeholder='请输入要查询的博文、代码...' title="请输入要查询的博文、代码..."
                                                            size="70" maxlength="2048" value="${q}"/></td>
                                                 <td><input type="submit" style="height:30px;" id='Sbtn'
-                                                           value="找文章"></td>
+                                                           value="  找 文 章  "></td>
                                             </tr>
                                         </table>
                                     </form>
                                 </td>
-                                <td align="left">
-                                    
+                                <td align="center" valign="middle">
+                                    <c:if test='${!(empty user)}'>
+                                    	<a href="${contextPath}/blog/toAdd">发布博文</a>
+                                        |
+                                        <a href="${contextPath}/code/toAdd">分享代码</a>
+                                    </c:if>
                                 </td>
                             </tr>
                         </table>
@@ -50,11 +54,11 @@
                         <table width="100%" border="0" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td width="26%" align="center" class="">&nbsp;</td>
-                                <td width="74%" height="31" align="left" class=""><a href="${contextPath}/blog/toAdd">发布博文</a></td>
+                                <td width="74%" height="31" align="left" class=""><a href="${contextPath}/blog" class=gb1>博文欣赏</a></td>
                             </tr>
                             <tr>
                                 <td width="26%" align="center" class="border_bottom_green">&nbsp;</td>
-                                <td width="74%" height="31" align="left" class="border_bottom_green"><a href="${contextPath}/code/toAdd">分享代码</a></td>
+                                <td width="74%" height="31" align="left" class="border_bottom_green"><a href="${contextPath}/code" class=gb1>代码集锦</a></td>
                             </tr>
                             <tr>
                                 <td colspan="3" align="center">&nbsp;</td>

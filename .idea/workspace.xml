@@ -1,36 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2ad811d2-f712-469f-b102-9328f12e606c" name="Default" comment="[update]1、修正搜索结果的博文显示页面标题显示错误的Bug；2、修正搜索结果分页计算错误的bug；3、DB_BAK">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WebRoot/LICENSE.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WebRoot/NOTICE.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/WebRoot/html/game/linkup/linkup.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db_bak/paladin 20110427 1510.sql" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db_bak/paladin 20110428 0929.sql" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/bean/Motto.java" />
+    <list default="true" id="2ad811d2-f712-469f-b102-9328f12e606c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/inc/bottom.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/inc/bottom.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/AdminAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/AdminAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/BaseAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/BaseAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/BlogAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/BlogAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/ChatAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/ChatAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/CodeAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/CodeAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/GameAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/GameAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/LoginAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/LoginAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/bean/BaseBlog.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/bean/BaseBlog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/bean/Blog.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/bean/Blog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/bean/Code.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/bean/Code.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/bean/HFile.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/bean/HFile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/bean/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/bean/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/common/Constants.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/common/Constants.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/common/RequestUtils.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/common/RequestUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/common/Tools.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/common/Tools.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/mvc/ActionServlet.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/mvc/ActionServlet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/mvc/RequestContext.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/mvc/RequestContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/mvc/URLMappingFilter.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/mvc/URLMappingFilter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/sys/db/DBManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/sys/db/DBManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/sys/db/QueryHelper.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/sys/db/QueryHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/LICENSE.txt" afterPath="$PROJECT_DIR$/WebRoot/LICENSE.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/_decorators/blog_frame.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/_decorators/blog_frame.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/game/linkup/linkup.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/game/linkup/linkup.jsp" />
     </list>
     <ignored path="MayFlower.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -111,98 +86,7 @@
     <favorites_list name="MayFlower" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Tools.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/common/Tools.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="13" selection-start="829" selection-end="829" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Constants.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/common/Constants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="13" selection-start="645" selection-end="645" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActionServlet.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/mvc/ActionServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="567" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RequestContext.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/mvc/RequestContext.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="3" selection-start="567" selection-end="567" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="URLMappingFilter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/mvc/URLMappingFilter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="3" selection-start="567" selection-end="567" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/sys/db/DBManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="3" selection-start="567" selection-end="567" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QueryHelper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/sys/db/QueryHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="3" selection-start="567" selection-end="567" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Motto.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/bean/Motto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="70" selection-start="564" selection-end="564" vertical-scroll-proportion="0.5984252">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Code.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/bean/Code.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="3" selection-start="602" selection-end="602" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseBlog.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/bean/BaseBlog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="21" selection-start="747" selection-end="764" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -828,7 +712,7 @@
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="[debug]1、修正搜索结果的博文显示页面标题显示错误的Bug；2、修正搜索结果分页计算错误的bug；3、DB_BAK" />
+    <option name="LAST_COMMIT_MESSAGE" value="[add]添加apache开源软件协议声明；" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -859,6 +743,7 @@
     <MESSAGE value="[update]1、重新设计博文和博文搜索结果的分页栏；2、去掉在博文页面可搜索代码的难看功能；" />
     <MESSAGE value="[debug]1、修正SearchAction中取起始页时的数组越界Bug；2、微调页面样式；" />
     <MESSAGE value="[debug]1、修正搜索结果的博文显示页面标题显示错误的Bug；2、修正搜索结果分页计算错误的bug；3、DB_BAK" />
+    <MESSAGE value="[add]添加apache开源软件协议声明；" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -961,21 +846,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/bean/Code.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="3" selection-start="602" selection-end="602" vertical-scroll-proportion="0.0">
+        <state line="14" column="3" selection-start="602" selection-end="602" vertical-scroll-proportion="0.0475">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/bean/BaseBlog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="21" selection-start="747" selection-end="764" vertical-scroll-proportion="0.0">
+        <state line="25" column="21" selection-start="747" selection-end="764" vertical-scroll-proportion="0.365">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/bean/Motto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="70" selection-start="564" selection-end="564" vertical-scroll-proportion="0.5984252">
+        <state line="4" column="17" selection-start="123" selection-end="123" vertical-scroll-proportion="0.19">
           <folding />
         </state>
       </provider>
