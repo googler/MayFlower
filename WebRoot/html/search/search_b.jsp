@@ -72,7 +72,7 @@
         </table>
     </c:when>
     <c:otherwise>
-        <div align="center"><font color='#FFFF00' size="+4"><c:out value="我们没有搜索到任何博文和代码:("/></font></div>
+        <div><font color='#EA0' size="+3"><c:out value="I am sorry! 我们没有找到与您的关键字相关的文章:("/></font></div>
     </c:otherwise>
 </c:choose>
 </body>

@@ -15,12 +15,16 @@ package com.paladin.action;
  * limitations under the License.
  */
 
+import com.google.common.base.Strings;
 import com.paladin.bean.Motto;
 import com.paladin.common.Constants;
 import com.paladin.common.Tools;
 import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.QueryHelper;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -31,6 +35,8 @@ import java.util.List;
  * @date: 11-4-28 上午9:53
  */
 public class MottoAction extends BaseAction {
+
+    private static final Log log = LogFactory.getLog(BlogAction.class);
     /**
      * 随机箴言
      */
@@ -46,8 +52,47 @@ public class MottoAction extends BaseAction {
     }
 
     @Override
-    protected void index(RequestContext _reqCtxt) {
+    public void index(RequestContext _reqCtxt) {
+        list(_reqCtxt);
+    }
 
+    /**
+     * 箴言列表
+     */
+    public void list(final RequestContext _reqCtxt) {
+        final HttpServletRequest request = _reqCtxt.request();
+        log.info("get motto list.");
+        // 分页
+        super.doPage(request, "SELECT COUNT(*) COUNT FROM MOTTO");
+        // 获取页面数据
+        String sql = "SELECT * FROM MOTTO ORDER BY ID DESC";
+        List<Motto> mottos = QueryHelper.query_slice(Motto.class, sql, page_NO, Constants.NUM_PER_PAGE, new Object[]{});
+
+        request.setAttribute("mottos", mottos);
+        request.setAttribute("motto", getRandomMotto());// 提取一条箴言
+        forward(_reqCtxt, "/html/motto/motto_list.jsp");
+    }
+
+    /**
+     * 保存箴言(新增或者修改)
+     */
+    public void save(final RequestContext _reqCtxt) {
+        final HttpServletRequest request = _reqCtxt.request();
+        String id = request.getParameter("id");
+        String content = request.getParameter("content").trim();
+        String tag = Tools.checkTag(request.getParameter("tag").trim());
+
+        if (Strings.isNullOrEmpty(id)) {
+            QueryHelper.update("INSERT INTO MOTTO(CONTENT, AUTHOR, TAG) VALUES(?, ?, ?)",
+                    new Object[]{content.toString(), "erhu", tag});
+            log.info("Add motto success");
+            redirect(_reqCtxt, "/motto");
+        } else {
+            QueryHelper.update("UPDATE MOTTO SET CONTENT = ?, TAG = ? WHERE ID = ?",
+                    new Object[]{content.toString(), tag, id});
+            log.info("Update motto success");
+            redirect(_reqCtxt, "/motto");
+        }
     }
 
     /**
@@ -79,5 +124,26 @@ public class MottoAction extends BaseAction {
         // 获取箴言
         sql = "SELECT * FROM MOTTO LIMIT ?, ?";
         randomMotto = QueryHelper.query(Motto.class, sql, new Object[]{begin, Constants.NUM_RANDOM_MOTTO});
+    }
+
+    /**
+     * 转到添加箴言页面
+     */
+    public void toAdd(final RequestContext _reqCtxt) {
+        super.toAdd(_reqCtxt, "motto");
+    }
+
+    /**
+     * 转到编辑页面
+     */
+    public void edit(final RequestContext _reqCtxt, final long _id) {
+        super.edit(_reqCtxt, _id, Motto.class);
+    }
+
+    /**
+     * 删除箴言
+     */
+    public void del(final RequestContext _reqCtxt) {
+        super.del(_reqCtxt, "motto");
     }
 }

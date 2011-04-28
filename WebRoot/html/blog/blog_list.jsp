@@ -72,7 +72,7 @@
             </c:when>
             <c:otherwise>
                 <div align="center"><font color='red' size="+6">
-                    <c:out value="no blog!"/>
+                    <c:out value="No blog!"/>
                 </font></div>
             </c:otherwise>
         </c:choose></td>

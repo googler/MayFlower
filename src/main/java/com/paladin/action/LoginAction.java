@@ -15,19 +15,16 @@
  */
 package com.paladin.action;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 import com.google.common.base.Strings;
 import com.paladin.bean.User;
 import com.paladin.common.RequestUtils;
 import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.QueryHelper;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * LoginAction

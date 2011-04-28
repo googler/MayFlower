@@ -82,27 +82,6 @@ public class CodeAction extends BaseAction {
     }
 
     /**
-     * 转到编辑页面
-     */
-    public void edit(final RequestContext _reqCtxt, final long _id) {
-        if (super.getUserFromSession(_reqCtxt) == null)
-            redirect(_reqCtxt, "/login?r=/code/edit/" + _id);
-        log.info("get read to edit code-" + _id);
-        String sql = "SELECT * FROM CODE WHERE ID = ?";
-        Code code = QueryHelper.read(Code.class, sql, new Object[]{_id});
-        _reqCtxt.request().setAttribute("code", code);
-        forward(_reqCtxt, "/html/code/code_edit.jsp");
-    }
-
-    /**
-     * 转到添加代码页面
-     */
-    public void toAdd(final RequestContext _reqCtxt) {
-        log.info("to add a new code");
-        forward(_reqCtxt, "/html/code/code_edit.jsp");
-    }
-
-    /**
      * 保存代码(新增或者修改)
      */
     public void save(final RequestContext _reqCtxt) {
@@ -129,18 +108,23 @@ public class CodeAction extends BaseAction {
     }
 
     /**
+     * 转到编辑页面
+     */
+    public void edit(final RequestContext _reqCtxt, final long _id) {
+        super.edit(_reqCtxt, _id, Code.class);
+    }
+
+    /**
+     * 转到添加代码页面
+     */
+    public void toAdd(final RequestContext _reqCtxt) {
+        super.toAdd(_reqCtxt, "code");
+    }
+
+    /**
      * 删除代码
      */
     public void del(final RequestContext _reqCtxt) {
-        final HttpServletRequest request = _reqCtxt.request();
-        String id = request.getParameter("id");
-        if (Strings.isNullOrEmpty(id)) {
-            log.info("the code's id is null when del.");
-            redirect(_reqCtxt, "/code");
-        }
-        log.info("delete code-" + id);
-        String sql = "DELETE FROM CODE WHERE ID = ?";
-        QueryHelper.update(sql, new Object[]{id});
-        redirect(_reqCtxt, "/code");
+        super.del(_reqCtxt, "code");
     }
 }

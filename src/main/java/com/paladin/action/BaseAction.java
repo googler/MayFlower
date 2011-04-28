@@ -46,6 +46,10 @@ public abstract class BaseAction {
 
     /**
      * 用sql分页
+     *
+     * @param request
+     * @param _sql
+     * @param _para
      */
     protected void doPage(HttpServletRequest request, final String _sql, Object... _para) {
         total_page = (int) (QueryHelper.stat(_sql, _para) + Constants.NUM_PER_PAGE - 1) / Constants.NUM_PER_PAGE;
@@ -54,6 +58,10 @@ public abstract class BaseAction {
 
     /**
      * 用list分页
+     *
+     * @param request
+     * @param size
+     * @param _num_per_page
      */
     protected void doPage(HttpServletRequest request, final int size, final int _num_per_page) {
         total_page = (size + _num_per_page - 1) / _num_per_page;
@@ -73,10 +81,22 @@ public abstract class BaseAction {
         request.setAttribute("total_page", total_page);
     }
 
+    /**
+     * 从session中获取用户
+     *
+     * @param _reqCtxt
+     * @return
+     */
     protected User getUserFromSession(final RequestContext _reqCtxt) {
         return (User) _reqCtxt.sessionAttr("user");
     }
 
+    /**
+     * redirect 跳转
+     *
+     * @param _reqCtxt
+     * @param _uri
+     */
     protected void redirect(final RequestContext _reqCtxt, final String _uri) {
         try {
             _reqCtxt.response().sendRedirect(_uri);
@@ -85,6 +105,12 @@ public abstract class BaseAction {
         }
     }
 
+    /**
+     * forward 跳转
+     *
+     * @param _reqCtxt
+     * @param _uri
+     */
     protected void forward(final RequestContext _reqCtxt, final String _uri) {
         try {
             _reqCtxt.request().getRequestDispatcher(_uri).forward(_reqCtxt.request(), _reqCtxt.response());
@@ -96,13 +122,79 @@ public abstract class BaseAction {
     }
 
     /**
-     * 取得当前页
+     * 取得当前页码
+     *
+     * @param request
+     * @return
      */
     protected static String getCurrentPage(final HttpServletRequest request) {
         String current_page = request.getParameter("p");
         if (Strings.isNullOrEmpty(current_page))
             current_page = "1";
         return current_page;
+    }
+
+    /**
+     * 转到添加页面
+     *
+     * @param _reqCtxt
+     * @param _table
+     */
+    protected void toAdd(final RequestContext _reqCtxt, String _table) {
+        _table = _table.toLowerCase();
+        if (getUserFromSession(_reqCtxt) == null) {
+            redirect(_reqCtxt, "/login?r=/" + _table + "/toAdd");
+            return;
+        }
+        log.info("to add a new " + _table);
+        forward(_reqCtxt, "/html/" + _table + "/" + _table + "_edit.jsp");
+    }
+
+    /**
+     * 转到编辑页面
+     *
+     * @param _reqCtxt
+     * @param _id
+     * @param _class
+     */
+    public void edit(final RequestContext _reqCtxt, final long _id, Class _class) {
+        // 根据类的完整名称类除去包的名称
+        String _bean_L = _class.getName().toLowerCase();
+        if (_bean_L.indexOf('.') > 0)
+            _bean_L = _bean_L.substring(_bean_L.lastIndexOf('.') + 1, _bean_L.length());
+        final String _bean_U = _bean_L.toUpperCase();
+
+        if (getUserFromSession(_reqCtxt) == null) {
+            redirect(_reqCtxt, "/login?r=/" + _bean_L + "/edit/" + _id);
+            return;
+        }
+        log.info("get read to edit " + _bean_L + " - " + _id);
+        String sql = "SELECT * FROM " + _bean_U + " WHERE ID = ?";
+        _reqCtxt.request().setAttribute(_bean_L, QueryHelper.read(_class, sql, new Object[]{_id}));
+        forward(_reqCtxt, "/html/" + _bean_L + "/" + _bean_L + "_edit.jsp");
+    }
+
+    /**
+     * 删除操作
+     *
+     * @param _reqCtxt
+     * @param _table
+     */
+    protected void del(final RequestContext _reqCtxt, final String _table) {
+        final HttpServletRequest request = _reqCtxt.request();
+        if (_reqCtxt.sessionAttr("user") == null)
+            forward(_reqCtxt, "/login");
+
+        String id = request.getParameter("id");
+        if (Strings.isNullOrEmpty(id)) {
+            log.info("the " + _table + "'s id is null when del.");
+            redirect(_reqCtxt, "/" + _table.toLowerCase());
+        }
+
+        log.info("delete motto - " + id);
+        String sql = "DELETE FROM " + _table.toUpperCase() + " WHERE ID = ?";
+        QueryHelper.update(sql, new Object[]{id});
+        redirect(_reqCtxt, "/" + _table.toLowerCase());
     }
 
     /**

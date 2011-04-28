@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/html/_decorators">
-	<decorator name="blog" page="/html/_decorators/blog_frame.jsp">
-		<pattern>/blog</pattern>
-	</decorator>
-	<decorator name="code" page="/html/_decorators/blog_frame.jsp">
-		<pattern>/code</pattern>
-	</decorator>
-	<decorator name="search" page="/html/_decorators/blog_frame.jsp">
-		<pattern>/search</pattern>
-	</decorator>
-	<decorator name="admin" page="/html/_decorators/admin_frame.jsp">
-		<pattern>/admin</pattern>
-	</decorator>
+    <decorator name="blog" page="/html/_decorators/blog_frame.jsp">
+        <pattern>/blog</pattern>
+    </decorator>
+    <decorator name="motto" page="/html/_decorators/blog_frame.jsp">
+        <pattern>/motto</pattern>
+    </decorator>
+    <decorator name="code" page="/html/_decorators/blog_frame.jsp">
+        <pattern>/code</pattern>
+    </decorator>
+    <decorator name="search" page="/html/_decorators/blog_frame.jsp">
+        <pattern>/search</pattern>
+    </decorator>
+    <decorator name="admin" page="/html/_decorators/admin_frame.jsp">
+        <pattern>/admin</pattern>
+    </decorator>
 </decorators>

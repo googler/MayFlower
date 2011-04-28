@@ -58,15 +58,13 @@ public class BlogAction extends BaseAction {
     public void list(final RequestContext _reqCtxt) {
         final HttpServletRequest request = _reqCtxt.request();
         log.info("get blog list.");
-        // 分页
-        super.doPage(request, "SELECT COUNT(*) COUNT FROM BLOG");
+        super.doPage(request, "SELECT COUNT(*) COUNT FROM BLOG");// 分页
         // 获取页面数据
         String sql = "SELECT * FROM BLOG ORDER BY TOP DESC, CREATE_DATE DESC";
         List<BaseBlog> blogs = QueryHelper.query_slice(BaseBlog.class, sql, page_NO, Constants.NUM_PER_PAGE, new Object[]{});
-
+        // -------------------------------------------------------------------------------------------------------------
         request.setAttribute("blogs", blogs);
         request.setAttribute("hotTag", hotTag().subList(0, 15));// 提取热门tag
-        request.setAttribute("motto", MottoAction.getRandomMotto());// 提取一条箴言
         forward(_reqCtxt, "/html/blog/blog_list.jsp");
     }
 
@@ -90,35 +88,7 @@ public class BlogAction extends BaseAction {
         request.setAttribute("blog", blog);
         // -------------------------------- hits++
         QueryHelper.update("UPDATE BLOG SET HITS = (HITS + 1) WHERE ID = ?", _id);
-        request.setAttribute("motto", MottoAction.getRandomMotto());// 提取一条箴言
         forward(_reqCtxt, "/html/blog/blog_read.jsp");
-    }
-
-    /**
-     * 转到编辑页面
-     */
-    public void edit(final RequestContext _reqCtxt, final long _id) {
-        if (super.getUserFromSession(_reqCtxt) == null) {
-            redirect(_reqCtxt, "/login?r=/blog/edit/" + _id);
-            return;
-        }
-        log.info("get read to edit blog - " + _id);
-        String sql = "SELECT * FROM BLOG WHERE ID = ?";
-        Blog blog = QueryHelper.read(Blog.class, sql, new Object[]{_id});
-        _reqCtxt.request().setAttribute("blog", blog);
-        forward(_reqCtxt, "/html/blog/blog_edit.jsp");
-    }
-
-    /**
-     * 转到添加博文页面
-     */
-    public void toAdd(final RequestContext _reqCtxt) {
-        if (super.getUserFromSession(_reqCtxt) == null) {
-            redirect(_reqCtxt, "/login?r=/blog/toAdd");
-            return;
-        }
-        log.info("to add a new blog");
-        forward(_reqCtxt, "/html/blog/blog_edit.jsp");
     }
 
     /**
@@ -149,23 +119,24 @@ public class BlogAction extends BaseAction {
     }
 
     /**
+     * 转到编辑页面
+     */
+    public void edit(final RequestContext _reqCtxt, final long _id) {
+        super.edit(_reqCtxt, _id, Blog.class);
+    }
+
+    /**
+     * 转到添加博文页面
+     */
+    public void toAdd(final RequestContext _reqCtxt) {
+        super.toAdd(_reqCtxt, "blog");
+    }
+
+    /**
      * 删除博文
      */
     public void del(final RequestContext _reqCtxt) {
-        final HttpServletRequest request = _reqCtxt.request();
-        if (_reqCtxt.sessionAttr("user") == null)
-            forward(_reqCtxt, "/login");
-
-        String id = request.getParameter("id");
-        if (Strings.isNullOrEmpty(id)) {
-            log.info("the blog's id is null when del.");
-            redirect(_reqCtxt, "/blog");
-        }
-
-        log.info("delete blog-" + id);
-        String sql = "DELETE FROM BLOG WHERE ID = ?";
-        QueryHelper.update(sql, new Object[]{id});
-        redirect(_reqCtxt, "/blog");
+        super.del(_reqCtxt, "blog");
     }
 
     /**

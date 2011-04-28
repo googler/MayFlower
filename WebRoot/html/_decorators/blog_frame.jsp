@@ -1,3 +1,5 @@
+<%@ page import="com.paladin.action.MottoAction" %>
+<%@ page import="com.paladin.bean.Motto" %>
 <!DOCTYPE html>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
@@ -5,6 +7,10 @@
 <head>
     <title>MayFlower - <decorator:title default="Welcome to MayFlower!"/></title>
     <%@ include file="/html/inc/init.jsp" %>
+    <%
+        Motto r_motto = MottoAction.getRandomMotto();// 提取一条箴言
+        request.setAttribute("r_motto", r_motto);
+    %>
     <decorator:head/>
 </head>
 <body><a name="top"></a>
@@ -40,9 +46,13 @@
                                 </td>
                                 <td align="center" valign="middle">
                                     <c:if test='${!(empty user)}'>
-                                    	<a href="${contextPath}/blog/toAdd">发布博文</a>
+                                        <a href="${contextPath}/blog/toAdd">发布博文</a>
                                         |
                                         <a href="${contextPath}/code/toAdd">分享代码</a>
+                                        <c:if test='${user.role == "admin"}'>
+                                        	|
+                                        	<a href="${contextPath}/motto/toAdd">发布箴言</a>
+                                        </c:if>
                                     </c:if>
                                 </td>
                             </tr>
@@ -54,14 +64,17 @@
                         <table width="100%" border="0" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td width="26%" align="center" class="">&nbsp;</td>
-                                <td width="74%" height="31" align="left" class=""><a href="${contextPath}/blog" class=gb1>博文欣赏</a></td>
+                                <td width="74%" height="31" align="left" class=""><a href="${contextPath}/blog"
+                                                                                     class=gb1>博文欣赏</a></td>
                             </tr>
                             <tr>
                                 <td width="26%" align="center" class="border_bottom_green">&nbsp;</td>
-                                <td width="74%" height="31" align="left" class="border_bottom_green"><a href="${contextPath}/code" class=gb1>代码集锦</a></td>
+                                <td width="74%" height="31" align="left" class="border_bottom_green"><a
+                                        href="${contextPath}/code" class=gb1>代码集锦</a></td>
                             </tr>
                             <tr>
-                                <td colspan="3" align="left" style="padding:5px 5px 0px 10px;color:#FF0;" title="From '${motto.author}'">${motto.content}</td>
+                                <td colspan="3" align="left" style="padding:5px 5px 0px 10px;color:#FF0;"
+                                    title="From '${r_motto.author}'">${r_motto.content}</td>
                             </tr>
                         </table>
                     </td>
@@ -78,7 +91,7 @@
 </table>
 <script language="javascript1.2">
     function onDel(t_id) {
-        var flag = window.confirm("删除?")
+        var flag = window.confirm("确定删除?")
         if (flag == false) {
             return;
         } else {

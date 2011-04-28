@@ -14,7 +14,7 @@
 			</tr>
 			<tr>
 				<td height="300px" valign="top">
-                	<form action="${contextPath}/search/f" method="get"> 
+                	<form action="${contextPath}/search/b" method="get">
                         <table width="100%" border="0" align="center" cellpadding="2"
                             cellspacing="2">
                             <tr>
@@ -26,7 +26,7 @@
                             <tr>
                                 <td height="50" align="center" valign="bottom">
                                     <input id="q" name="q" type="search" style="height: 25px;" size="80"
-                                        maxlength="200" placeholder='这个地方只可以搜索服务器的文件系统哦!' autofocus>
+                                        maxlength="200" placeholder='请输入关键字' autofocus>
                                         <script>
                                             if (!('autofocus' in document.createElement('input'))) {
                                                 document.getElementById("q").focus();	
