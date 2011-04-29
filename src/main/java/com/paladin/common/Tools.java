@@ -20,6 +20,10 @@ import com.google.common.base.Strings;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
 
+/**
+ * 常用的方法都放在这里:-)
+ * Life is good!
+ */
 public class Tools {
 
     /**
@@ -41,14 +45,14 @@ public class Tools {
     }
 
     /**
-     * 判断某字符是否是空白字符
+     * 判断某字符是否是空白字符(其实，空白字符还有许多，自己骗自己一下吧！)
      */
     public static boolean isBlank(char c) {
         return (int) c == 9 || (int) c == 32;
     }
 
     /**
-     * check tag
+     * Check tag to make sure it is right
      */
     public static String checkTag(String _tags) {
         if (Strings.isNullOrEmpty(_tags))
@@ -66,6 +70,12 @@ public class Tools {
         return tag.substring(1, tag.length() - 1);
     }
 
+    /**
+     * U know this method by it's name :-)
+     *
+     * @param _str
+     * @return
+     */
     public static String ISO885912UTF8(String _str) {
         try {
             return new String(_str.getBytes("ISO-8859-1"), "UTF-8");
@@ -75,18 +85,37 @@ public class Tools {
         return "";
     }
 
+    /**
+     * Just swap
+     *
+     * @param _arr
+     * @param i
+     * @param j
+     */
     public static void swap(Object[] _arr, int i, int j) {
         Object t = _arr[i];
         _arr[i] = _arr[j];
         _arr[j] = t;
     }
 
+    /**
+     * null to String
+     *
+     * @param obj
+     * @return
+     */
     public static String null2String(Object obj) {
         return obj == null ? "" : obj.toString().trim();
     }
 
     /**
      * 快速排序tag_Desc
+     * 根据MAP中TAG的出现次数，对数组进行排序
+     *
+     * @param _map   KEY对应TAG出现的次数
+     * @param _arr   保存所有TAG
+     * @param _start
+     * @param _end
      */
     public static void quickSort(Map<String, Integer> _map, String[] _arr, int _start, int _end) {
         if (_start < _end) {
@@ -134,6 +163,11 @@ public class Tools {
             return _from + (int) (Math.random() * (_to - _from + 1));
     }
 
+    /**
+     * U will know this function from her name:-)
+     *
+     * @return
+     */
     public static String getSysTime() {
         GregorianCalendar lgc = new GregorianCalendar();
         String hour = String.valueOf(lgc.get(Calendar.HOUR_OF_DAY));
