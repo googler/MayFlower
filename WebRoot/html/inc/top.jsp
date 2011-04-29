@@ -1,4 +1,5 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" %>
+﻿<%@ page import="com.paladin.common.Tools" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <form action="${contextPath}/login" id="l_fm" method="get">
     <input type="hidden" name="r"/>
 
@@ -20,12 +21,16 @@
         </div>
         <div id=guser>
             <nobr>
+                <img src="${contextPath}/images/clock-red.png"/>
+                <%=Tools.getSysTime()%>
+                |
                 <c:if test='${empty user}'>
                     <a onclick="toLogin()" href="#" class='gb4'>登录</a>
                 </c:if>
                 <c:if test='${!(empty user)}'>
-                    <img src="${contextPath}/images/actor.png"/><a href="${contextPath}/admin"
-                                                                   title="${user.email}">${user.nickname}</a>&nbsp;&nbsp;|
+                    <img src="${contextPath}/images/actor.png"/>
+                    <a href="${contextPath}/admin" title="${user.email}">${user.nickname}</a>
+                    |
                     <a href="${contextPath}/login/exit/" class='gb4'>退出</a>
                 </c:if>
                 &nbsp;&nbsp;</nobr>

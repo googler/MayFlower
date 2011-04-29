@@ -28,6 +28,9 @@ public class Tools {
 
     /**
      * 压缩字符串中的空白字符
+     *
+     * @param str 单词间有多余空格的字符串
+     * @return 返回单词单没有多余空格的字符串
      */
     public static String compressBlank(String str) {
         str = str.trim();
@@ -46,6 +49,9 @@ public class Tools {
 
     /**
      * 判断某字符是否是空白字符(其实，空白字符还有许多，自己骗自己一下吧！)
+     *
+     * @param c 字符而已
+     * @return 返回这个字符是否是空白的啊
      */
     public static boolean isBlank(char c) {
         return (int) c == 9 || (int) c == 32;
@@ -53,6 +59,9 @@ public class Tools {
 
     /**
      * Check tag to make sure it is right
+     *
+     * @param _tags 标签
+     * @return 正确的标签
      */
     public static String checkTag(String _tags) {
         if (Strings.isNullOrEmpty(_tags))
@@ -66,15 +75,15 @@ public class Tools {
             if (!Strings.isNullOrEmpty(_tag) && !tag_list.contains(_tag))
                 tag_list.add(_tag);
         }
-        String tag = Arrays.toString((Object[]) tag_list.toArray());
+        String tag = Arrays.toString(tag_list.toArray());
         return tag.substring(1, tag.length() - 1);
     }
 
     /**
      * U know this method by it's name :-)
      *
-     * @param _str
-     * @return
+     * @param _str just a str
+     * @return UTF-8 str
      */
     public static String ISO885912UTF8(String _str) {
         try {
@@ -88,9 +97,9 @@ public class Tools {
     /**
      * Just swap
      *
-     * @param _arr
-     * @param i
-     * @param j
+     * @param _arr array
+     * @param i    the first index
+     * @param j    the second index
      */
     public static void swap(Object[] _arr, int i, int j) {
         Object t = _arr[i];
@@ -101,8 +110,8 @@ public class Tools {
     /**
      * null to String
      *
-     * @param obj
-     * @return
+     * @param obj just object, shit!
+     * @return string
      */
     public static String null2String(Object obj) {
         return obj == null ? "" : obj.toString().trim();
@@ -114,8 +123,8 @@ public class Tools {
      *
      * @param _map   KEY对应TAG出现的次数
      * @param _arr   保存所有TAG
-     * @param _start
-     * @param _end
+     * @param _start start index
+     * @param _end   end index
      */
     public static void quickSort(Map<String, Integer> _map, String[] _arr, int _start, int _end) {
         if (_start < _end) {
@@ -123,8 +132,10 @@ public class Tools {
             int i = _start;
             int j = _end + 1;
             while (true) {
-                while (i < _end && _map.get(_arr[++i]) >= part) ;
-                while (j > _start && _map.get(_arr[--j]) <= part) ;
+                while (i < _end && _map.get(_arr[++i]) >= part) {
+                }
+                while (j > _start && _map.get(_arr[--j]) <= part) {
+                }
                 if (i < j)
                     Tools.swap(_arr, i, j);
                 else
@@ -152,9 +163,9 @@ public class Tools {
     /**
      * 在[_from, _to]区间取一随机整数
      *
-     * @param _from
-     * @param _to
-     * @return
+     * @param _from 起始值
+     * @param _to   结束值
+     * @return 随机数
      */
     public static long random(long _from, long _to) {
         if (_from > _to)
@@ -166,7 +177,7 @@ public class Tools {
     /**
      * U will know this function from her name:-)
      *
-     * @return
+     * @return sysTime
      */
     public static String getSysTime() {
         GregorianCalendar lgc = new GregorianCalendar();
@@ -181,54 +192,18 @@ public class Tools {
             second = "0" + second;
         String millisecond = String.valueOf(lgc.get(Calendar.MILLISECOND));
 
-        return hour + ":" + minute + ":" + second + ":" + millisecond;
+        return hour + "时" + minute + "分" + second + "." + millisecond + "秒";
     }
 
     /**
      * 取时间差(秒)
      *
-     * @param gc1
-     * @param gc2
-     * @return
+     * @param gc1 时间1
+     * @param gc2 时间2
+     * @return 返回两个时间点的差值（秒）
      */
     public static double getSecondsBetweenTwoDate(GregorianCalendar gc1, GregorianCalendar gc2) {
         long milliSeconds = Math.abs(gc1.getTimeInMillis() - gc2.getTimeInMillis());
         return milliSeconds / 1000.0;
-    }
-
-    /**
-     * 取平均值
-     *
-     * @param args
-     * @return
-     */
-    public static double getAverage(double[] args) {
-        double sum = 0;
-        for (double num : args)
-            sum += num;
-        return sum / (double) args.length;
-    }
-
-    /**
-     * 交换数组中的元素
-     *
-     * @param _arr
-     * @param i
-     * @param j
-     */
-    public static void swap(int[] _arr, int i, int j) {
-        if (i < 0 || j < 0 || i >= _arr.length || j > _arr.length || i == j)
-            return;
-        int temp = _arr[i];
-        _arr[i] = _arr[j];
-        _arr[j] = temp;
-    }
-
-    public static void main(String[] args) {
-        String str = "  as b ";
-        System.out.println(str.trim());
-        for (int i = 0; i < 100; i++) {
-            System.out.print(random(17, 11) + " ");
-        }
     }
 }

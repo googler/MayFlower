@@ -44,10 +44,10 @@ public class MottoAction extends BaseAction {
     /**
      * 上次获取箴言的时间(单位秒)
      */
-    private static long updateTime;
+    private static GregorianCalendar updateTime;
 
     static {
-        updateTime = new GregorianCalendar().getTimeInMillis() / 1000;
+        updateTime = new GregorianCalendar();
         generateRandomMotto(); // 类加载时获取箴言
     }
 
@@ -100,10 +100,10 @@ public class MottoAction extends BaseAction {
      * 提供随机箴言(公共调用)
      */
     public static Motto getRandomMotto() {
-        // 获取当前时间
-        long time = new GregorianCalendar().getTimeInMillis() / 1000;
+        // 获取当前时间（毫秒）
+        GregorianCalendar time = new GregorianCalendar();
         // 若更新间隔超过指定值，则重新获取箴言并更新updateTime
-        if (randomMotto == null || time - updateTime > Constants.MINUTE_UPDATE_MOTTO * 60) {
+        if (randomMotto == null || Tools.getSecondsBetweenTwoDate(time, updateTime) > Constants.MINUTE_UPDATE_MOTTO * 60) {
             updateTime = time;
             generateRandomMotto();
         }

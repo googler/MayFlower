@@ -54,6 +54,8 @@ public class BlogAction extends BaseAction {
 
     /**
      * 博文列表
+     *
+     * @param _reqCtxt life is good :)
      */
     public void list(final RequestContext _reqCtxt) {
         final HttpServletRequest request = _reqCtxt.request();
@@ -61,7 +63,7 @@ public class BlogAction extends BaseAction {
         super.doPage(request, "SELECT COUNT(*) COUNT FROM BLOG");// 分页
         // 获取页面数据
         String sql = "SELECT * FROM BLOG ORDER BY TOP DESC, CREATE_DATE DESC";
-        List<BaseBlog> blogs = QueryHelper.query_slice(BaseBlog.class, sql, page_NO, Constants.NUM_PER_PAGE, new Object[]{});
+        List<BaseBlog> blogs = QueryHelper.query_slice(BaseBlog.class, sql, page_NO, Constants.NUM_PER_PAGE);
         // -------------------------------------------------------------------------------------------------------------
         request.setAttribute("blogs", blogs);
         request.setAttribute("hotTag", hotTag().subList(0, 15));// 提取热门tag
@@ -69,7 +71,12 @@ public class BlogAction extends BaseAction {
     }
 
     /**
-     * 打开文章详细内容
+     * Just read a blog
+     *
+     * @param _reqCtxt request context
+     * @param _id      blog's id
+     * @throws ServletException u know
+     * @throws IOException      u know
      */
     public void read(final RequestContext _reqCtxt, final long _id) throws ServletException, IOException {
         log.info("get blog detail, the id = " + _id);
@@ -86,13 +93,15 @@ public class BlogAction extends BaseAction {
             request.setAttribute("q", q);
         }
         request.setAttribute("blog", blog);
-        // -------------------------------- hits++
+        // ------------------------------------------------------------------------------------------------------ hits++
         QueryHelper.update("UPDATE BLOG SET HITS = (HITS + 1) WHERE ID = ?", _id);
         forward(_reqCtxt, "/html/blog/blog_read.jsp");
     }
 
     /**
-     * 保存文章(新增或者修改)
+     * save a new blog or update an old blog
+     *
+     * @param _reqCtxt life is good:-)
      */
     public void save(final RequestContext _reqCtxt) {
         final HttpServletRequest request = _reqCtxt.request();
@@ -102,45 +111,58 @@ public class BlogAction extends BaseAction {
         StringBuilder content = new StringBuilder();
         content.append(request.getParameter("content").trim());
         String tag = Tools.checkTag(request.getParameter("tag").trim());
-        String top = (String) request.getParameter("top");
+        String top = request.getParameter("top");
         top = top == null ? "0" : top;
 
         if (Strings.isNullOrEmpty(id)) {// 添加新文章
-            String sql = "INSERT INTO BLOG(TITLE, CONTENT, AUTHOR, CREATE_DATE, LASTMODIFY_DATE, TAG, HITS, TOP) VALUES(?, ?, ?, now(), now(), ?, 1, ?)";
-            QueryHelper.update(sql, new Object[]{title, content.toString(), "erhu", tag, top});
+            String sql = "INSERT INTO BLOG(TITLE, CONTENT, AUTHOR, CREATE_DATE, LASTMODIFY_DATE, TAG," +
+                    " HITS, TOP) VALUES(?, ?, ?, now(), now(), ?, 1, ?)";
+            QueryHelper.update(sql, new String[]{title, content.toString(),
+                    super.getUserFromSession(_reqCtxt).getUsername(), tag, top});
             log.info("Add blog success");
             redirect(_reqCtxt, "/blog");
         } else {// 修改文章
-            String sql = "UPDATE BLOG SET TITLE = ?, CONTENT = ?, TAG = ?, LASTMODIFY_DATE = NOW(), TOP = ? WHERE ID = ?";
-            QueryHelper.update(sql, new Object[]{title, content.toString(), tag, top, id});
+            String sql = "UPDATE BLOG SET TITLE = ?, CONTENT = ?, TAG = ?, LASTMODIFY_DATE = NOW(), " +
+                    "TOP = ? WHERE ID = ?";
+            QueryHelper.update(sql, new String[]{title, content.toString(), tag, top, id});
             log.info("Update blog success");
             redirect(_reqCtxt, "/blog/read/" + id);
         }
     }
 
     /**
-     * 转到编辑页面
+     * redirect to the editPage to edit a blog.
+     *
+     * @param _reqCtxt everything is fine^-^
+     * @param _id      blog's id
      */
     public void edit(final RequestContext _reqCtxt, final long _id) {
         super.edit(_reqCtxt, _id, Blog.class);
     }
 
     /**
-     * 转到添加博文页面
+     * redirect to the editPage to add a new blog.
+     *
+     * @param _reqCtxt life is good:)
      */
     public void toAdd(final RequestContext _reqCtxt) {
         super.toAdd(_reqCtxt, "blog");
     }
 
     /**
-     * 删除博文
+     * del blog
+     *
+     * @param _reqCtxt Well, life is very good:)
      */
     public void del(final RequestContext _reqCtxt) {
         super.del(_reqCtxt, "blog");
     }
 
     /**
-     * 搜索时给关键字作标记
+     * 为搜索结果中的关键字作标记
+     *
+     * @param _blog Blog
+     * @param _q    question
      */
     private void dealBlogWhenQ(Blog _blog, String _q) {
         //_q = Tools.ISO885912UTF8(_q).replaceAll("<[^>]*>", "");
@@ -155,14 +177,16 @@ public class BlogAction extends BaseAction {
 
     /**
      * 获取热门tag
+     *
+     * @return hot tag
      */
     private List<String> hotTag() {
         // 从数据库中取出所有tag
         String sql = "SELECT TAG FROM BLOG";
         List<Map<String, Object>> list = QueryHelper.queryList(sql);
         Map<String, Integer> tag_map = new HashMap<String, Integer>();
-        for (int i = 0; i < list.size(); i++) {
-            String tags = list.get(i).get("TAG").toString();
+        for (Map<String, Object> map : list) {
+            String tags = map.get("TAG").toString();
             if (!Strings.isNullOrEmpty(tags))
                 for (String tag : tags.split(","))
                     tag_map.put(tag, tag_map.get(tag) == null ? 1 : tag_map.get(tag) + 1);
@@ -178,6 +202,11 @@ public class BlogAction extends BaseAction {
         return list_return;
     }
 
+    /**
+     * u know this.
+     *
+     * @param _ctxt fine day!
+     */
     public void init(ServletContext _ctxt) {
         super.init(_ctxt);
         DBManager.getConnection();
