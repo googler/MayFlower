@@ -24,7 +24,7 @@
         <td>
             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td width="150">
+                    <td width="160">
                         <img src="${contextPath}/images/mayFlower_small.png" alt="MayFlower:五月花!" title="MayFlower:五月花!"
                              onClick="window.location='${contextPath}/blog'">
                     </td>
@@ -39,7 +39,7 @@
                                                            placeholder='请输入要查询的博文、代码...' title="请输入要查询的博文、代码..."
                                                            size="70" maxlength="2048" value="${q}"/></td>
                                                 <td><input type="submit" style="height:30px;" id='Sbtn'
-                                                           value="  找 文 章  "></td>
+                                                           value="找 文 章    "></td>
                                             </tr>
                                         </table>
                                     </form>
@@ -50,8 +50,8 @@
                                         |
                                         <a href="${contextPath}/code/toAdd">分享代码</a>
                                         <c:if test='${user.role == "admin"}'>
-                                        	|
-                                        	<a href="${contextPath}/motto/toAdd">发布箴言</a>
+                                            |
+                                            <a href="${contextPath}/motto/toAdd">发布箴言</a>
                                         </c:if>
                                     </c:if>
                                 </td>
@@ -64,17 +64,26 @@
                         <table width="100%" border="0" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td width="26%" align="center" class="">&nbsp;</td>
-                                <td width="74%" height="31" align="left" class=""><a href="${contextPath}/blog"
-                                                                                     class=gb1>博文欣赏</a></td>
+                                <td width="74%" height="31" align="left" class="">
+                                    <a href="${contextPath}/motto" class=gb1>醒世恒言</a></td>
                             </tr>
                             <tr>
-                                <td width="26%" align="center" class="border_bottom_green">&nbsp;</td>
-                                <td width="74%" height="31" align="left" class="border_bottom_green"><a
+                                <td width="26%" align="center" class="">&nbsp;</td>
+                                <td width="74%" height="31" align="left" class=""><a
                                         href="${contextPath}/code" class=gb1>代码集锦</a></td>
                             </tr>
+                            <c:if test='${user.role == "admin"}'>
+                                <tr>
+                                    <td width="26%" align="center" class="border_bottom_green">&nbsp;</td>
+                                    <td width="74%" height="31" align="left" class="border_bottom_green">
+                                        <a href="${contextPath}/blog"
+                                           class=gb1>博文欣赏</a>
+                                    </td>
+                                </tr>
+                            </c:if>
                             <tr>
                                 <td colspan="3" align="left" style="padding:5px 5px 0px 10px;color:#FF0;"
-                                    title="From '${r_motto.author}'">${r_motto.content}</td>
+                                    title="'${r_motto.author}'">${r_motto.content}</td>
                             </tr>
                         </table>
                     </td>

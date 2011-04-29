@@ -81,15 +81,16 @@ public class MottoAction extends BaseAction {
         String id = request.getParameter("id");
         String content = request.getParameter("content").trim();
         String tag = Tools.checkTag(request.getParameter("tag").trim());
+        String author = request.getParameter("author").trim();
 
         if (Strings.isNullOrEmpty(id)) {
             QueryHelper.update("INSERT INTO MOTTO(CONTENT, AUTHOR, TAG) VALUES(?, ?, ?)",
-                    new Object[]{content.toString(), "erhu", tag});
+                    new Object[]{content.toString(), author, tag});
             log.info("Add motto success");
             redirect(_reqCtxt, "/motto");
         } else {
-            QueryHelper.update("UPDATE MOTTO SET CONTENT = ?, TAG = ? WHERE ID = ?",
-                    new Object[]{content.toString(), tag, id});
+            QueryHelper.update("UPDATE MOTTO SET CONTENT = ?, TAG = ?, AUTHOR = ? WHERE ID = ?",
+                    new Object[]{content.toString(), tag, author, id});
             log.info("Update motto success");
             redirect(_reqCtxt, "/motto");
         }

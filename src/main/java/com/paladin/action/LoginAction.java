@@ -69,8 +69,7 @@ public class LoginAction extends BaseAction {
         if (user == null) {// if not recorded, generate new user
             String password = "12345";
             sql_builder.append("INSERT INTO USER(USERNAME, PASSWORD, NICKNAME, EMAIL, REG_DATE, ");
-            sql_builder
-                    .append("LASTLOGIN_DATE, FIRST_IP, ROLE) VALUES (?, ?, ?, ?, NOW(), NOW(), ?, 'visitor')");
+            sql_builder.append("LASTLOGIN_DATE, FIRST_IP, ROLE) VALUES (?, ?, ?, ?, NOW(), NOW(), ?, 'visitor')");
             QueryHelper.update(sql_builder.toString(), new Object[]{ip, password, ip, ip, ip});
             user = getUserByIp(ip);
         }
@@ -103,12 +102,17 @@ public class LoginAction extends BaseAction {
             redirect(_reqCtxt, r);
     }
 
+    /**
+     * 注销
+     *
+     * @param _reqCtxt
+     */
     public void exit(final RequestContext _reqCtxt) {
         final HttpSession session = _reqCtxt.session();
         session.removeAttribute("user");
         String r = _reqCtxt.request().getParameter("r");
         if (Strings.isNullOrEmpty(r))
-            redirect(_reqCtxt, "/login");
+            redirect(_reqCtxt, "/");
         else
             redirect(_reqCtxt, r);
     }

@@ -11,7 +11,7 @@
 
                 <a href="${contextPath}/commonAPI" class=gb1>常用API</a>&nbsp;&nbsp;
                 <c:if test='${user.role == "admin"}'>
-                    <a href="${contextPath}/motto" class=gb1>箴言</a>&nbsp;&nbsp;
+                    <a href="${contextPath}/motto" class=gb1>醒世恒言</a>&nbsp;&nbsp;
                 </c:if>
                 <!--<a href="${contextPath}/game" class=gb1>游戏</a>&nbsp;&nbsp;<a href="#" class=gb1>游戏</a>&nbsp;
             <a href="#" class=gb1>待办事项</a>&nbsp;
@@ -19,7 +19,7 @@
             <a href="#" class=gb1>常用工具</a>--> </nobr>
         </div>
         <div id=guser>
-            <nobr><font color="#FFFF00">奋斗改变命运，梦想让我们与众不同! </font>
+            <nobr>
                 <c:if test='${empty user}'>
                     <a onclick="toLogin()" href="#" class='gb4'>登录</a>
                 </c:if>

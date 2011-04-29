@@ -17,10 +17,12 @@
             </td>
         </tr>
         <tr>
-            <td><input style="height:30px; " name="tag" type="text" size="50" maxlength="60" value="${motto.tag}"
-                       placeholder='标签'/>
-                标签&nbsp;&nbsp;&nbsp;&nbsp;<input style="height:30px;" name="svBtn" type="button" onClick="doSave()"
-                                                 value=" 发   布                                  "></td>
+            <td><input style="height:30px; " name="author" type="text" size="25" maxlength="60" value="${motto.author}"
+                       placeholder='来源' title="箴言来源"/>
+                <input style="height:30px; " name="tag" type="text" size="25" maxlength="60" value="${motto.tag}"
+                       placeholder='标签' title="标签"/>
+                <input style="height:30px;" name="svBtn" type="button" onClick="doSave()"
+                       value="   发      布                             "></td>
         </tr>
     </form>
 </table>
@@ -29,6 +31,10 @@
         var fm = document.mottoForm;
         if (fm.content.value == '') {
             alert("Hi, 内容不可不填哦:)");
+            return false;
+        }
+        if (fm.author.value == '') {
+            alert("Hello, 来源不可不填哦:)");
             return false;
         }
         if (fm.tag.value == '') {

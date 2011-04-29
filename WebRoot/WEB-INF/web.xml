@@ -22,6 +22,8 @@
 
     <!-- controller -->
     <servlet>
+        <description>解析URL请求</description>
+        <display-name>Controler</display-name>
         <servlet-name>controller</servlet-name>
         <servlet-class>com.paladin.mvc.ActionServlet</servlet-class>
         <init-param>

@@ -56,7 +56,7 @@
 			conn = new WebSocket("ws://"+host+"/test");
 			conn.onmessage = 
 				function(evt) {
-					//alert(evt.data)
+					  // alert(evt.data)
 					log(evt.data);
 					  // conn.close();
 					  // log(connections++);
