@@ -21,14 +21,14 @@
         </div>
         <div id=guser>
             <nobr>
-                <img src="${contextPath}/images/clock-red.png"/>
+                <img src="${contextPath}/images/clock.png" title='系统时间'/>
                 <%=Tools.getSysTime()%>
                 |
                 <c:if test='${empty user}'>
                     <a onclick="toLogin()" href="#" class='gb4'>登录</a>
                 </c:if>
                 <c:if test='${!(empty user)}'>
-                    <img src="${contextPath}/images/actor.png"/>
+                    <!--<img src="${contextPath}/images/doctor.png"/>-->
                     <a href="${contextPath}/admin" title="${user.email}">${user.nickname}</a>
                     |
                     <a href="${contextPath}/login/exit/" class='gb4'>退出</a>

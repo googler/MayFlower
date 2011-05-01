@@ -192,7 +192,7 @@ public class Tools {
             second = "0" + second;
         String millisecond = String.valueOf(lgc.get(Calendar.MILLISECOND));
 
-        return hour + "时" + minute + "分" + second + "." + millisecond + "秒";
+        return hour + "时" + minute + "分";// + second + "." + millisecond + "秒";
     }
 
     /**

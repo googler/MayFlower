@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>箴言报团</title>
+    <title>箴言抱团</title>
 </head>
 <body>
 <table width="99%" border="0" align="center" cellpadding="0" cellspacing="0">

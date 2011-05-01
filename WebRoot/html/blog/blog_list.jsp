@@ -36,7 +36,7 @@
                         <td colspan="3">
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
-                                    <td width="90%" nowrap><img src="${contextPath}/images/events.png">&nbsp;
+                                    <td width="90%" nowrap><img src="${contextPath}/images/label.png">&nbsp;
                                         <%
                                             List<String> list = (List<String>) request.getAttribute("hotTag");
                                             int total_page = Integer.parseInt(request.getAttribute("total_page").toString());
