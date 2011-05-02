@@ -34,17 +34,21 @@
         <td align="center" style="font-size:20px;height:34px;"><b>${code.title}</b></td> 
     </tr>
     <tr> 
-        <td align="right" valign="middle" class="border_bottom_green" style="color:#CCC" height="20">
-    		<c:if test='${!empty tags}'><img src="${contextPath}/images/label.png"/>
-            <c:forEach items='${tags}' var='tag'> 
-     			<a href="${contextPath}/search/bc/?q=${tag}">${tag}</a>&nbsp;
-     		</c:forEach>
-            </c:if>
+        <td align="right" valign="middle" class="border_bottom_green" style="height:27px;color:#CCC">
+            <c:if test='${!empty tags}'>
+                标签:
+                <c:forEach items='${tags}' var='tag'>
+                    <a href="${contextPath}/search/c/?q=${tag}">${tag}</a>&nbsp;
+                </c:forEach>
+            </c:if>|
+            访问:${code.hits}
+
             <c:if test='${user.role == "admin"}'>
-            	&nbsp;<a href="${contextPath}/code/edit/${code.id}"><img title='编辑' src='${contextPath}/images/emblem-development.png'/></a>&nbsp;
+                <a href="${contextPath}/code/edit/${blog.id}">
+                    [编 辑]
+                </a>
             </c:if>
-            V_${code.hits}&nbsp;
-    	</td> 
+        </td> 
     </tr>
     <tr> 
         <td align="left"><pre class="brush: ${code.language};">${code.content}</pre></td> 
@@ -57,7 +61,8 @@
             	<c:if test='${user.role == "admin"}'>
     	           	 |&nbsp;<a href="#" onClick="onDel(${code.id});">删除</a>
                 </c:if>
-                |&nbsp;<a href="#top">Top</a>
+                |
+                <a href="#top">顶部</a>
             </td>
         </form>
     </tr>

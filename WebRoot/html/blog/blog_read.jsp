@@ -12,15 +12,18 @@
     <tr>
         <td align="right" valign="middle" class="border_bottom_green" style="height:27px;color:#CCC">
             <c:if test='${!empty tags}'>
-                <img src="${contextPath}/images/label.png"/>
+                标签:
                 <c:forEach items='${tags}' var='tag'>
                     <a href="${contextPath}/search/b/?q=${tag}">${tag}</a>&nbsp;
                 </c:forEach>
-            </c:if>
+            </c:if>|
+            访问:${blog.hits}
+
             <c:if test='${user.role == "admin"}'>
-                &nbsp;<a href="${contextPath}/blog/edit/${blog.id}"><img title='编辑' src='${contextPath}/images/emblem-development.png'/></a>&nbsp;
+                <a href="${contextPath}/blog/edit/${blog.id}">
+                    [编 辑]
+                </a>
             </c:if>
-            V_${blog.hits}&nbsp;
         </td>
     </tr>
     <tr>
@@ -38,7 +41,8 @@
                 <c:if test='${user.role == "admin"}'>
                     |&nbsp;<a href="#" onClick="onDel(${blog.id});">删除</a>
                 </c:if>
-                |&nbsp;<a href="#top">Top</a>&nbsp;
+                |
+                <a href="#top">顶部</a>
             </td>
         </form>
     </tr>

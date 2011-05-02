@@ -62,13 +62,6 @@
                 <tr>
                     <td valign="top" class="border_right_green">
                         <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                            <c:if test='${user.role == "admin"}'>
-                                <tr>
-                                    <td width="26%" align="center" class="">&nbsp;</td>
-                                    <td width="74%" height="31" align="left" class="">
-                                        <a href="${contextPath}/motto" class=gb1>醒世恒言</a></td>
-                                </tr>
-                            </c:if>
                             <tr>
                                 <td width="26%" align="center" class="">&nbsp;</td>
                                 <td width="74%" height="31" align="left" class=""><a
