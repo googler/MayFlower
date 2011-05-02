@@ -63,19 +63,17 @@
                     <td valign="top" class="border_right_green">
                         <table width="100%" border="0" cellpadding="0" cellspacing="0">
                             <tr>
-                                <td width="26%" align="center" class="">&nbsp;</td>
-                                <td width="74%" height="31" align="left" class=""><a
-                                        href="${contextPath}/code" class=gb1>代码集锦</a></td>
-                            </tr>
-
-                            <tr>
-                                <td width="26%" align="center" class="border_bottom_green">&nbsp;</td>
-                                <td width="74%" height="31" align="left" class="border_bottom_green">
+                                <td width="26%" align="center" >&nbsp;</td>
+                                <td width="74%" height="31" align="left" >
                                     <a href="${contextPath}/blog"
                                        class=gb1>博文欣赏</a>
                                 </td>
                             </tr>
-
+                            <tr>
+                                <td width="26%" align="center" class="border_bottom_green">&nbsp;</td>
+                                <td width="74%" height="31" align="left" class="border_bottom_green"><a
+                                        href="${contextPath}/code" class=gb1>代码集锦</a></td>
+                            </tr>
                             <tr>
                                 <td colspan="3" align="left" style="padding:5px 5px 0px 10px;color:#FF0;"
                                     title="'${r_motto.author}'">${r_motto.content}</td>
