@@ -141,6 +141,7 @@ public class SearchAction extends BaseAction {
         List<Blog> blog_list = new ArrayList<Blog>();
         HttpServletRequest request = _reqCtxt.request();
         String q = request.getParameter("q");
+        int size = 0;
         if (!Strings.isNullOrEmpty(q)) {
             q = Tools.ISO885912UTF8(q).trim();
             request.setAttribute("q", q);
@@ -170,6 +171,7 @@ public class SearchAction extends BaseAction {
                     }
                 }
             }
+            size = blog_list.size();
             {//分页
                 super.doPage(request, blog_list.size(), Constants.NUM_PER_PAGE_SEARCH);
                 int begin = (page_NO - 1) * Constants.NUM_PER_PAGE_SEARCH;
@@ -180,7 +182,7 @@ public class SearchAction extends BaseAction {
             }
         }
         log.info("q = " + q);
-        log.info("get blog:" + blog_list.size());
+        log.info("get blog:" + size);
         request.setAttribute("blog_list", blog_list);
         forward(_reqCtxt, "/html/search/search_b.jsp");
     }
