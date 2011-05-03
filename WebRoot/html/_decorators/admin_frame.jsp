@@ -29,7 +29,7 @@
                                     <td><input name="q" type="search" style="height:25px;"
                                                placeholder='要查询的文件(我们只返回1000条记录哦)'
                                                title="要查询的文件(我们只返回1000条记录哦)" size="70" maxlength="2048"
-                                               value="${q}"/></td>
+                                               value="${q}" autofocus/></td>
                                     <td><input type="submit" style="height:30px;" id="sBtn2"
                                                value="  找 文 件  "></td>
                                     <td valign="middle" nowrap><c:if test='${user.role == "admin"}'><br>

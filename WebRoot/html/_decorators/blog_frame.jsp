@@ -37,7 +37,7 @@
                                             <tr>
                                                 <td><input name="q" type="search" style="height:25px;"
                                                            placeholder='请输入要查询的博文、代码...' title="请输入要查询的博文、代码..."
-                                                           size="70" maxlength="2048" value="${q}"/></td>
+                                                           size="70" maxlength="2048" value="${q}" autofocus/></td>
                                                 <td><input type="submit" style="height:30px;" id='Sbtn'
                                                            value="找 文 章    "></td>
                                             </tr>

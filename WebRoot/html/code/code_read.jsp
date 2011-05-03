@@ -44,7 +44,7 @@
             访问:${code.hits}
 
             <c:if test='${user.role == "admin"}'>
-                <a href="${contextPath}/code/edit/${blog.id}">
+                <a href="${contextPath}/code/edit/${code.id}">
                     [编 辑]
                 </a>
             </c:if>
