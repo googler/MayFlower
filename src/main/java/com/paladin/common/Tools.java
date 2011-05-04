@@ -187,20 +187,20 @@ public class Tools {
         String minute = String.valueOf(lgc.get(Calendar.MINUTE));
         if (minute.length() == 1)
             minute = "0" + minute;
-        String second = String.valueOf(lgc.get(Calendar.SECOND));
-        if (second.length() == 1)
-            second = "0" + second;
-        String millisecond = String.valueOf(lgc.get(Calendar.MILLISECOND));
+        //String second = String.valueOf(lgc.get(Calendar.SECOND));
+        // if (second.length() == 1)
+        //    second = "0" + second;
+        //String millisecond = String.valueOf(lgc.get(Calendar.MILLISECOND));
 
         return hour + "时" + minute + "分";// + second + "." + millisecond + "秒";
     }
 
     /**
-     * 取时间差(秒)
+     * 获取时间差（秒）
      *
-     * @param gc1 时间1
-     * @param gc2 时间2
-     * @return 返回两个时间点的差值（秒）
+     * @param gc1 时间点1
+     * @param gc2 时间点2
+     * @return life is good:-)
      */
     public static double getSecondsBetweenTwoDate(GregorianCalendar gc1, GregorianCalendar gc2) {
         long milliSeconds = Math.abs(gc1.getTimeInMillis() - gc2.getTimeInMillis());
