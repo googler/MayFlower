@@ -75,7 +75,7 @@ public class Tools {
             if (!Strings.isNullOrEmpty(_tag) && !tag_list.contains(_tag))
                 tag_list.add(_tag);
         }
-        String tag = Arrays.toString(tag_list.toArray());
+        String tag = Arrays.toString(tag_list.toArray()).replace(", ", ",");
         return tag.substring(1, tag.length() - 1);
     }
 
