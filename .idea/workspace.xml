@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2ad811d2-f712-469f-b102-9328f12e606c" name="Default" comment="">
+    <list default="true" id="2ad811d2-f712-469f-b102-9328f12e606c" name="Default" comment="[update]稍微修改了箴言的提示；">
+      <change type="DELETED" beforePath="D:\MayFlower\WebRoot\html\search\search_b.jsp" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/_decorators/blog_frame.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/_decorators/blog_frame.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/motto/motto_list.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/motto/motto_list.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/RunDisk2DB.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/RunDisk2DB.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/blog/blog_list.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/blog/blog_list.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/code/code_list.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/code/code_list.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/search/search_bc.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/search/search_bc.jsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/BaseAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/BaseAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/BlogAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/BlogAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/CodeAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/CodeAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/MottoAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/MottoAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java" />
     </list>
     <ignored path="MayFlower.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -87,56 +94,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="search_bc.jsp" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/WebRoot/html/search/search_bc.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="215" column="40" selection-start="9750" selection-end="9750" vertical-scroll-proportion="0.66849315">
+              <folding>
+                <element signature="tag#table#0;tag#ul#0;tag#div#1;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
+                <element signature="tag#table#0;tag#ul#1;tag#div#1;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="code_list.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebRoot/html/code/code_list.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="65" column="21" selection-start="3433" selection-end="3433" vertical-scroll-proportion="-6.285714">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search_f.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/WebRoot/html/search/search_f.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="SearchAction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="179" column="58" selection-start="8194" selection-end="8194" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RunDisk2DB.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/RunDisk2DB.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="6" selection-start="2124" selection-end="2124" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="motto_list.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebRoot/html/motto/motto_list.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="63" selection-start="1031" selection-end="1031" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="motto_edit.jsp" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/WebRoot/html/motto/motto_edit.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="blog_frame.jsp" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/WebRoot/html/_decorators/blog_frame.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="88" column="27" selection-start="4430" selection-end="4430" vertical-scroll-proportion="0.55">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Tools.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/common/Tools.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="204" column="24" selection-start="5830" selection-end="5836" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="197" column="33" selection-start="8894" selection-end="8894" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="method#b#0;class#SearchAction#0" expanded="false" />
+                <element signature="method#c#0;class#SearchAction#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -158,22 +153,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/WebRoot/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paladin/mvc/RequestContext.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paladin/common/QuickSort.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paladin/action/MottoAction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paladin/action/BlogAction.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paladin/common/Tools.java" />
-        <option value="$PROJECT_DIR$/WebRoot/html/blog/blog_list.jsp" />
-        <option value="$PROJECT_DIR$/WebRoot/html/inc/top.jsp" />
         <option value="$PROJECT_DIR$/WebRoot/html/blog/blog_read.jsp" />
         <option value="$PROJECT_DIR$/WebRoot/html/search/search_b.jsp" />
         <option value="$PROJECT_DIR$/WebRoot/html/_decorators/admin_frame.jsp" />
         <option value="$PROJECT_DIR$/WebRoot/html/code/code_read.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/paladin/action/RunDisk2DB.java" />
         <option value="$PROJECT_DIR$/WebRoot/html/motto/motto_list.jsp" />
         <option value="$PROJECT_DIR$/WebRoot/html/_decorators/blog_frame.jsp" />
+        <option value="$PROJECT_DIR$/WebRoot/html/blog/blog_list.jsp" />
+        <option value="$PROJECT_DIR$/WebRoot/html/search/search_c.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/paladin/action/BaseAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/paladin/action/BlogAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/paladin/action/CodeAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/paladin/action/MottoAction.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java" />
+        <option value="$PROJECT_DIR$/WebRoot/html/search/search_bc.jsp" />
+        <option value="$PROJECT_DIR$/WebRoot/html/code/code_list.jsp" />
       </list>
     </option>
   </component>
@@ -306,29 +301,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="motto" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebRoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="html" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="_decorators" />
+              <option name="myItemId" value="search" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -355,6 +328,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="paladin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MayFlower" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MayFlower" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="paladin" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="action" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -402,9 +405,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\MayFlower\WebRoot\html\search" />
       <recent name="D:\MayFlower\WebRoot\images" />
       <recent name="D:\MayFlower\WebRoot\html\motto" />
-      <recent name="D:\MayFlower\WebRoot\html\search" />
       <recent name="D:\MayFlower\WebRoot\kindEditor" />
       <recent name="D:\MayFlower\WebRoot\html\game\linkup" />
     </key>
@@ -828,27 +831,27 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1374" height="776" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32919255" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32411674" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" x="75" y="393" width="1258" height="104" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24960381" sideWeight="0.68327975" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33026114" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="262" y="566" width="1025" height="421" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35176653" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="262" y="566" width="1025" height="421" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296355" sideWeight="0.68327975" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47772658" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32718894" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2857143" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2393617" sideWeight="0.3794163" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24468085" sideWeight="0.32565284" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24468085" sideWeight="0.21658987" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296355" sideWeight="0.659164" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39893618" sideWeight="0.66820276" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24468085" sideWeight="0.6697389" order="0" side_tool="false" content_ui="tabs" x="207" y="135" width="315" height="622" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24468085" sideWeight="0.6482335" order="0" side_tool="false" content_ui="tabs" x="207" y="135" width="315" height="622" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32872504" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32411674" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" x="75" y="393" width="1258" height="104" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24924012" sideWeight="0.67588323" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -915,87 +918,114 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/MottoAction.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/ChatAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="131" column="7" selection-start="4347" selection-end="4347" vertical-scroll-proportion="0.22131148" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/html/_decorators/admin_frame.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="43" selection-start="1354" selection-end="1354" vertical-scroll-proportion="0.2902299" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/html/_decorators/game_frame.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/html/blog/blog_list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="32" selection-start="1509" selection-end="1509" vertical-scroll-proportion="0.05" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/html/blog/blog_read.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="0" selection-start="1678" selection-end="1678" vertical-scroll-proportion="0.4" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/html/inc/top.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="12" selection-start="686" selection-end="686" vertical-scroll-proportion="0.05" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="30" selection-start="989" selection-end="989" vertical-scroll-proportion="0.2" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/html/search/search_b.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="43" selection-start="1478" selection-end="1478" vertical-scroll-proportion="0.15" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/CodeAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="13" selection-start="1113" selection-end="1113" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/html/code/code_read.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="20" selection-start="2966" selection-end="2966" vertical-scroll-proportion="0.41578948" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="179" column="58" selection-start="8194" selection-end="8194" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/RunDisk2DB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="6" selection-start="2124" selection-end="2124" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/html/motto/motto_list.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="63" selection-start="1031" selection-end="1031" vertical-scroll-proportion="0.0">
+        <state line="25" column="13" selection-start="753" selection-end="753" vertical-scroll-proportion="0.5120385">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/html/motto/motto_edit.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/bean/Code.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/common/Tools.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="204" column="24" selection-start="5830" selection-end="5836" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/WebRoot/html/_decorators/blog_frame.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="88" column="27" selection-start="4430" selection-end="4430" vertical-scroll-proportion="0.55">
+        <state line="17" column="33" selection-start="663" selection-end="663" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/bean/Blog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="38" selection-start="692" selection-end="692" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/html/blog/blog_list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="41" selection-start="3133" selection-end="3133" vertical-scroll-proportion="-8.142858">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/css/border.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="17" selection-start="263" selection-end="263" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/BlogAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="67" selection-start="1857" selection-end="1857" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/CodeAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="67" selection-start="1603" selection-end="1603" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/MottoAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="16" selection-start="1803" selection-end="1803" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/BaseAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="19" selection-start="1681" selection-end="1681" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/html/inc/top.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="35" selection-start="191" selection-end="191" vertical-scroll-proportion="4.571429">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/mvc/ActionServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="181" column="0" selection-start="5575" selection-end="5575" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/paladin/action/SearchAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="197" column="33" selection-start="8894" selection-end="8894" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="method#b#0;class#SearchAction#0" expanded="false" />
+            <element signature="method#c#0;class#SearchAction#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/html/code/code_list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="21" selection-start="3433" selection-end="3433" vertical-scroll-proportion="-6.285714">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/html/search/search_f.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/WebRoot/html/search/search_bc.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="215" column="40" selection-start="9750" selection-end="9750" vertical-scroll-proportion="0.66849315">
+          <folding>
+            <element signature="tag#table#0;tag#ul#0;tag#div#1;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
+            <element signature="tag#table#0;tag#ul#1;tag#div#1;tag#div#0;tag#body#0;tag#html#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -32,14 +32,14 @@
                         <table>
                             <tr>
                                 <td align="left">
-                                    <form action="${contextPath}/search/b" method="get">
+                                    <form action="${contextPath}/search/bc" method="get">
                                         <table>
                                             <tr>
                                                 <td><input name="q" type="search" style="height:25px;"
                                                            placeholder='请输入要查询的博文、代码...' title="请输入要查询的博文、代码..."
                                                            size="70" maxlength="2048" value="${q}" autofocus/></td>
                                                 <td><input type="submit" style="height:30px;" id='Sbtn'
-                                                           value="找 文 章    "></td>
+                                                           value="手气不错" title="I am lucky!"></td>
                                             </tr>
                                         </table>
                                     </form>

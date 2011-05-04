@@ -28,6 +28,7 @@ import org.apache.commons.logging.LogFactory;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * 代码业务类
@@ -46,12 +47,15 @@ public class CodeAction extends BaseAction {
      * 代码列表
      */
     public void list(final RequestContext _reqCtxt) {
+        final HttpServletRequest request = _reqCtxt.request();
         log.info("get code list.");
-        // 分页
-        super.doPage(_reqCtxt.request(), "SELECT COUNT(*) COUNT FROM CODE");
+        super.doPage(request, "SELECT COUNT(*) COUNT FROM CODE", "");// 分页
         // 获取页面数据
-        _reqCtxt.request().setAttribute("codes", QueryHelper.query_slice(BaseBlog.class,
-                "SELECT * FROM CODE ORDER BY CREATE_DATE DESC", page_NO, Constants.NUM_PER_PAGE, new Object[]{}));
+        String sql = "SELECT * FROM CODE ORDER BY CREATE_DATE DESC";
+        List<BaseBlog> codes = QueryHelper.query_slice(BaseBlog.class, sql, page_NO, Constants.NUM_PER_PAGE);
+        // -------------------------------------------------------------------------------------------------------------
+        request.setAttribute("codes", codes);
+        request.setAttribute("hotTag", super.hotTag("CODE").subList(0, 15));// 提取热门tag
         forward(_reqCtxt, "/html/code/code_list.jsp");
     }
 

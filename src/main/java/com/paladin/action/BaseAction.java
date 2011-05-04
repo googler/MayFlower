@@ -18,6 +18,7 @@ package com.paladin.action;
 import com.google.common.base.Strings;
 import com.paladin.bean.User;
 import com.paladin.common.Constants;
+import com.paladin.common.Tools;
 import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.QueryHelper;
 import org.apache.commons.logging.Log;
@@ -27,6 +28,10 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Base action
@@ -51,9 +56,9 @@ public abstract class BaseAction {
      * @param _sql
      * @param _para
      */
-    protected void doPage(HttpServletRequest request, final String _sql, Object... _para) {
+    protected void doPage(HttpServletRequest request, final String _sql, final String _code, Object... _para) {
         total_page = (int) (QueryHelper.stat(_sql, _para) + Constants.NUM_PER_PAGE - 1) / Constants.NUM_PER_PAGE;
-        _doPage(request);
+        _doPage(request, _code);
     }
 
     /**
@@ -63,22 +68,22 @@ public abstract class BaseAction {
      * @param size
      * @param _num_per_page
      */
-    protected void doPage(HttpServletRequest request, final int size, final int _num_per_page) {
+    protected void doPage(HttpServletRequest request, final int size, final int _num_per_page, final String _code) {
         total_page = (size + _num_per_page - 1) / _num_per_page;
-        _doPage(request);
+        _doPage(request, _code);
     }
 
-    private void _doPage(HttpServletRequest request) {
+    private void _doPage(HttpServletRequest request, final String _code) {
         page_NO = Integer.parseInt(getCurrentPage(request));
         page_NO = page_NO < 1 ? 1 : page_NO;
         page_NO = page_NO > total_page ? total_page : page_NO;
         // 计算显示的页码数
         p_start = page_NO - 5 > 0 ? page_NO - 5 : 1;
         p_end = p_start + 10 > total_page ? total_page : p_start + 10;
-        request.setAttribute("p_start", p_start);
-        request.setAttribute("p_end", p_end);
-        request.setAttribute("curr_page", page_NO);
-        request.setAttribute("total_page", total_page);
+        request.setAttribute("p_start" + _code, p_start);
+        request.setAttribute("p_end" + _code, p_end);
+        request.setAttribute("curr_page" + _code, page_NO);
+        request.setAttribute("total_page" + _code, total_page);
     }
 
     /**
@@ -195,6 +200,34 @@ public abstract class BaseAction {
         String sql = "DELETE FROM " + _table.toUpperCase() + " WHERE ID = ?";
         QueryHelper.update(sql, new Object[]{id});
         redirect(_reqCtxt, "/" + _table.toLowerCase());
+    }
+
+    /**
+     * 获取热门tag
+     *
+     * @param _table table
+     * @return hot tag
+     */
+    protected List<String> hotTag(String _table) {
+        // 从数据库中取出所有tag
+        String sql = "SELECT TAG FROM " + _table.toUpperCase();
+        List<Map<String, Object>> list = QueryHelper.queryList(sql);
+        Map<String, Integer> tag_map = new HashMap<String, Integer>();
+        for (Map<String, Object> map : list) {
+            String tags = map.get("TAG").toString();
+            if (!Strings.isNullOrEmpty(tags))
+                for (String tag : tags.split(","))
+                    tag_map.put(tag, tag_map.get(tag) == null ? 1 : tag_map.get(tag) + 1);
+        }
+        // 排序并返回
+        String[] key_arr = new String[tag_map.keySet().size()];
+        tag_map.keySet().toArray(key_arr);
+        Tools.quickSort(tag_map, key_arr, 0, key_arr.length - 1);
+
+        List<String> list_return = new ArrayList<String>();
+        for (String str : key_arr)
+            list_return.add(str + ":=:" + tag_map.get(str));
+        return list_return;
     }
 
     /**

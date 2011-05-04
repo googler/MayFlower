@@ -60,13 +60,13 @@ public class BlogAction extends BaseAction {
     public void list(final RequestContext _reqCtxt) {
         final HttpServletRequest request = _reqCtxt.request();
         log.info("get blog list.");
-        super.doPage(request, "SELECT COUNT(*) COUNT FROM BLOG");// 分页
+        super.doPage(request, "SELECT COUNT(*) COUNT FROM BLOG", "");// 分页
         // 获取页面数据
         String sql = "SELECT * FROM BLOG ORDER BY TOP DESC, CREATE_DATE DESC";
         List<BaseBlog> blogs = QueryHelper.query_slice(BaseBlog.class, sql, page_NO, Constants.NUM_PER_PAGE);
         // -------------------------------------------------------------------------------------------------------------
         request.setAttribute("blogs", blogs);
-        request.setAttribute("hotTag", hotTag().subList(0, 15));// 提取热门tag
+        request.setAttribute("hotTag", super.hotTag("BLOG").subList(0, 15));// 提取热门tag
         forward(_reqCtxt, "/html/blog/blog_list.jsp");
     }
 
@@ -175,32 +175,6 @@ public class BlogAction extends BaseAction {
         _blog.setContent(content.replace(_q, Tools.standOutStr(_q)));
     }
 
-    /**
-     * 获取热门tag
-     *
-     * @return hot tag
-     */
-    private List<String> hotTag() {
-        // 从数据库中取出所有tag
-        String sql = "SELECT TAG FROM BLOG";
-        List<Map<String, Object>> list = QueryHelper.queryList(sql);
-        Map<String, Integer> tag_map = new HashMap<String, Integer>();
-        for (Map<String, Object> map : list) {
-            String tags = map.get("TAG").toString();
-            if (!Strings.isNullOrEmpty(tags))
-                for (String tag : tags.split(","))
-                    tag_map.put(tag, tag_map.get(tag) == null ? 1 : tag_map.get(tag) + 1);
-        }
-        // 排序并返回
-        String[] key_arr = new String[tag_map.keySet().size()];
-        tag_map.keySet().toArray(key_arr);
-        Tools.quickSort(tag_map, key_arr, 0, key_arr.length - 1);
-
-        List<String> list_return = new ArrayList<String>();
-        for (String str : key_arr)
-            list_return.add(str + ":=:" + tag_map.get(str));
-        return list_return;
-    }
 
     /**
      * u know this.

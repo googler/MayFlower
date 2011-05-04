@@ -63,7 +63,7 @@ public class MottoAction extends BaseAction {
         final HttpServletRequest request = _reqCtxt.request();
         log.info("get motto list.");
         // 分页
-        super.doPage(request, "SELECT COUNT(*) COUNT FROM MOTTO");
+        super.doPage(request, "SELECT COUNT(*) COUNT FROM MOTTO", "");
         // 获取页面数据
         String sql = "SELECT * FROM MOTTO ORDER BY ID DESC";
         List<Motto> mottos = QueryHelper.query_slice(Motto.class, sql, page_NO, Constants.NUM_PER_PAGE, new Object[]{});
