@@ -1,11 +1,9 @@
 package com.paladin.action;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
+import com.paladin.common.Tools;
 import com.paladin.sys.db.QueryHelper;
 
 public class RunDisk2DB {
@@ -74,7 +72,11 @@ public class RunDisk2DB {
         if (dataList.size() > Constant.lines2write) {
             String[][] params = new String[dataList.size()][];
             dataList.toArray(params);
+            java.util.GregorianCalendar begin = new GregorianCalendar();
             QueryHelper.batch(sql, params);
+            java.util.GregorianCalendar end = new GregorianCalendar();
+            double time = Tools.getSecondsBetweenTwoDate(begin, end);
+            System.out.println("插入" + dataList.size() + "条数据， 耗时" + time + "秒");
             dataList.clear();
         }
     }
@@ -83,7 +85,11 @@ public class RunDisk2DB {
         if (dataList.size() != 0) {
             String[][] params = new String[dataList.size()][];
             dataList.toArray(params);
+            java.util.GregorianCalendar begin = new GregorianCalendar();
             QueryHelper.batch(sql, params);
+            java.util.GregorianCalendar end = new GregorianCalendar();
+            double time = Tools.getSecondsBetweenTwoDate(begin, end);
+            System.out.println("插入" + dataList.size() + "条数据， 耗时" + time + "秒");
             dataList.clear();
         }
     }

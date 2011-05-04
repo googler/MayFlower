@@ -76,7 +76,7 @@
                             </tr>
                             <tr>
                                 <td colspan="3" align="left" style="padding:5px 5px 0px 10px;color:#FF0;"
-                                    title="'${r_motto.author}'">${r_motto.content}</td>
+                                    title="${r_motto.author}">${r_motto.content}</td>
                             </tr>
                         </table>
                     </td>

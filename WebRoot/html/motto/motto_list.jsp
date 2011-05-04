@@ -18,7 +18,7 @@
                             <tr valign="middle">
                                 <td align="left" valign="middle" class="border_bottom_green_dotted" width="100%">
                                     <img src="${contextPath}/images/star.png">&nbsp;
-                                    ${motto.content}
+                                    <span title="${motto.author}" >${motto.content}</span>
                                 </td>
                                 <td nowrap>
                                 	<a href="${contextPath}/motto/edit/${motto.id}">编辑</a>
