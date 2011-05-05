@@ -43,7 +43,7 @@ public class RunDisk2DB {
                 String file_path = f.getPath();
                 if (f.isFile()) {
                     int index_of_dot = file_name.lastIndexOf('.');
-                    String file_type = "";
+                    String file_type;
                     if (index_of_dot > 0)
                         file_type = file_name.substring(index_of_dot + 1, file_name.length()).toLowerCase();
                     else
@@ -104,6 +104,9 @@ public class RunDisk2DB {
     }
 }
 
+/**
+ * 常量
+ */
 class Constant {
     public static int lines2write = 1000;// 每1,000条记录写一次文件
     public static String split = ":";

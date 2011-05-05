@@ -15,9 +15,9 @@
  */
 package com.paladin.bean;
 
-import java.util.Date;
-
 import com.google.common.base.Strings;
+
+import java.util.Date;
 
 public class Blog extends BaseBlog {
     protected String tag;
