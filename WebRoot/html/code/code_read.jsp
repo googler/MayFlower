@@ -38,7 +38,7 @@
             <c:if test='${!empty tags}'>
                 标签:
                 <c:forEach items='${tags}' var='tag'>
-                    <a href="${contextPath}/search/c/?q=${tag}">${tag}</a>&nbsp;
+                    <a href="${contextPath}/search/bcm/?q=${tag}">${tag}</a>&nbsp;
                 </c:forEach>
             </c:if>|
             访问:${code.hits}
