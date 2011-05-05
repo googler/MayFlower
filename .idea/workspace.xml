@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ad811d2-f712-469f-b102-9328f12e606c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db_bak/paladin 20110505 1240.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/blog/blog_read.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/blog/blog_read.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebRoot/html/code/code_read.jsp" afterPath="$PROJECT_DIR$/WebRoot/html/code/code_read.jsp" />
     </list>
     <ignored path="MayFlower.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -161,7 +160,7 @@
       <file leaf-file-name="code_read.jsp" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebRoot/html/code/code_read.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="42" selection-start="3461" selection-end="3461" vertical-scroll-proportion="0.29192546">
+            <state line="54" column="9" selection-start="3313" selection-end="3313" vertical-scroll-proportion="0.11490683">
               <folding />
             </state>
           </provider>
@@ -286,20 +285,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MayFlower" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -815,7 +800,7 @@
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="[update]replace bc() to bcm()" />
+    <option name="LAST_COMMIT_MESSAGE" value="[update]replace b(), c()  to bcm();" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -828,7 +813,6 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
-    <MESSAGE value="[update]1、完成分页功能；" />
     <MESSAGE value="[debug]1、修正了在未登录的情况下通过地址栏也可以编辑文章的Bug；1、更改Editor红色显示；" />
     <MESSAGE value="[debug]1、Top.jsp的COMMAPI链接；" />
     <MESSAGE value="[update]优化博文浏览界面，增加tag导航!" />
@@ -853,6 +837,7 @@
     <MESSAGE value="[debug]1、修正代码列表正文标签链接不正确的bug；2、修正计算TAG数量错误的bug." />
     <MESSAGE value="[update]1、一个小警告!" />
     <MESSAGE value="[update]replace bc() to bcm()" />
+    <MESSAGE value="[update]replace b(), c()  to bcm();" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -955,7 +940,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WebRoot/html/code/code_read.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="42" selection-start="3461" selection-end="3461" vertical-scroll-proportion="0.29192546">
+        <state line="54" column="9" selection-start="3313" selection-end="3313" vertical-scroll-proportion="0.11490683">
           <folding />
         </state>
       </provider>
