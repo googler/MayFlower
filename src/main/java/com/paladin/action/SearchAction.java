@@ -17,7 +17,6 @@ package com.paladin.action;
 
 import com.google.common.base.Strings;
 import com.paladin.bean.Blog;
-import com.paladin.bean.Code;
 import com.paladin.bean.HFile;
 import com.paladin.bean.Motto;
 import com.paladin.common.Constants;
@@ -54,11 +53,13 @@ public class SearchAction extends BaseAction {
         String q = request.getParameter("q");
         if (!Strings.isNullOrEmpty(q)) {
             q = Tools.ISO885912UTF8(q).trim();
+            log.info("q = " + q);
             request.setAttribute("q", q);
-            b(request, q);// 查找博文
-            c(request, q);// 查找代码
+            b(request, q, "blog");// 查找博文
+            b(request, q, "code");// 查找代码
             m(request, q);// 查找箴言
             String t = request.getParameter("t");
+            // 控制搜索结果页面的样式
             if (!Strings.isNullOrEmpty(t)) {
                 if ("code".equals(t)) {// t == code时，搜索结果的翻页直接定位到代码tab
                     request.setAttribute("class_blog", "class=\'u_tab\'");
@@ -88,13 +89,14 @@ public class SearchAction extends BaseAction {
     }
 
     /**
-     * Search blog
+     * Search blog and code
      */
-    public void b(final HttpServletRequest request, String q) throws UnsupportedEncodingException {
+    public void b(final HttpServletRequest request, String q, String _table) throws UnsupportedEncodingException {
         List<Blog> blog_list = new ArrayList<Blog>();
         int size = 0;
         for (String qq : Tools.q2qArr(q)) {
-            String sql = "SELECT * FROM BLOG WHERE TITLE LIKE ? OR CONTENT LIKE ? OR TAG LIKE ? ORDER BY HITS DESC";
+            String sql = "SELECT * FROM " + _table.toUpperCase()
+                    + " WHERE TITLE LIKE ? OR CONTENT LIKE ? OR TAG LIKE ? ORDER BY HITS DESC";
             for (Blog b : QueryHelper.query(Blog.class, sql, new Object[]{qq, qq, qq})) {
                 if (!blog_list.contains(b)) {
                     String title = b.getTitle().trim();
@@ -118,7 +120,7 @@ public class SearchAction extends BaseAction {
             }
             size = blog_list.size();
             {//分页
-                super.doPage(request, blog_list.size(), Constants.NUM_PER_PAGE_SEARCH, "");
+                super.doPage(request, blog_list.size(), Constants.NUM_PER_PAGE_SEARCH, "_" + _table);
                 int begin = (page_NO - 1) * Constants.NUM_PER_PAGE_SEARCH;
                 begin = begin < 0 ? 0 : begin;
                 int end = page_NO * Constants.NUM_PER_PAGE_SEARCH > blog_list.size() ?
@@ -126,53 +128,8 @@ public class SearchAction extends BaseAction {
                 blog_list = blog_list.subList(begin, end);
             }
         }
-        log.info("q = " + q);
-        log.info("get blog:" + size);
-        request.setAttribute("blog_list", blog_list);
-    }
-
-    /**
-     * Search code
-     */
-    public void c(final HttpServletRequest request, String q) throws UnsupportedEncodingException {
-        List<Code> code_list = new ArrayList<Code>();
-        int size = 0;
-        for (String qq : Tools.q2qArr(q)) {
-            String sql = "SELECT * FROM CODE WHERE TITLE LIKE ? OR CONTENT LIKE ? OR TAG LIKE ? ORDER BY HITS DESC";
-            for (Code b : QueryHelper.query(Code.class, sql, new Object[]{qq, qq, qq})) {
-                if (!code_list.contains(b)) {
-                    String title = b.getTitle().trim();
-                    String tag = b.getTag().trim();
-                    String content = b.getContent().trim();
-                    if (title.indexOf(q) >= 0)
-                        b.setTitle(title.replaceAll(q, Tools.standOutStr(q)));
-                    if (tag.indexOf(q) >= 0)
-                        b.setTag(tag.replaceAll(q, Tools.standOutStr(q)));
-
-                    content = content.replaceAll("<[^>]*>", "");
-                    int first_index = content.indexOf(q);
-                    int last_index = content.lastIndexOf(q);
-                    if (first_index >= 0 && content.length() >= last_index + q.length() + 20)
-                        content = content.substring(first_index, last_index + q.length() + 20);
-                    if (content.length() > Constants.LENGTH_OF_SEARCH_CONTENT)
-                        content = content.substring(0, Constants.LENGTH_OF_SEARCH_CONTENT);
-                    b.setContent(content.replace(q, Tools.standOutStr(q)));
-                    code_list.add(b);
-                }
-            }
-        }
-        size = code_list.size();
-        {//分页
-            super.doPage(request, code_list.size(), Constants.NUM_PER_PAGE_SEARCH, "_code");
-            int begin = (page_NO - 1) * Constants.NUM_PER_PAGE_SEARCH;
-            begin = begin < 0 ? 0 : begin;
-            int end = page_NO * Constants.NUM_PER_PAGE_SEARCH > code_list.size() ?
-                    code_list.size() : page_NO * Constants.NUM_PER_PAGE_SEARCH;
-            code_list = code_list.subList(begin, end);
-        }
-        log.info("q = " + q);
-        log.info("get code:" + size);
-        request.setAttribute("code_list", code_list);
+        log.info("get " + _table.toLowerCase() + ":" + size);
+        request.setAttribute(_table + "_list", blog_list);
     }
 
     /**
@@ -204,7 +161,6 @@ public class SearchAction extends BaseAction {
                     motto_list.size() : page_NO * Constants.NUM_PER_PAGE_SEARCH;
             motto_list = motto_list.subList(begin, end);
         }
-        log.info("q = " + _q);
         log.info("get motto:" + size);
         request.setAttribute("motto_list", motto_list);
     }

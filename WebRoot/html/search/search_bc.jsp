@@ -103,29 +103,29 @@
                         <tr>
                             <%
                                 //int total_page = Integer.parseInt(request.getAttribute("total_page").toString());
-                                int p_start = Integer.parseInt(request.getAttribute("p_start").toString());
-                                int p_end = Integer.parseInt(request.getAttribute("p_end").toString());
+                                int p_start_blog = Integer.parseInt(request.getAttribute("p_start_blog").toString());
+                                int p_end_blog = Integer.parseInt(request.getAttribute("p_end_blog").toString());
                             %>
                             <td align=left width="50%" nowrap>
-                                <a href='${contextPath}/search/bcm/?q=${q}&p=<%=p_start-10%>'>上一屏</a>
+                                <a href='${contextPath}/search/bcm/?q=${q}&p=<%=p_start_blog-10%>'>上一屏</a>
                                 /
-                                <a href='${contextPath}/search/bcm/?q=${q}&p=<%=p_start+10%>'>下一屏</a>
+                                <a href='${contextPath}/search/bcm/?q=${q}&p=<%=p_start_blog+10%>'>下一屏</a>
                             </td>
                             <td width="100%" align="right" nowrap>
-                                <a href='${contextPath}/search/bcm/?q=${q}&p=${curr_page-1}'>上一页</a>
+                                <a href='${contextPath}/search/bcm/?q=${q}&p=${curr_page_blog-1}'>上一页</a>
                                 /
-                                <a href='${contextPath}/search/bcm/?q=${q}&p=${curr_page+1}'>下一页</a>
+                                <a href='${contextPath}/search/bcm/?q=${q}&p=${curr_page_blog+1}'>下一页</a>
                                 |
                                 第<%
-                                for (int ii = p_start; ii <= p_end - 1; ii++) {%><a
+                                for (int ii = p_start_blog; ii <= p_end_blog - 1; ii++) {%><a
                                     href="${contextPath}/search/bcm/?q=${q}&p=<%=ii%>"><%=ii%>
                             </a>&nbsp;
                                 <%}%>
-                                <a href="${contextPath}/search/bcm/?q=${q}&p=<%=p_end%>">${p_end}</a>页
+                                <a href="${contextPath}/search/bcm/?q=${q}&p=<%=p_end_blog%>">${p_end_blog}</a>页
                                 |
-                                当前第${curr_page}页
+                                当前第${curr_page_blog}页
                                 /
-                                共${total_page}页
+                                共${total_page_blog}页
                             </td>
                         </tr>
                     </table>

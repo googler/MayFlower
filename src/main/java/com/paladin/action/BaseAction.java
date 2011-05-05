@@ -68,22 +68,22 @@ public abstract class BaseAction {
      * @param size
      * @param _num_per_page
      */
-    protected void doPage(HttpServletRequest request, final int size, final int _num_per_page, final String _code) {
+    protected void doPage(HttpServletRequest request, final int size, final int _num_per_page, final String _type) {
         total_page = (size + _num_per_page - 1) / _num_per_page;
-        _doPage(request, _code);
+        _doPage(request, _type);
     }
 
-    private void _doPage(HttpServletRequest request, final String _code) {
+    private void _doPage(HttpServletRequest request, final String _type) {
         page_NO = Integer.parseInt(getCurrentPage(request));
         page_NO = page_NO < 1 ? 1 : page_NO;
         page_NO = page_NO > total_page ? total_page : page_NO;
         // 计算显示的页码数
         p_start = page_NO - 5 > 0 ? page_NO - 5 : 1;
         p_end = p_start + 10 > total_page ? total_page : p_start + 10;
-        request.setAttribute("p_start" + _code, p_start);
-        request.setAttribute("p_end" + _code, p_end);
-        request.setAttribute("curr_page" + _code, page_NO);
-        request.setAttribute("total_page" + _code, total_page);
+        request.setAttribute("p_start" + _type, p_start);
+        request.setAttribute("p_end" + _type, p_end);
+        request.setAttribute("curr_page" + _type, page_NO);
+        request.setAttribute("total_page" + _type, total_page);
     }
 
     /**
