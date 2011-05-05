@@ -107,21 +107,21 @@
                                 int p_end = Integer.parseInt(request.getAttribute("p_end").toString());
                             %>
                             <td align=left width="50%" nowrap>
-                                <a href='${contextPath}/search/bc/?q=${q}&p=<%=p_start-10%>'>上一屏</a>
+                                <a href='${contextPath}/search/bcm/?q=${q}&p=<%=p_start-10%>'>上一屏</a>
                                 /
-                                <a href='${contextPath}/search/bc/?q=${q}&p=<%=p_start+10%>'>下一屏</a>
+                                <a href='${contextPath}/search/bcm/?q=${q}&p=<%=p_start+10%>'>下一屏</a>
                             </td>
                             <td width="100%" align="right" nowrap>
-                                <a href='${contextPath}/search/bc/?q=${q}&p=${curr_page-1}'>上一页</a>
+                                <a href='${contextPath}/search/bcm/?q=${q}&p=${curr_page-1}'>上一页</a>
                                 /
-                                <a href='${contextPath}/search/bc/?q=${q}&p=${curr_page+1}'>下一页</a>
+                                <a href='${contextPath}/search/bcm/?q=${q}&p=${curr_page+1}'>下一页</a>
                                 |
                                 第<%
                                 for (int ii = p_start; ii <= p_end - 1; ii++) {%><a
-                                    href="${contextPath}/search/bc/?q=${q}&p=<%=ii%>"><%=ii%>
+                                    href="${contextPath}/search/bcm/?q=${q}&p=<%=ii%>"><%=ii%>
                             </a>&nbsp;
                                 <%}%>
-                                <a href="${contextPath}/search/bc/?q=${q}&p=<%=p_end%>">${p_end}</a>页
+                                <a href="${contextPath}/search/bcm/?q=${q}&p=<%=p_end%>">${p_end}</a>页
                                 |
                                 当前第${curr_page}页
                                 /
@@ -177,21 +177,21 @@
                                 int p_end_code = Integer.parseInt(request.getAttribute("p_end_code").toString());
                             %>
                             <td align=left width="50%" nowrap>
-                                <a href='${contextPath}/search/bc/?q=${q}&p=<%=p_start_code-10%>&t=code'>上一屏</a>
+                                <a href='${contextPath}/search/bcm/?q=${q}&p=<%=p_start_code-10%>&t=code'>上一屏</a>
                                 /
-                                <a href='${contextPath}/search/bc/?q=${q}&p=<%=p_start_code+10%>&t=code'>下一屏</a>
+                                <a href='${contextPath}/search/bcm/?q=${q}&p=<%=p_start_code+10%>&t=code'>下一屏</a>
                             </td>
                             <td width="100%" align="right" nowrap>
-                                <a href='${contextPath}/search/bc/?q=${q}&p=${curr_page_code-1}&t=code'>上一页</a>
+                                <a href='${contextPath}/search/bcm/?q=${q}&p=${curr_page_code-1}&t=code'>上一页</a>
                                 /
-                                <a href='${contextPath}/search/bc/?q=${q}&p=${curr_page_code+1}&t=code'>下一页</a>
+                                <a href='${contextPath}/search/bcm/?q=${q}&p=${curr_page_code+1}&t=code'>下一页</a>
                                 |
                                 第<%
                                 for (int ii = p_start_code; ii <= p_end_code - 1; ii++) {%><a
-                                    href="${contextPath}/search/bc/?q=${q}&p=<%=ii%>&t=code"><%=ii%>
+                                    href="${contextPath}/search/bcm/?q=${q}&p=<%=ii%>&t=code"><%=ii%>
                             </a>&nbsp;
                                 <%}%>
-                                <a href="${contextPath}/search/bc/?q=${q}&p=<%=p_end_code%>&t=code">${p_end_code}</a>页
+                                <a href="${contextPath}/search/bcm/?q=${q}&p=<%=p_end_code%>&t=code">${p_end_code}</a>页
                                 |
                                 当前第${curr_page_code}页
                                 /
@@ -240,21 +240,21 @@
                                 int p_end_motto = Integer.parseInt(request.getAttribute("p_end_motto").toString());
                             %>
                             <td align=left width="50%" nowrap>
-                                <a href='${contextPath}/search/bc/?q=${q}&p=<%=p_start_motto-10%>&t=motto'>上一屏</a>
+                                <a href='${contextPath}/search/bcm/?q=${q}&p=<%=p_start_motto-10%>&t=motto'>上一屏</a>
                                 /
-                                <a href='${contextPath}/search/bc/?q=${q}&p=<%=p_start_motto+10%>&t=motto'>下一屏</a>
+                                <a href='${contextPath}/search/bcm/?q=${q}&p=<%=p_start_motto+10%>&t=motto'>下一屏</a>
                             </td>
                             <td width="100%" align="right" nowrap>
-                                <a href='${contextPath}/search/bc/?q=${q}&p=${curr_page_motto-1}&t=motto'>上一页</a>
+                                <a href='${contextPath}/search/bcm/?q=${q}&p=${curr_page_motto-1}&t=motto'>上一页</a>
                                 /
-                                <a href='${contextPath}/search/bc/?q=${q}&p=${curr_page_motto+1}&t=motto'>下一页</a>
+                                <a href='${contextPath}/search/bcm/?q=${q}&p=${curr_page_motto+1}&t=motto'>下一页</a>
                                 |
                                 第<%
                                 for (int ii = p_start_motto; ii <= p_end_motto - 1; ii++) {%><a
-                                    href="${contextPath}/search/bc/?q=${q}&p=<%=ii%>&t=code"><%=ii%>
+                                    href="${contextPath}/search/bcm/?q=${q}&p=<%=ii%>&t=code"><%=ii%>
                             </a>&nbsp;
                                 <%}%>
-                                <a href="${contextPath}/search/bc/?q=${q}&p=<%=p_end_motto%>&t=code">${p_end_motto}</a>页
+                                <a href="${contextPath}/search/bcm/?q=${q}&p=<%=p_end_motto%>&t=code">${p_end_motto}</a>页
                                 |
                                 当前第${curr_page_motto}页
                                 /

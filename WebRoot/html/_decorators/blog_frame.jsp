@@ -32,7 +32,7 @@
                         <table>
                             <tr>
                                 <td align="left">
-                                    <form action="${contextPath}/search/bc" method="get">
+                                    <form action="${contextPath}/search/bcm" method="get">
                                         <table>
                                             <tr>
                                                 <td><input name="q" type="search" style="height:25px;"

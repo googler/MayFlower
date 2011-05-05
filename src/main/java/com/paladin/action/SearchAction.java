@@ -49,7 +49,7 @@ public class SearchAction extends BaseAction {
     /**
      * Search blog and code and motto
      */
-    public void bc(final RequestContext _reqCtxt) throws UnsupportedEncodingException {
+    public void bcm(final RequestContext _reqCtxt) throws UnsupportedEncodingException {
         HttpServletRequest request = _reqCtxt.request();
         String q = request.getParameter("q");
         if (!Strings.isNullOrEmpty(q)) {

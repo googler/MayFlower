@@ -16,7 +16,7 @@
     </tr>
     <tr>
         <td height="300px" valign="top">
-            <form action="${contextPath}/search/b" method="get">
+            <form action="${contextPath}/search/bcm" method="get">
                 <table width="100%" border="0" align="center" cellpadding="2"
                        cellspacing="2">
                     <tr>
