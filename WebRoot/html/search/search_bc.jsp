@@ -53,13 +53,13 @@
 <div class="unit_title">
     <div id="tab01">
         <c:if test='${!(empty blog_list)}'>
-            <span ${class_blog}><a href="#">博 文</a></span>
+            <span ${class_blog}><a href="#" title="搜到${total_count_blog}条博文">博 文</a></span>
         </c:if>
         <c:if test='${!(empty code_list)}'>
-            <span ${class_code}><a href="#">代 码</a></span>
+            <span ${class_code}><a href="#" title="搜到${total_count_code}条代码">代 码</a></span>
         </c:if>
         <c:if test='${!(empty motto_list)}'>
-            <span ${class_motto}><a href="#">箴 言</a></span>
+            <span ${class_motto}><a href="#" title="搜到${total_count_motto}条箴言">箴 言</a></span>
         </c:if>
     </div>
 </div>

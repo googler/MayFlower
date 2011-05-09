@@ -56,9 +56,9 @@ public abstract class BaseAction {
      * @param _sql
      * @param _para
      */
-    protected void doPage(HttpServletRequest request, final String _sql, final String _code, Object... _para) {
+    protected void doPage(HttpServletRequest request, final String _sql, final String _type, Object... _para) {
         total_page = (int) (QueryHelper.stat(_sql, _para) + Constants.NUM_PER_PAGE - 1) / Constants.NUM_PER_PAGE;
-        _doPage(request, _code);
+        _doPage(request, _type);
     }
 
     /**
@@ -69,6 +69,7 @@ public abstract class BaseAction {
      * @param _num_per_page
      */
     protected void doPage(HttpServletRequest request, final int size, final int _num_per_page, final String _type) {
+        request.setAttribute("total_count" + _type, size);
         total_page = (size + _num_per_page - 1) / _num_per_page;
         _doPage(request, _type);
     }

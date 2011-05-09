@@ -57,6 +57,10 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>controller</servlet-name>
+        <url-pattern>/searchf/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>controller</servlet-name>
         <url-pattern>/chat/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>

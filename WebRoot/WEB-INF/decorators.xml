@@ -12,6 +12,10 @@
     <decorator name="search" page="/html/_decorators/blog_frame.jsp">
         <pattern>/search</pattern>
     </decorator>
+    <!--搜索服务器的文件夹-->
+    <decorator name="searchf" page="/html/_decorators/admin_frame.jsp">
+        <pattern>/searchf</pattern>
+    </decorator>
     <decorator name="admin" page="/html/_decorators/admin_frame.jsp">
         <pattern>/admin</pattern>
     </decorator>

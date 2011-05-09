@@ -118,15 +118,15 @@ public class SearchAction extends BaseAction {
                     blog_list.add(b);
                 }
             }
-            size = blog_list.size();
-            {//分页
-                super.doPage(request, blog_list.size(), Constants.NUM_PER_PAGE_SEARCH, "_" + _table);
-                int begin = (page_NO - 1) * Constants.NUM_PER_PAGE_SEARCH;
-                begin = begin < 0 ? 0 : begin;
-                int end = page_NO * Constants.NUM_PER_PAGE_SEARCH > blog_list.size() ?
-                        blog_list.size() : page_NO * Constants.NUM_PER_PAGE_SEARCH;
-                blog_list = blog_list.subList(begin, end);
-            }
+        }
+        size = blog_list.size();
+        {//分页
+            super.doPage(request, blog_list.size(), Constants.NUM_PER_PAGE_SEARCH, "_" + _table);
+            int begin = (page_NO - 1) * Constants.NUM_PER_PAGE_SEARCH;
+            begin = begin < 0 ? 0 : begin;
+            int end = page_NO * Constants.NUM_PER_PAGE_SEARCH > blog_list.size() ?
+                    blog_list.size() : page_NO * Constants.NUM_PER_PAGE_SEARCH;
+            blog_list = blog_list.subList(begin, end);
         }
         log.info("get " + _table.toLowerCase() + ":" + size);
         request.setAttribute(_table + "_list", blog_list);
@@ -163,32 +163,5 @@ public class SearchAction extends BaseAction {
         }
         log.info("get motto:" + size);
         request.setAttribute("motto_list", motto_list);
-    }
-
-    /**
-     * search file
-     */
-    public void f(final RequestContext _reqCtxt) throws UnsupportedEncodingException {
-        List<HFile> file_list = new ArrayList<HFile>();
-        HttpServletRequest request = _reqCtxt.request();
-        String q = request.getParameter("q");
-        if (!Strings.isNullOrEmpty(q)) {
-            q = Tools.ISO885912UTF8(q);
-            request.setAttribute("q", q);
-            String[] q_arr = Tools.q2qArr(q);
-            // search from local file system
-            String sql = "SELECT * FROM HFILE WHERE FILENAME LIKE ? LIMIT 1000";
-            for (String qq : q_arr) {
-                for (HFile f : QueryHelper.query(HFile.class, sql, new Object[]{qq}))
-                    if (!file_list.contains(f)) {
-                        f.setFileName(f.getFileName().replace(q, Tools.standOutStr(q)));
-                        file_list.add(f);
-                    }
-            }
-        }
-        log.info("q = " + q);
-        log.info("get file:" + file_list.size());
-        request.setAttribute("file_list", file_list);
-        forward(_reqCtxt, "/html/search/search_f.jsp");
     }
 }

@@ -23,7 +23,7 @@
                              onClick="window.location='${contextPath}/blog'">
                     </td>
                     <td align="left" valign="middle">
-                        <form action="${contextPath}/search/f" method="get">
+                        <form action="${contextPath}/searchf/" method="get">
                             <table align="left">
                                 <tr>
                                     <td><input name="q" type="search" style="height:25px;"

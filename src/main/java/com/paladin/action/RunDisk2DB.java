@@ -19,7 +19,8 @@ public class RunDisk2DB {
         System.out.println("建立索引是很费时的操作哦！你确定要建立索引吗？（Y/N）");
         String input = scanner.nextLine();
         if ("Y".equalsIgnoreCase(input)) {
-            File[] roots = File.listRoots();
+            //File[] roots = File.listRoots();
+            File[] roots = new File[]{new File("D:\\")};
             for (File file : roots)
                 index(file);
             // 清除残余在list中的文件记录
