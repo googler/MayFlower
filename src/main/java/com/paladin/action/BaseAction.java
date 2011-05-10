@@ -197,7 +197,7 @@ public abstract class BaseAction {
             redirect(_reqCtxt, "/" + _table.toLowerCase());
         }
 
-        log.info("delete motto - " + id);
+        log.info("delete " + _table + " - " + id);
         String sql = "DELETE FROM " + _table.toUpperCase() + " WHERE ID = ?";
         QueryHelper.update(sql, new Object[]{id});
         redirect(_reqCtxt, "/" + _table.toLowerCase());

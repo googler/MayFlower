@@ -67,13 +67,20 @@
         <servlet-name>controller</servlet-name>
         <url-pattern>/admin/*</url-pattern>
     </servlet-mapping>
+    <!-- 小游戏 -->
     <servlet-mapping>
         <servlet-name>controller</servlet-name>
         <url-pattern>/game/*</url-pattern>
     </servlet-mapping>
+    <!-- 醒世恒言 -->
     <servlet-mapping>
         <servlet-name>controller</servlet-name>
         <url-pattern>/motto/*</url-pattern>
+    </servlet-mapping>
+    <!-- 我爱记单词 -->
+    <servlet-mapping>
+        <servlet-name>controller</servlet-name>
+        <url-pattern>/word/*</url-pattern>
     </servlet-mapping>
     <!-- The Usual Welcome File List -->
     <welcome-file-list>

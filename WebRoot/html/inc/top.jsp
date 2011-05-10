@@ -9,7 +9,7 @@
                 <a href="${contextPath}/blog" class=gb1>博文</a>&nbsp;&nbsp;
                 <a href="${contextPath}/code" class=gb1>代码</a>&nbsp;&nbsp;
                 <a href="${contextPath}/chat" class=gb1>聊天室</a>&nbsp;&nbsp;
-
+                <a href="${contextPath}/word" class=gb1>我爱记单词</a>&nbsp;&nbsp;
                 <a href="${contextPath}/commonAPI" class=gb1>常用API</a>&nbsp;&nbsp;
                 <c:if test='${user.role == "admin"}'>
                     <a href="${contextPath}/motto" class=gb1>醒世恒言</a>&nbsp;&nbsp;

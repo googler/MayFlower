@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators defaultdir="/html/_decorators">
+    <!-- 博文模块 -->
     <decorator name="blog" page="/html/_decorators/blog_frame.jsp">
         <pattern>/blog</pattern>
     </decorator>
-    <decorator name="motto" page="/html/_decorators/blog_frame.jsp">
-        <pattern>/motto</pattern>
-    </decorator>
+    <!-- 代码模块 -->
     <decorator name="code" page="/html/_decorators/blog_frame.jsp">
         <pattern>/code</pattern>
     </decorator>
+    <!-- 箴言模块 -->
+    <decorator name="motto" page="/html/_decorators/blog_frame.jsp">
+        <pattern>/motto</pattern>
+    </decorator>
+    <!-- 我爱记单词 -->
+    <decorator name="word" page="/html/_decorators/word_frame.jsp">
+        <pattern>/word</pattern>
+    </decorator>
+    <!-- 搜索（博文、代码、箴言） -->
     <decorator name="search" page="/html/_decorators/blog_frame.jsp">
         <pattern>/search</pattern>
     </decorator>
@@ -16,6 +24,7 @@
     <decorator name="searchf" page="/html/_decorators/admin_frame.jsp">
         <pattern>/searchf</pattern>
     </decorator>
+    <!-- 系统管理 -->
     <decorator name="admin" page="/html/_decorators/admin_frame.jsp">
         <pattern>/admin</pattern>
     </decorator>
