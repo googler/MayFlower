@@ -20,23 +20,22 @@
         </div>
         <div id=guser>
             <nobr>
-                <img src="${contextPath}/images/clock.png" title='系统时间'/>
-                <%=Tools.getSysTime()%>
 
                 <c:if test='${empty user}'>
                     <a onclick="toLogin()" href="#" class='gb4'>登录</a>
                 </c:if>
                 <c:if test='${!(empty user)}'>
-                    <
+                    <a href="${contextPath}/admin" title="${user.email}">${user.nickname}</a>
+                    -->
                     <a href="${contextPath}/blog/toAdd">发布博文</a>,
                     <a href="${contextPath}/code/toAdd">分享代码</a>,
                     <a href="${contextPath}/motto/toAdd">发布箴言</a>
-                    >
+                    -->
+                    <!--<img src="${contextPath}/images/doctor.png"/>-->
+                    <a href="${contextPath}/login/exit/" class='gb4'>退出</a>
                 </c:if>
-                <!--<img src="${contextPath}/images/doctor.png"/>-->
-                <a href="${contextPath}/admin" title="${user.email}">${user.nickname}</a>
-                |
-                <a href="${contextPath}/login/exit/" class='gb4'>退出</a>
+                ||
+                <%=Tools.getSysTime()%>
                 &nbsp;&nbsp;</nobr>
         </div>
         <div class=gbh style='left:0;'></div>
