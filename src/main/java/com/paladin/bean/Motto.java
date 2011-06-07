@@ -15,11 +15,13 @@
  */
 package com.paladin.bean;
 
+import java.util.Date;
+
 /**
  * Motto bean
  *
  * @author: Erhu
- * @date: 11-4-28 上午9:03
+ * @date: 11-4-28 9:03
  * To change this template use File | Settings | File Templates.
  */
 public class Motto {
@@ -27,6 +29,7 @@ public class Motto {
     private String content;
     private String author;
     private String tag;
+    private Date create_date;
 
     public String getTag() {
         return tag;
@@ -58,5 +61,13 @@ public class Motto {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Date getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(Date _date) {
+        this.create_date = _date;
     }
 }

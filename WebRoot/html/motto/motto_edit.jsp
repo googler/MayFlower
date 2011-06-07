@@ -13,7 +13,7 @@
         </tr>
         <tr>
             <td><textarea id="content" name="content" cols="80" rows="4"
-                          placeholder='内容'>${motto.content}</textarea>
+                          placeholder='内容' autofocus>${motto.content}</textarea>
             </td>
         </tr>
         <tr>

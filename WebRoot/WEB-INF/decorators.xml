@@ -12,10 +12,6 @@
     <decorator name="motto" page="/html/_decorators/blog_frame.jsp">
         <pattern>/motto</pattern>
     </decorator>
-    <!-- 我爱记单词 -->
-    <decorator name="word" page="/html/_decorators/word_frame.jsp">
-        <pattern>/word</pattern>
-    </decorator>
     <!-- 搜索（博文、代码、箴言） -->
     <decorator name="search" page="/html/_decorators/blog_frame.jsp">
         <pattern>/search</pattern>

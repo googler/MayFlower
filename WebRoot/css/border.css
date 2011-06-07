@@ -3,13 +3,13 @@ body,table,td,th{
 a:link,a:visited{
 	text-decoration:inherit;color:#FFD}
 a:hover{
-	text-decoration:underline;color:#9F0;}
+	text-decoration:underline;color:#FFF;}
 a:active {
 	COLOR: #f00;}
 .form-noindent {
 	BORDER-RIGHT: none; BORDER-TOP: #ccccff 1px solid; BORDER-LEFT: none; BORDER-BOTTOM: #ccccff 1px solid; BACKGROUND-COLOR: #fff;
 }
-.lsb{bottom;border:none;cursor:pointer;height:33px;margin:0;outline:0;padding:0 6px;
+.lsb{border:none;cursor:pointer;height:33px;margin:0;outline:0;padding:0 6px;
 width:auto;overflow:visible;font:15px arial,sans-serif;vertical-align:top;}
 .border_right_green {
 	border-top-width: 1px;

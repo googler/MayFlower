@@ -44,17 +44,6 @@
                                         </table>
                                     </form>
                                 </td>
-                                <td align="center" valign="middle">
-                                    <c:if test='${!(empty user)}'>
-                                        <a href="${contextPath}/blog/toAdd">发布博文</a>
-                                        |
-                                        <a href="${contextPath}/code/toAdd">分享代码</a>
-                                        <c:if test='${user.role == "admin"}'>
-                                            |
-                                            <a href="${contextPath}/motto/toAdd">发布箴言</a>
-                                        </c:if>
-                                    </c:if>
-                                </td>
                             </tr>
                         </table>
                     </td>

@@ -9,7 +9,6 @@
                 <a href="${contextPath}/blog" class=gb1>博文</a>&nbsp;&nbsp;
                 <a href="${contextPath}/code" class=gb1>代码</a>&nbsp;&nbsp;
                 <a href="${contextPath}/chat" class=gb1>聊天室</a>&nbsp;&nbsp;
-                <a href="${contextPath}/word" class=gb1>我爱记单词</a>&nbsp;&nbsp;
                 <a href="${contextPath}/commonAPI" class=gb1>常用API</a>&nbsp;&nbsp;
                 <c:if test='${user.role == "admin"}'>
                     <a href="${contextPath}/motto" class=gb1>醒世恒言</a>&nbsp;&nbsp;
@@ -23,16 +22,21 @@
             <nobr>
                 <img src="${contextPath}/images/clock.png" title='系统时间'/>
                 <%=Tools.getSysTime()%>
-                |
+
                 <c:if test='${empty user}'>
                     <a onclick="toLogin()" href="#" class='gb4'>登录</a>
                 </c:if>
                 <c:if test='${!(empty user)}'>
-                    <!--<img src="${contextPath}/images/doctor.png"/>-->
-                    <a href="${contextPath}/admin" title="${user.email}">${user.nickname}</a>
-                    |
-                    <a href="${contextPath}/login/exit/" class='gb4'>退出</a>
+                    <
+                    <a href="${contextPath}/blog/toAdd">发布博文</a>,
+                    <a href="${contextPath}/code/toAdd">分享代码</a>,
+                    <a href="${contextPath}/motto/toAdd">发布箴言</a>
+                    >
                 </c:if>
+                <!--<img src="${contextPath}/images/doctor.png"/>-->
+                <a href="${contextPath}/admin" title="${user.email}">${user.nickname}</a>
+                |
+                <a href="${contextPath}/login/exit/" class='gb4'>退出</a>
                 &nbsp;&nbsp;</nobr>
         </div>
         <div class=gbh style='left:0;'></div>

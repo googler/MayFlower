@@ -2,7 +2,7 @@
   <library name="mf">
     <CLASSES>
       <root url="file://$PROJECT_DIR$/WebRoot/WEB-INF/lib" />
-      <root url="jar://D:/runtime/apache-tomcat-6.0.29/lib/servlet-api.jar!/" />
+      <root url="jar://D:/runtime/tomcat-6.0.29/lib/servlet-api.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

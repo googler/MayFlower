@@ -34,7 +34,7 @@
             <td align="left" valign="middle">
                 标题：
                 <input style="height:30px; " name="title" type="text" size="50" maxlength="100" value="${blog.title}"
-                       placeholder='这里写标题'/>*&nbsp;&nbsp;
+                       placeholder='这里写标题'autofocus/>*&nbsp;&nbsp;
                 标签：
                 <input style="height:30px; " name="tag" type="text" size="30" maxlength="60" value="${blog.tag}"
                        placeholder='这里写标签'/>*&nbsp;&nbsp;
