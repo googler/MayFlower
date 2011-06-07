@@ -2,7 +2,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <html>
 <head>
-    <title>MayFlower chatroom</title>  
+    <title>聊天室 | 五月花</title>
     <%@ include file="/html/inc/init.jsp" %>  
 </head>
 <body>
@@ -15,7 +15,7 @@
         <tr> 
           <td width="150">
           	<img src="${contextPath}/images/mayFlower_small.png" alt="MayFlower:五月花!" title="MayFlower:五月花!" 
-          	onClick="window.location=''")>
+          	onClick="window.location=''"/>
           </td>
           <td align="left" valign="middle"><table><tr>
             <td align="left">
@@ -99,7 +99,7 @@
 							pad(d.getHours()), 
 							pad(d.getMinutes()), 
 							pad(d.getSeconds())
-						  ].join(':')//---
+						  ].join(':')
 				].join(' ');
 	}
 	function scrollToBottom() {

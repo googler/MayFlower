@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
 <html>
 <head>
-    <title>MayFlower - <decorator:title default="Welcome to MayFlower!"/></title>
+    <title><decorator:title default="Welcome to MayFlower!"/> | 五月花</title>
     <%@ include file="/html/inc/init.jsp" %>
     <decorator:head/>
 </head>

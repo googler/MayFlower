@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <title>Welcome to MayFlower!</title>
+    <title>欢迎来到五月花!</title>
     <%@ include file="/html/inc/init.jsp" %>
 </head>
 <body>
