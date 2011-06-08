@@ -99,8 +99,7 @@
 							pad(d.getHours()), 
 							pad(d.getMinutes()), 
 							pad(d.getSeconds())
-						  ].join(':')
-				].join(' ');
+						  ].join(':')].join(' ');
 	}
 	function scrollToBottom() {
 		redord.scrollTop = redord.scrollHeight
