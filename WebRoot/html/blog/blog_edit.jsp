@@ -1,7 +1,7 @@
 ﻿<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <html>
 <head>
-    <title>博文编辑:${blog.title}</title>
+    <title>博文编辑 ${blog.title}</title>
     <script type="text/javascript" charset="utf-8" src="${contextPath}/kindEditor/kindeditor.js"></script>
     <script type="text/javascript">
         KE.show({
