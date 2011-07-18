@@ -61,14 +61,14 @@
                                 <tr id=email-row>
                                     <td height="25" align="right" noWrap>电子邮件：</td>
                                     <td height="25" align="left">
-                                        <input type="email" class="val" id="email" size="22" name="email"
+                                        <input type="email" class="val" id="email" size="30" name="email"
                                                value="${user.username}" autofocus>
                                     </td>
                                 </tr>
                                 <tr class=enabled id=password-row>
                                     <td height="25" align=right noWrap>密码：</td>
                                     <td height="25" align="left">
-                                        <input class="val" id="pwd" type="password" size="22" name="pwd"
+                                        <input class="val" id="pwd" type="password" size="30" name="pwd"
                                                value="${user.password}">
                                     </td>
                                 </tr>
@@ -84,8 +84,10 @@
                                 <tr>
                                     <td height="25"></td>
                                     <td height="25" align="left">
-                                        <input id="signIn" type="submit" value="登 录" name="signIn"/>&nbsp;&nbsp;
-                                        <input name="reSetBtn" type="button" value="清 空" onClick='resetFm()'/>
+                                        <input id="signIn" type="submit" value=" 登  录 " style="width: 45%;height: 49px;"
+                                               name="signIn"/>&nbsp;&nbsp;
+                                        <input name="reSetBtn" type="button" value=" 清  空 "
+                                               style="width: 45%;height: 49px;" onClick='resetFm()'/>
                                     </td>
                                 </tr>
                                 <!--

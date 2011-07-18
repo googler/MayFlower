@@ -37,19 +37,22 @@
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td width="90%" nowrap>
-                                        <img src="${contextPath}/images/label.png">
-                                        <%
-                                            List<String> list = (List<String>) request.getAttribute("hotTag");
-                                            int total_page = Integer.parseInt(request.getAttribute("total_page").toString());
-                                            int p_start = Integer.parseInt(request.getAttribute("p_start").toString());
-                                            int p_end = Integer.parseInt(request.getAttribute("p_end").toString());
-                                            for (String str : list) {
-                                                String[] arr = str.split(":=:");
-                                        %>
-                                        <a href="${contextPath}/search/bcm/?q=<%=arr[0]%>" title="<%=arr[1]%>">
-                                            <%=arr[0]%>
-                                        </a>&nbsp;
-                                        <%}%>
+                                        <div class="Tags">
+                                            <img src="${contextPath}/images/label.png">
+                                            <%
+                                                List<String> list = (List<String>) request.getAttribute("hotTag");
+                                                int total_page = Integer.parseInt(request.getAttribute("total_page").toString());
+                                                int p_start = Integer.parseInt(request.getAttribute("p_start").toString());
+                                                int p_end = Integer.parseInt(request.getAttribute("p_end").toString());
+                                                for (String str : list) {
+                                                    String[] arr = str.split(":=:");
+                                            %>
+                                            <a href="${contextPath}/search/bcm/?q=<%=arr[0]%>" title="<%=arr[1]%>"
+                                               class="tag project">
+                                                <%=arr[0]%>
+                                            </a>&nbsp;
+                                            <%}%>
+                                        </div>
                                     </td>
                                     <td width="10%" align="right" nowrap>
                                         <a href='${contextPath}/blog/?p=${curr_page-1}'>上一页</a>
@@ -58,9 +61,9 @@
                                         |
                                         <!--<a href='${contextPath}/blog/?p=<%=p_start-10%>'>上一屏</a>-->
                                         第<%
-                                        for (int ii = p_start; ii <= p_end - 1; ii++) {%><a
-                                            href="${contextPath}/blog/?p=<%=ii%>"><%=ii%>
-                                    </a>,
+                                        for (int ii = p_start; ii <= p_end - 1; ii++) {%>
+                                        <a href="${contextPath}/blog/?p=<%=ii%>"><%=ii%>
+                                        </a>,
                                         <%}%>
                                         <a href="${contextPath}/blog/?p=<%=p_end%>">${p_end}</a>页
                                         |

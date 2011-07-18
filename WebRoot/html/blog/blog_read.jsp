@@ -11,19 +11,21 @@
     </tr>
     <tr>
         <td align="right" valign="middle" class="border_bottom_green" style="height:27px;color:#CCC">
-            <c:if test='${!empty tags}'>
-                标签:
-                <c:forEach items='${tags}' var='tag'>
-                    <a href="${contextPath}/search/bcm/?q=${tag}">${tag}</a>&nbsp;
-                </c:forEach>
-            </c:if>|
-            访问:${blog.hits}
+            <div class="Tags">
+                <c:if test='${!empty tags}'>
+                    标签:
+                    <c:forEach items='${tags}' var='tag'>
+                        <a href="${contextPath}/search/bcm/?q=${tag}" class="tag project">${tag}</a>&nbsp;
+                    </c:forEach>
+                </c:if>|
+                访问:${blog.hits}
 
-            <c:if test='${user.role == "admin"}'>
-                <a href="${contextPath}/blog/edit/${blog.id}">
-                    [编 辑]
-                </a>
-            </c:if>
+                <c:if test='${user.role == "admin"}'>
+                    <a href="${contextPath}/blog/edit/${blog.id}">
+                        [编 辑]
+                    </a>
+                </c:if>
+            </div>
         </td>
     </tr>
     <tr>
