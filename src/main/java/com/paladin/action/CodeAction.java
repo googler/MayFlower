@@ -22,8 +22,6 @@ import com.paladin.common.Constants;
 import com.paladin.common.Tools;
 import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.QueryHelper;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -34,8 +32,6 @@ import java.util.List;
  * 代码业务类
  */
 public class CodeAction extends BaseAction {
-    private static final Log log = LogFactory.getLog(CodeAction.class);
-
     /**
      * 默认页面
      */

@@ -16,18 +16,13 @@
 package com.paladin.action;
 
 import com.google.common.base.Strings;
-import com.paladin.bean.Blog;
 import com.paladin.bean.HFile;
-import com.paladin.bean.Motto;
 import com.paladin.common.Constants;
 import com.paladin.common.Tools;
 import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.QueryHelper;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,8 +33,6 @@ import java.util.List;
  * @since May 9th, 2011
  */
 public class SearchfAction extends BaseAction {
-
-    private static Log log = LogFactory.getLog(SearchfAction.class);
 
     public void index(final RequestContext _reqCtxt) {
         List<HFile> file_list = new ArrayList<HFile>();

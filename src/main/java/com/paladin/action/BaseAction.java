@@ -41,11 +41,15 @@ import java.util.Map;
  */
 public abstract class BaseAction {
 
-    public static Log log = LogFactory.getLog(BaseAction.class);
+    protected static Log log;
     protected int total_page;// 总页数
     protected int page_NO;// 页号
     protected int p_end;// 最后页(用于分屏)
     protected int p_start;// 最前页(用于分屏)
+
+    protected BaseAction() {
+        log = LogFactory.getLog(this.getClass());
+    }
 
     protected abstract void index(final RequestContext _reqCtxt);
 

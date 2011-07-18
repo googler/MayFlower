@@ -21,8 +21,6 @@ import com.paladin.common.Constants;
 import com.paladin.common.Tools;
 import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.QueryHelper;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.GregorianCalendar;
@@ -35,8 +33,6 @@ import java.util.List;
  * @date: 11-4-28 上午9:53
  */
 public class MottoAction extends BaseAction {
-
-    private static final Log log = LogFactory.getLog(BlogAction.class);
     /**
      * 随机箴言
      */

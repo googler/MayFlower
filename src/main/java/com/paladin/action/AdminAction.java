@@ -33,7 +33,7 @@ import java.util.TreeMap;
  * @since Mar 19th, 2011
  */
 public class AdminAction extends BaseAction {
-    private static Log log = LogFactory.getLog(AdminAction.class);
+    //private static Log log = LogFactory.getLog(AdminAction.class);
 
     /**
      * 编辑个人信息

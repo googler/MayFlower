@@ -20,8 +20,6 @@ import com.paladin.bean.User;
 import com.paladin.common.RequestUtils;
 import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.QueryHelper;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,8 +31,6 @@ import javax.servlet.http.HttpSession;
  * @since 2.0 Mar 8th, 2011
  */
 public class LoginAction extends BaseAction {
-    private static Log log = LogFactory.getLog(LoginAction.class);
-
     /**
      * forward to login page
      */

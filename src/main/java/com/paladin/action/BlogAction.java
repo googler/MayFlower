@@ -23,8 +23,6 @@ import com.paladin.common.Tools;
 import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.DBManager;
 import com.paladin.sys.db.QueryHelper;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -39,9 +37,6 @@ import java.util.List;
  * @version 2.0 4th March, 2011
  */
 public class BlogAction extends BaseAction {
-
-    private static final Log log = LogFactory.getLog(BlogAction.class);
-
     /**
      * 默认页面
      */
