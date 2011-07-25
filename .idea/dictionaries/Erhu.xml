@@ -1,3 +1,10 @@
 <component name="ProjectDictionaryState">
-  <dictionary name="Erhu" />
+  <dictionary name="Erhu">
+    <words>
+      <w>之间取一个数作为limit的起点</w>
+      <w>从db中提取箴言</w>
+      <w>则重新获取箴言并更新update</w>
+      <w>若更新间隔超过指定值</w>
+    </words>
+  </dictionary>
 </component>

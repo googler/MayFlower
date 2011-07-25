@@ -27,14 +27,14 @@
                 <c:if test='${!(empty user)}'>
                     <a href="${contextPath}/admin" title="${user.email}">${user.nickname}</a>
                     ||
-                    <a href="${contextPath}/blog/toAdd">发博文</a>,
-                    <a href="${contextPath}/code/toAdd">发代码</a>,
+                    <a href="${contextPath}/blog/toAdd">发博文</a>&nbsp;
+                    <a href="${contextPath}/code/toAdd">发代码</a>&nbsp;
                     <a href="${contextPath}/motto/toAdd">发恒言</a>
-                    ||
+                    ||&nbsp;
                     <!--<img src="${contextPath}/images/doctor.png"/>-->
                     <a href="${contextPath}/login/exit/" class='gb4'>退 出</a>
                 </c:if>
-                ||
+                ||&nbsp;
                 <%=Tools.getSysTime()%>
                 &nbsp;&nbsp;</nobr>
         </div>
