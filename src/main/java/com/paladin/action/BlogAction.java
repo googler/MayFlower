@@ -40,6 +40,7 @@ public class BlogAction extends BaseAction {
     /**
      * 默认页面
      */
+    @Override
     public void index(final RequestContext _reqCtxt) {
         list(_reqCtxt);
     }
@@ -144,7 +145,7 @@ public class BlogAction extends BaseAction {
     /**
      * del blog
      *
-     * @param _reqCtxt Well, life is very good:)
+     * @param _reqCtxt (:Well, life is very good:)
      */
     public void del(final RequestContext _reqCtxt) {
         super.del(_reqCtxt, "blog");

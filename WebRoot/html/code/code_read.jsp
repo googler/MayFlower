@@ -28,21 +28,20 @@
 		SyntaxHighlighter.all();
 	</script>
 </head>
-<body style="background: white; font-family: Helvetica"> 
-<table width="100%" cellspacing="4" bgcolor="#FFFFFF"> 
+<body>
+<table width="99%" align='center'>
     <tr> 
-        <td align="center" style="font-size:20px;height:34px;"><b>${code.title}</b></td> 
+        <td align="center" style="font-size:22px;" title='${title}'><b>${code.title}</b></td>
     </tr>
     <tr> 
         <td align="right" valign="middle" class="border_bottom_green" style="height:27px;color:#CCC">
             <c:if test='${!empty tags}'>
                 标签:
                 <c:forEach items='${tags}' var='tag'>
-                    <a href="${contextPath}/search/bcm/?q=${tag}">${tag}</a>&nbsp;
+                    <a href="${contextPath}/search/bcm/?q=${tag}" class="tag">${tag}</a>&nbsp;
                 </c:forEach>
             </c:if>|
             访问:${code.hits}
-
             <c:if test='${user.role == "admin"}'>
                 <a href="${contextPath}/code/edit/${code.id}">
                     [编 辑]

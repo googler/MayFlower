@@ -19,7 +19,6 @@
                     </c:forEach>
                 </c:if>|
                 访问:${blog.hits}
-
                 <c:if test='${user.role == "admin"}'>
                     <a href="${contextPath}/blog/edit/${blog.id}">
                         [编 辑]

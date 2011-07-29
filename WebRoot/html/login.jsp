@@ -84,10 +84,10 @@
                                 <tr>
                                     <td height="25"></td>
                                     <td height="25" align="left">
-                                        <input id="signIn" type="submit" value=" 登  录 " style="width: 45%;height: 49px;"
+                                        <input id="signIn" type="submit" value=" 登  录 " style="width: 45%;height: 30px;"
                                                name="signIn"/>&nbsp;&nbsp;
                                         <input name="reSetBtn" type="button" value=" 清  空 "
-                                               style="width: 45%;height: 49px;" onClick='resetFm()'/>
+                                               style="width: 45%;height: 30px;" onClick='resetFm()'/>
                                     </td>
                                 </tr>
                                 <!--

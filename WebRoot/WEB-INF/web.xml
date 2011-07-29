@@ -77,7 +77,11 @@
         <servlet-name>controller</servlet-name>
         <url-pattern>/motto/*</url-pattern>
     </servlet-mapping>
-    
+    <!-- 音乐存储 -->
+    <servlet-mapping>
+        <servlet-name>controller</servlet-name>
+        <url-pattern>/music/*</url-pattern>
+    </servlet-mapping>
     <!-- The Usual Welcome File List -->
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

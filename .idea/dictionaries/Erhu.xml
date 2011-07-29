@@ -1,10 +1,55 @@
 <component name="ProjectDictionaryState">
   <dictionary name="Erhu">
     <words>
+      <w>action方法之准备参数</w>
+      <w>action方法并进行返回处理</w>
+      <w>action有init</w>
+      <w>action类</w>
+      <w>android客户端提供音乐同步服务</w>
+      <w>code时</w>
+      <w>dlog</w>
+      <w>excp</w>
+      <w>fullname</w>
+      <w>parm</w>
+      <w>uri的映射逻辑</w>
+      <w>url解码</w>
+      <w>xxxx</w>
+      <w>xxxxxx</w>
+      <w>业务处理方法入口</w>
+      <w>业务逻辑处理</w>
       <w>之间取一个数作为limit的起点</w>
       <w>从db中提取箴言</w>
+      <w>从session中获取用户</w>
+      <w>从数据库中取出所有tag</w>
+      <w>则调用之</w>
       <w>则重新获取箴言并更新update</w>
+      <w>删除操作</w>
+      <w>参数个数</w>
+      <w>取得当前页码</w>
+      <w>如果url中未传递方法名</w>
+      <w>异常处理</w>
+      <w>循环多个package</w>
+      <w>排序并返回</w>
+      <w>控制搜索结果页面的样式</w>
+      <w>搜索结果的翻页直接定位到代码tab</w>
+      <w>无奈朝来寒雨晚来风</w>
+      <w>林花谢了春红</w>
+      <w>查找代码</w>
+      <w>查找博文</w>
+      <w>查找箴言</w>
+      <w>根据类的完整名称类除去包的名称</w>
+      <w>用list分页</w>
+      <w>用sql分页</w>
+      <w>自是人生长恨水长东</w>
       <w>若更新间隔超过指定值</w>
+      <w>获取名为</w>
+      <w>获取热门tag</w>
+      <w>计算显示的页码数</w>
+      <w>转到添加页面</w>
+      <w>返回音乐列表</w>
+      <w>遍历音乐文件夹</w>
+      <w>音乐存储</w>
+      <w>首字母大写</w>
     </words>
   </dictionary>
 </component>

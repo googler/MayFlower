@@ -76,7 +76,7 @@ public class DBManager {
         try {
             dataSource.getClass().getMethod("close").invoke(dataSource);
         } catch (Exception e) {
-            log.error("Unabled to destroy DataSource!!! ", e);
+            log.error("Unable to destroy DataSource!!! ", e);
         }
     }
 
@@ -104,7 +104,7 @@ public class DBManager {
                 conn.close();
             }
         } catch (SQLException e) {
-            log.error("Unabled to close connection!!! ", e);
+            log.error("Unable to close connection!!! ", e);
         }
         conns.set(null);
     }

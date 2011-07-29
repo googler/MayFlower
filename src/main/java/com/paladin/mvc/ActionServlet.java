@@ -37,16 +37,14 @@ import java.util.List;
  * 业务处理方法入口，URI的映射逻辑： /action/xxxxxx/xxxx ->
  * com.dlog4j.action.XxxxxxAction.xxxx(req,res)
  * <p/>
- * <pre>
- *      林花谢了春红，
- * 	太匆匆，
- * 	无奈朝来寒雨晚来风。
- *
- * 	胭脂泪，
- * 	相留醉，
- * 	几时重，
- * 	自是人生长恨水长东。
- * </pre>
+ * 林花谢了春红，
+ * 太匆匆，
+ * 无奈朝来寒雨晚来风。
+ * <p/>
+ * 胭脂泪，
+ * 相留醉，
+ * 几时重，
+ * 自是人生长恨水长东。
  *
  * @author Winter Lau (http://my.oschina.net/javayou)<br>
  * @modify Erhu
@@ -54,10 +52,7 @@ import java.util.List;
 public final class ActionServlet extends HttpServlet {
 
     private static final long serialVersionUID = -694945602274634378L;
-    // private final static String ERROR_PAGE = "error_page";
     private final static String GOTO_PAGE = "goto_page";
-    // private final static String THIS_PAGE = "this_page";
-    // private final static String ERROR_MSG = "error_msg";
     private static final Log log = LogFactory.getLog(ActionServlet.class);
     private final static String UTF_8 = "utf-8";
     private List<String> actionPackages;
@@ -90,9 +85,8 @@ public final class ActionServlet extends HttpServlet {
                     dm.invoke(action);
                     log.info(action.getClass().getSimpleName() + " destroy ~~~~~~~~~");
                 }
-            } catch (NoSuchMethodException e) {
             } catch (Exception e) {
-                log.error("Unabled to destroy action: " + action.getClass().getSimpleName(), e);
+                log.error("Unable to destroy action: " + action.getClass().getSimpleName(), e);
             }
         }
         super.destroy();
@@ -117,10 +111,8 @@ public final class ActionServlet extends HttpServlet {
      *
      * @param _reqCtxt
      * @param _is_post
-     * @throws ServletException
-     * @throws IOException
      */
-    private void process(RequestContext _reqCtxt, boolean _is_post) throws ServletException, IOException {
+    private void process(RequestContext _reqCtxt, boolean _is_post) {
         try {
             _reqCtxt.request().setCharacterEncoding(UTF_8);
             _reqCtxt.response().setContentType("text/html;charset=utf-8");
@@ -129,11 +121,9 @@ public final class ActionServlet extends HttpServlet {
                 if (!Strings.isNullOrEmpty(gp))
                     _reqCtxt.redirect(gp);
             }
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             log.info("Exception in action process.", e);
-            throw new ServletException(e);
+            e.printStackTrace();
         }
     }
 
@@ -141,55 +131,54 @@ public final class ActionServlet extends HttpServlet {
      * 业务逻辑处理
      *
      * @param _reqCtxt
-     * @throws IllegalAccessException
-     * @throws InstantiationException
-     * @throws IOException
-     * @throws ServletException
-     * @throws IOException
-     * @throws InvocationTargetException
-     * @throws IllegalArgumentException
+     * @param is_post
+     * @return
      */
-    private boolean doProcess(RequestContext _reqCtxt, boolean is_post) throws InstantiationException,
-            IllegalAccessException, IOException, IllegalArgumentException, InvocationTargetException {
-        String url = _DecodeURL(_reqCtxt.uri(), "UTF-8");
-        // split uri
-        String[] parts = StringUtils.split(url, '/');
-        if (parts.length < 1) {
-            _reqCtxt.not_found();
-            return false;
-        }
-        // load action
-        Object action = this.loadAction(parts[0]);
-        if (action == null) {
-            _reqCtxt.not_found();
-            return false;
-        }
-        String method_name = (parts.length > 1) ? parts[1] : "index";// 如果url中未传递方法名，则使用index
-        Method method_of_action = this.getActionMethod(action, method_name);
-        if (method_of_action == null) {
-            _reqCtxt.not_found();
-            return false;
-        }
-        // 调用Action方法之准备参数
-        int arg_c = method_of_action.getParameterTypes().length;// 参数个数
-        switch (arg_c) {
-            case 0: // login()
-                method_of_action.invoke(action);
-                break;
-            case 1:// login(RequestContext)
-                method_of_action.invoke(action, _reqCtxt);
-                break;
-            case 2:// read(RequestContext, id)
-                boolean isLong = method_of_action.getParameterTypes()[1].equals(long.class);
-                method_of_action.invoke(action, _reqCtxt, isLong ? NumberUtils.toLong(parts[2], -1L) : parts[2]);
-                break;
-            case 3:// search(RequestContext, id, q)
-                // method_of_action.invoke(action, _reqCtxt,
-                // NumberUtils.toLong(parts[2], -1L), parts[3]);
-                break;
-            default:
+    private boolean doProcess(RequestContext _reqCtxt, boolean is_post) {
+        try {
+            String url = _decodeURL(_reqCtxt.uri(), "UTF-8");
+            // split uri
+            String[] parts = StringUtils.split(url, '/');
+            if (parts.length < 1) {
                 _reqCtxt.not_found();
                 return false;
+            }
+            // load action
+            Object action = this.loadAction(parts[0]);
+            if (action == null) {
+                _reqCtxt.not_found();
+                return false;
+            }
+            String method_name = (parts.length > 1) ? parts[1] : "index";// 如果url中未传递方法名，则使用index
+            Method method_of_action = this.getActionMethod(action, method_name);
+            if (method_of_action == null) {
+                _reqCtxt.not_found();
+                return false;
+            }
+            // 调用Action方法之准备参数
+            int arg_c = method_of_action.getParameterTypes().length;// 参数个数
+            switch (arg_c) {
+                case 0: // login()
+                    method_of_action.invoke(action);
+                    break;
+                case 1:// login(RequestContext)
+                    method_of_action.invoke(action, _reqCtxt);
+                    break;
+                case 2:// read(RequestContext, id)
+                    boolean isLong = method_of_action.getParameterTypes()[1].equals(long.class);
+                    method_of_action.invoke(action, _reqCtxt, isLong ? NumberUtils.toLong(parts[2], -1L) : parts[2]);
+                    break;
+                case 3:// search(RequestContext, id, q)
+                    // method_of_action.invoke(action, _reqCtxt,
+                    // NumberUtils.toLong(parts[2], -1L), parts[3]);
+                    break;
+                default:
+                    _reqCtxt.not_found();
+                    return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
         return true;
     }
@@ -199,21 +188,21 @@ public final class ActionServlet extends HttpServlet {
      *
      * @param _actionName
      * @return
-     * @throws InstantiationException
-     * @throws IllegalAccessException
-     * @throws ClassNotFoundException
      */
-    private Object loadAction(final String _actionName) throws InstantiationException, IllegalAccessException {
-        Object action = actions.get(_actionName);
-        if (action == null) {
-            for (String pkg : actionPackages) {// 循环多个package,来查找Action
-                String cls = pkg + '.' + StringUtils.capitalize(_actionName/* 首字母大写 */) + "Action";
-                action = loadActionOfFullname(_actionName, cls);
-                if (action != null)
-                    break;
-            }
+    private Object loadAction(final String _actionName) {
+        try {
+            Object action = actions.get(_actionName);
+            if (action == null)
+                for (String pkg : actionPackages) {// 循环多个package,来查找Action
+                    String cls = pkg + '.' + StringUtils.capitalize(_actionName/* 首字母大写 */) + "Action";
+                    action = loadActionOfFullname(_actionName, cls);
+                    if (action != null) break;
+                }
+            return action;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        return action;
     }
 
     private Object loadActionOfFullname(String _actionName, String _className) throws IllegalAccessException,
@@ -270,7 +259,7 @@ public final class ActionServlet extends HttpServlet {
      * @param charset
      * @return
      */
-    private static String _DecodeURL(String url, String charset) {
+    private static String _decodeURL(String url, String charset) {
         if (StringUtils.isEmpty(url))
             return "";
         try {
