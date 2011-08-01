@@ -23,10 +23,13 @@ import com.paladin.common.Tools;
 import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.QueryHelper;
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
 import org.apache.lucene.search.*;
+import org.apache.lucene.search.highlight.*;
+import org.apache.lucene.search.highlight.Scorer;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 import org.wltea.analyzer.lucene.IKAnalyzer;
@@ -34,6 +37,7 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
 
@@ -55,7 +59,7 @@ public class SearchAction extends BaseAction {
     /**
      * Search blog and code and motto
      */
-    public void bcm(final RequestContext _reqCtxt) throws IOException, ParseException {
+    public void bcm(final RequestContext _reqCtxt) throws IOException, ParseException, InvalidTokenOffsetsException {
         HttpServletRequest request = _reqCtxt.request();
         String q = request.getParameter("q");
         if (!Strings.isNullOrEmpty(q)) {
@@ -103,7 +107,7 @@ public class SearchAction extends BaseAction {
      * @throws IOException
      * @throws ParseException
      */
-    private void _b(final HttpServletRequest request, final String _query, final String _table) throws IOException, ParseException {
+    private void _b(final HttpServletRequest request, final String _query, final String _table) throws IOException, ParseException, InvalidTokenOffsetsException {
         String index_dir = "D:\\myData\\luceneIdx\\" + _table;
         File dir = new File(index_dir);
         IndexSearcher searcher = new IndexSearcher(FSDirectory.open(dir));
@@ -131,6 +135,12 @@ public class SearchAction extends BaseAction {
         List<Blog> blog_list = new ArrayList<Blog>();
         for (Document doc : doc_list) {
             Blog blog = new Blog();
+            // 高亮
+            Scorer scorer = new QueryScorer(query);
+            //<span style='background-color:#f00;'>
+            SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<span style='background-color:#f00;'>", "</span>");
+            Highlighter hig = new Highlighter(formatter, scorer);
+
             // get blog
             {
                 blog.setId(Integer.parseInt(doc.get("id")));
@@ -138,26 +148,28 @@ public class SearchAction extends BaseAction {
                 String[] data_arr = doc.get("title_content_tag").toString().split(Constants.LUCENE_FIELD_SEP);
 
                 String title = data_arr[0];
-                if (title.indexOf(_query) >= 0)
-                    title = title.replaceAll(_query, Tools.standOutStr(_query));
-                blog.setTitle(title);
+                TokenStream tokens_title = new IKAnalyzer().tokenStream("title_content_tag", new StringReader(title));
+                final String f_title = hig.getBestFragment(tokens_title, title);
+                blog.setTitle(f_title == null ? title : f_title);
 
                 if (data_arr.length == 3) {
                     String tag = data_arr[2];
-                    if (tag.indexOf(_query) >= 0)
-                        tag = tag.replaceAll(_query, Tools.standOutStr(_query));
-                    blog.setTag(tag);
+                    TokenStream tokens_tag = new IKAnalyzer().tokenStream("title_content_tag", new StringReader(tag));
+                    final String f_tag = hig.getBestFragment(tokens_tag, tag);
+                    blog.setTag(f_tag == null ? title : f_tag);
                 }
 
                 String content = data_arr[1];
                 content = content.replaceAll("<[^>]*>", "");
-                int first_index = content.indexOf(_query);
-                int last_index = content.lastIndexOf(_query);
-                if (first_index >= 0 && content.length() >= last_index + _query.length() + 20)
-                    content = content.substring(first_index, last_index + _query.length() + 20);
-                if (content.length() > Constants.LENGTH_OF_SEARCH_CONTENT)
-                    content = content.substring(0, Constants.LENGTH_OF_SEARCH_CONTENT);
-                blog.setContent(content.replace(_query, Tools.standOutStr(_query)));
+
+                TokenStream tokens_content = new IKAnalyzer().tokenStream("title_content_tag", new StringReader(content));
+                String f_content = hig.getBestFragment(tokens_content, content);
+                if (f_content == null)
+                    f_content = content;
+
+                if (f_content.length() > Constants.LENGTH_OF_SEARCH_CONTENT)
+                    f_content = f_content.substring(0, Constants.LENGTH_OF_SEARCH_CONTENT);
+                blog.setContent(f_content);
             }
             blog_list.add(blog);
         }
