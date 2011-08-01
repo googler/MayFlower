@@ -22,11 +22,22 @@ import com.paladin.common.Constants;
 import com.paladin.common.Tools;
 import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.QueryHelper;
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.queryParser.ParseException;
+import org.apache.lucene.queryParser.QueryParser;
+import org.apache.lucene.search.*;
+import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.util.Version;
+import org.wltea.analyzer.lucene.IKAnalyzer;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
+import static java.lang.System.out;
 
 /**
  * Search Action
@@ -35,6 +46,7 @@ import java.util.List;
  * @since Mar 12th, 2011
  */
 public class SearchAction extends BaseAction {
+    private static final String fields = "title_content_tag";
 
     public void index(final RequestContext _reqCtxt) {
         redirect(_reqCtxt, "/blog");
@@ -43,15 +55,15 @@ public class SearchAction extends BaseAction {
     /**
      * Search blog and code and motto
      */
-    public void bcm(final RequestContext _reqCtxt) throws UnsupportedEncodingException {
+    public void bcm(final RequestContext _reqCtxt) throws IOException, ParseException {
         HttpServletRequest request = _reqCtxt.request();
         String q = request.getParameter("q");
         if (!Strings.isNullOrEmpty(q)) {
             q = Tools.ISO885912UTF8(q).trim();
             log.info("q = " + q);
             request.setAttribute("q", q);
-            b(request, q, "blog");// 查找博文
-            b(request, q, "code");// 查找代码
+            _b(request, q, "blog");// 查找博文
+            _b(request, q, "code");// 查找代码
             m(request, q);// 查找箴言
             String t = request.getParameter("t");
             // 控制搜索结果页面的样式
@@ -84,7 +96,76 @@ public class SearchAction extends BaseAction {
     }
 
     /**
-     * Search blog and code
+     * search blog using lucene
+     *
+     * @param request
+     * @param _query
+     * @throws IOException
+     * @throws ParseException
+     */
+    private void _b(final HttpServletRequest request, final String _query, final String _table) throws IOException, ParseException {
+        String index_dir = "D:\\myData\\luceneIdx\\" + _table;
+        File dir = new File(index_dir);
+        IndexSearcher searcher = new IndexSearcher(FSDirectory.open(dir));
+        Analyzer analyzer = new IKAnalyzer(false);
+
+        List<Document> doc_list = new ArrayList<Document>();
+
+        QueryParser parser = new QueryParser(Version.LUCENE_33, fields, analyzer);
+        Query query = parser.parse(_query);
+        TopScoreDocCollector collector = TopScoreDocCollector.create(10000, true);
+        searcher.search(query, collector);
+
+        // 分页
+        super.doPage(request, collector.getTotalHits(), Constants.NUM_PER_PAGE_SEARCH, "_" + _table);
+        log.info("get " + _table + ":" + collector.getTotalHits());
+
+        // 查询当前页的记录
+        int begin = (page_NO - 1) * Constants.NUM_PER_PAGE_SEARCH;
+        begin = begin < 0 ? 0 : begin;
+        ScoreDoc[] score_docs = collector.topDocs(begin, Constants.NUM_PER_PAGE_SEARCH).scoreDocs;
+        for (ScoreDoc score_doc : score_docs)
+            doc_list.add(searcher.doc(score_doc.doc));
+
+        //-------------------------------------------
+        List<Blog> blog_list = new ArrayList<Blog>();
+        for (Document doc : doc_list) {
+            Blog blog = new Blog();
+            // get blog
+            {
+                blog.setId(Integer.parseInt(doc.get("id")));
+
+                String[] data_arr = doc.get("title_content_tag").toString().split(Constants.LUCENE_FIELD_SEP);
+
+                String title = data_arr[0];
+                if (title.indexOf(_query) >= 0)
+                    title = title.replaceAll(_query, Tools.standOutStr(_query));
+                blog.setTitle(title);
+
+                if (data_arr.length == 3) {
+                    String tag = data_arr[2];
+                    if (tag.indexOf(_query) >= 0)
+                        tag = tag.replaceAll(_query, Tools.standOutStr(_query));
+                    blog.setTag(tag);
+                }
+
+                String content = data_arr[1];
+                content = content.replaceAll("<[^>]*>", "");
+                int first_index = content.indexOf(_query);
+                int last_index = content.lastIndexOf(_query);
+                if (first_index >= 0 && content.length() >= last_index + _query.length() + 20)
+                    content = content.substring(first_index, last_index + _query.length() + 20);
+                if (content.length() > Constants.LENGTH_OF_SEARCH_CONTENT)
+                    content = content.substring(0, Constants.LENGTH_OF_SEARCH_CONTENT);
+                blog.setContent(content.replace(_query, Tools.standOutStr(_query)));
+            }
+            blog_list.add(blog);
+        }
+        request.setAttribute(_table + "_list", blog_list);
+    }
+
+    /**
+     * Search blog and code using sql
      */
     public void b(final HttpServletRequest request, String q, String _table) throws UnsupportedEncodingException {
         List<Blog> blog_list = new ArrayList<Blog>();
@@ -97,6 +178,7 @@ public class SearchAction extends BaseAction {
                     String title = b.getTitle().trim();
                     String tag = b.getTag().trim();
                     String content = b.getContent().trim();
+
                     if (title.indexOf(q) >= 0)
                         b.setTitle(title.replaceAll(q, Tools.standOutStr(q)));
                     if (tag.indexOf(q) >= 0)
@@ -116,11 +198,11 @@ public class SearchAction extends BaseAction {
         }
         size = blog_list.size();
         {//分页
-            super.doPage(request, blog_list.size(), Constants.NUM_PER_PAGE_SEARCH, "_" + _table);
+            super.doPage(request, size, Constants.NUM_PER_PAGE_SEARCH, "_" + _table);
             int begin = (page_NO - 1) * Constants.NUM_PER_PAGE_SEARCH;
             begin = begin < 0 ? 0 : begin;
-            int end = page_NO * Constants.NUM_PER_PAGE_SEARCH > blog_list.size() ?
-                    blog_list.size() : page_NO * Constants.NUM_PER_PAGE_SEARCH;
+            int end = page_NO * Constants.NUM_PER_PAGE_SEARCH > size ?
+                    size : page_NO * Constants.NUM_PER_PAGE_SEARCH;
             blog_list = blog_list.subList(begin, end);
         }
         log.info("get " + _table.toLowerCase() + ":" + size);

@@ -168,7 +168,7 @@ public class QueryHelper {
     }
 
     /**
-     * 执行INSERT/UPDATE/DELETE语句
+     * 执行 INSERT/UPDATE/DELETE 语句
      *
      * @param sql
      * @param params
@@ -186,7 +186,7 @@ public class QueryHelper {
     }
 
     /**
-     * 批量执行指定的SQL语句
+     * 批量执行指定的 SQL 语句
      *
      * @param sql
      * @param params
@@ -204,7 +204,7 @@ public class QueryHelper {
     }
 
     /**
-     * 类似Spring框架的queryForList，获取结果集合
+     * 类似 Spring 框架的 queryForList，获取结果集合
      *
      * @param _sql
      * @param _par
@@ -235,18 +235,18 @@ public class QueryHelper {
      * @throws SQLException
      */
     public static Map<String, Object> getMapFromRs(final ResultSet rs) {
-        Map<String, Object> tmap = new HashMap<String, Object>();
+        Map<String, Object> t_map = new HashMap<String, Object>();
         int columnCount = 0;
         try {
             columnCount = rs.getMetaData().getColumnCount();// 取得字段数目
             // 获取每个字段的名称
             for (int i = 0; i < columnCount; i++) {
-                tmap.put(rs.getMetaData().getColumnName(i + 1).toUpperCase(),
+                t_map.put(rs.getMetaData().getColumnName(i + 1).toUpperCase(),
                         Tools.null2String(rs.getString(i + 1)));// 将字段名和对应的值存入map
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return tmap;
+        return t_map;
     }
 }

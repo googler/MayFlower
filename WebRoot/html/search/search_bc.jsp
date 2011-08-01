@@ -150,7 +150,7 @@
                                 ${code.tag}&nbsp;
                         </td>
                         <td width="15%" align="right" nowrap>
-                                ${code.create_date}&nbsp;
+                                <!--${code.create_date}&nbsp;-->
                         </td>
                         <c:if test='${user.role == "admin"}'>
                             <td width="4%" align="center" nowrap>

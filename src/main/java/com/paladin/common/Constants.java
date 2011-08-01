@@ -37,4 +37,8 @@ public class Constants {
      * 更新箴言列表的时间间隔(分钟)
      */
     public static final int MINUTE_UPDATE_MOTTO = 1;
+    /**
+     * 字段内容间的分隔符
+     */
+    public static final String LUCENE_FIELD_SEP = "!&%@~~@%&!";
 }

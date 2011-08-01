@@ -65,4 +65,14 @@ public class Blog extends BaseBlog {
     public void setLastmodify_date(Date lastmodify_date) {
         this.lastmodify_date = lastmodify_date;
     }
+
+    @Override
+    public String toString() {
+        return "id: " + id + ", title: " + title;
+    }
+
+    @Override
+    public int hashCode() {
+        return String.valueOf(id).hashCode();
+    }
 }

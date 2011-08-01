@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="lucene">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/WebRoot/WEB-INF/lib/lucene-core-3.3.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://D:/lucene/lucene-3.3.0-src/src/java" />
+    </SOURCES>
+  </library>
+</component>
