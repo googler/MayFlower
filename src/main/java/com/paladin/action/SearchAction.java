@@ -66,32 +66,28 @@ public class SearchAction extends BaseAction {
             q = Tools.ISO885912UTF8(q).trim();
             log.info("q = " + q);
             request.setAttribute("q", q);
+
             _b(request, q, "blog");// 查找博文
             _b(request, q, "code");// 查找代码
             m(request, q);// 查找箴言
-            String t = request.getParameter("t");
-            // 控制搜索结果页面的样式
-            if (!Strings.isNullOrEmpty(t)) {
-                if ("code".equals(t)) {// t == code时，搜索结果的翻页直接定位到代码tab
-                    request.setAttribute("class_blog", "class=\'u_tab\'");
-                    request.setAttribute("class_code", "class=\'u_tab_hover\'");
-                    request.setAttribute("class_motto", "class=\'u_tab\'");
 
-                    request.setAttribute("style_blog", "style='display:none;'");
+            String t = request.getParameter("t");
+
+            // 控制搜索结果页面的样式
+            request.setAttribute("class_blog", "class=\'u_tab\'");
+            request.setAttribute("class_code", "class=\'u_tab\'");
+            request.setAttribute("class_motto", "class=\'u_tab\'");
+            if (!Strings.isNullOrEmpty(t)) {
+                request.setAttribute("style_blog", "style='display:none;'");
+                if ("code".equals(t)) {// t == code时，搜索结果的翻页直接定位到代码tab
+                    request.setAttribute("class_code", "class=\'u_tab_hover\'");
                     request.setAttribute("style_motto", "style='display:none;'");
                 } else if ("motto".equals(t)) {
-                    request.setAttribute("class_blog", "class=\'u_tab\'");
-                    request.setAttribute("class_code", "class=\'u_tab\'");
                     request.setAttribute("class_motto", "class=\'u_tab_hover\'");
-
-                    request.setAttribute("style_blog", "style='display:none;'");
                     request.setAttribute("style_code", "style='display:none;'");
                 }
             } else {
                 request.setAttribute("class_blog", "class=\'u_tab_hover\'");
-                request.setAttribute("class_code", "class=\'u_tab\'");
-                request.setAttribute("class_motto", "class=\'u_tab\'");
-
                 request.setAttribute("style_code", "style='display:none;'");
                 request.setAttribute("style_motto", "style='display:none;'");
             }
@@ -137,7 +133,6 @@ public class SearchAction extends BaseAction {
             Blog blog = new Blog();
             // 高亮
             Scorer scorer = new QueryScorer(query);
-            //<span style='background-color:#f00;'>
             SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<span style='background-color:#f00;'>", "</span>");
             Highlighter hig = new Highlighter(formatter, scorer);
 
@@ -177,9 +172,9 @@ public class SearchAction extends BaseAction {
     }
 
     /**
-     * Search blog and code using sql
+     * Search blog and code using sql(废弃)
      */
-    public void b(final HttpServletRequest request, String q, String _table) throws UnsupportedEncodingException {
+    private void b(final HttpServletRequest request, String q, String _table) throws UnsupportedEncodingException {
         List<Blog> blog_list = new ArrayList<Blog>();
         int size = 0;
         for (String qq : Tools.q2qArr(q)) {
