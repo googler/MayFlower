@@ -12,14 +12,14 @@ import org.wltea.analyzer.lucene.IKAnalyzer;
 import java.io.StringReader;
 
 /**
- * 测试搜索
+ * 测试 搜索
  *
  * @author Winter Lau
  */
 public class LuceneTester {
 
     /**
-     * 搜索关键字高亮测试
+     * 搜索 关键字 高亮 测试
      *
      * @param args
      * @throws Exception

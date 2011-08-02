@@ -33,6 +33,8 @@ import org.apache.lucene.search.highlight.Scorer;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 import org.wltea.analyzer.lucene.IKAnalyzer;
+import org.wltea.analyzer.lucene.IKQueryParser;
+import org.wltea.analyzer.lucene.IKSimilarity;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -50,6 +52,9 @@ import static java.lang.System.out;
  * @since Mar 12th, 2011
  */
 public class SearchAction extends BaseAction {
+    /**
+     * lucene 索引的 字段名
+     */
     private static final String fields = "title_content_tag";
 
     public void index(final RequestContext _reqCtxt) {
@@ -57,11 +62,12 @@ public class SearchAction extends BaseAction {
     }
 
     /**
-     * Search blog and code and motto
+     * Search blog ,code and motto
      */
     public void bcm(final RequestContext _reqCtxt) throws IOException, ParseException, InvalidTokenOffsetsException {
         HttpServletRequest request = _reqCtxt.request();
         String q = request.getParameter("q");
+
         if (!Strings.isNullOrEmpty(q)) {
             q = Tools.ISO885912UTF8(q).trim();
             log.info("q = " + q);
@@ -69,20 +75,20 @@ public class SearchAction extends BaseAction {
 
             _b(request, q, "blog");// 查找博文
             _b(request, q, "code");// 查找代码
-            m(request, q);// 查找箴言
+            _b(request, q, "motto");// 查找箴言
 
-            String t = request.getParameter("t");
-
+            // 刷新页面时应该聚集到哪个选项卡
+            String type = request.getParameter("t");
             // 控制搜索结果页面的样式
             request.setAttribute("class_blog", "class=\'u_tab\'");
             request.setAttribute("class_code", "class=\'u_tab\'");
             request.setAttribute("class_motto", "class=\'u_tab\'");
-            if (!Strings.isNullOrEmpty(t)) {
+            if (!Strings.isNullOrEmpty(type)) {
                 request.setAttribute("style_blog", "style='display:none;'");
-                if ("code".equals(t)) {// t == code时，搜索结果的翻页直接定位到代码tab
+                if ("code".equals(type)) {// t == code时，搜索结果的翻页直接定位到代码tab
                     request.setAttribute("class_code", "class=\'u_tab_hover\'");
                     request.setAttribute("style_motto", "style='display:none;'");
-                } else if ("motto".equals(t)) {
+                } else if ("motto".equals(type)) {
                     request.setAttribute("class_motto", "class=\'u_tab_hover\'");
                     request.setAttribute("style_code", "style='display:none;'");
                 }
@@ -96,7 +102,7 @@ public class SearchAction extends BaseAction {
     }
 
     /**
-     * search blog using lucene
+     * search using lucene
      *
      * @param request
      * @param _query
@@ -104,14 +110,16 @@ public class SearchAction extends BaseAction {
      * @throws ParseException
      */
     private void _b(final HttpServletRequest request, final String _query, final String _table) throws IOException, ParseException, InvalidTokenOffsetsException {
-        String index_dir = "D:\\myData\\luceneIdx\\" + _table;
-        File dir = new File(index_dir);
+        final String index_dir = Constants.LUCENE_INDEX_ROOT + _table;
 
-        IndexSearcher searcher = new IndexSearcher(FSDirectory.open(dir));
+        IndexSearcher searcher = new IndexSearcher(FSDirectory.open(new File(index_dir)));
         QueryParser parser = new QueryParser(Version.LUCENE_33, fields, new IKAnalyzer(false));
         Query query = parser.parse(_query);
+
         TopScoreDocCollector collector = TopScoreDocCollector.create(10000, true);
         searcher.search(query, collector);
+        // 在 索引器 中使用 IKSimilarity 相似度 评估器
+        searcher.setSimilarity(new IKSimilarity());
 
         // 分页
         super.doPage(request, collector.getTotalHits(), Constants.NUM_PER_PAGE_SEARCH, "_" + _table);
@@ -127,84 +135,6 @@ public class SearchAction extends BaseAction {
             doc_list.add(searcher.doc(score_doc.doc));
 
         request.setAttribute(_table + "_list", getBlogListFromDocList(query, doc_list));
-    }
-
-    /**
-     * Search blog and code using sql(废弃)
-     */
-    private void b(final HttpServletRequest request, String q, String _table) throws UnsupportedEncodingException {
-        List<Blog> blog_list = new ArrayList<Blog>();
-        int size = 0;
-        for (String qq : Tools.q2qArr(q)) {
-            String sql = "SELECT * FROM " + _table.toUpperCase()
-                    + " WHERE TITLE LIKE ? OR CONTENT LIKE ? OR TAG LIKE ? ORDER BY HITS DESC";
-            for (Blog b : QueryHelper.query(Blog.class, sql, new Object[]{qq, qq, qq})) {
-                if (!blog_list.contains(b)) {
-                    String title = b.getTitle().trim();
-                    String tag = b.getTag().trim();
-                    String content = b.getContent().trim();
-
-                    if (title.indexOf(q) >= 0)
-                        b.setTitle(title.replaceAll(q, Tools.standOutStr(q)));
-                    if (tag.indexOf(q) >= 0)
-                        b.setTag(tag.replaceAll(q, Tools.standOutStr(q)));
-
-                    content = content.replaceAll("<[^>]*>", "");
-                    int first_index = content.indexOf(q);
-                    int last_index = content.lastIndexOf(q);
-                    if (first_index >= 0 && content.length() >= last_index + q.length() + 20)
-                        content = content.substring(first_index, last_index + q.length() + 20);
-                    if (content.length() > Constants.LENGTH_OF_SEARCH_CONTENT)
-                        content = content.substring(0, Constants.LENGTH_OF_SEARCH_CONTENT);
-                    b.setContent(content.replace(q, Tools.standOutStr(q)));
-                    blog_list.add(b);
-                }
-            }
-        }
-        size = blog_list.size();
-        {//分页
-            super.doPage(request, size, Constants.NUM_PER_PAGE_SEARCH, "_" + _table);
-            int begin = (page_NO - 1) * Constants.NUM_PER_PAGE_SEARCH;
-            begin = begin < 0 ? 0 : begin;
-            int end = page_NO * Constants.NUM_PER_PAGE_SEARCH > size ?
-                    size : page_NO * Constants.NUM_PER_PAGE_SEARCH;
-            blog_list = blog_list.subList(begin, end);
-        }
-        log.info("get " + _table.toLowerCase() + ":" + size);
-        request.setAttribute(_table + "_list", blog_list);
-    }
-
-    /**
-     * Search motto
-     */
-    public void m(final HttpServletRequest request, String _q) throws UnsupportedEncodingException {
-        List<Motto> motto_list = new ArrayList<Motto>();
-        int size = 0;
-        for (String qq : Tools.q2qArr(_q)) {
-            String sql = "SELECT * FROM MOTTO WHERE CONTENT LIKE ? OR TAG LIKE ?";
-            for (Motto m : QueryHelper.query(Motto.class, sql, new Object[]{qq, qq})) {
-                if (!motto_list.contains(m)) {
-                    String tag = m.getTag().trim();
-                    String content = m.getContent().trim();
-                    if (content.indexOf(_q) >= 0)
-                        m.setContent(content.replaceAll(_q, Tools.standOutStr(_q)));
-                    if (tag.indexOf(_q) >= 0)
-                        m.setTag(tag.replaceAll(_q, Tools.standOutStr(_q)));
-                    motto_list.add(m);
-                }
-            }
-        }
-        size = motto_list.size();
-        {//分页
-            super.doPage(request, motto_list.size(), Constants.NUM_PER_PAGE_SEARCH, "_motto");
-            int begin = (page_NO - 1) * Constants.NUM_PER_PAGE_SEARCH;
-            begin = begin < 0 ? 0 : begin;
-            int end = page_NO * Constants.NUM_PER_PAGE_SEARCH > motto_list.size() ?
-                    motto_list.size() : page_NO * Constants.NUM_PER_PAGE_SEARCH;
-            motto_list = motto_list.subList(begin, end);
-        }
-        log.info("get motto:" + size);
-        request.setAttribute("motto_list", motto_list);
     }
 
     /**
@@ -232,6 +162,7 @@ public class SearchAction extends BaseAction {
 
             String content = data_arr[1];
             content = content.replaceAll("<[^>]*>", "");// 除去 HTML 标签
+            // TODO:高亮显示的字数有最大限制，达不到 Constants.LENGTH_OF_SEARCH_CONTENT
             String f_content = Tools.highlight(query, "title_content_tag", content);
             if (f_content == null)
                 f_content = content;
@@ -239,7 +170,6 @@ public class SearchAction extends BaseAction {
             if (f_content.length() > Constants.LENGTH_OF_SEARCH_CONTENT)
                 f_content = f_content.substring(0, Constants.LENGTH_OF_SEARCH_CONTENT);
             blog.setContent(f_content);
-
             blog_list.add(blog);
         }
         return blog_list;

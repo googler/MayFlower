@@ -7,6 +7,7 @@
 <body>
 <form action="${contextPath}/admin/save" method="post">
 	<input type="hidden" name="id" value="${user.id}" />
+    <h3 style="color:#FF0">我的帐户</h3>
     <table width="100%" align="center" cellspacing="2">
       <tr>
         <td align="left" valign="middle" width=5%>用户名：</td>

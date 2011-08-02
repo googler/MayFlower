@@ -33,9 +33,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 数据库查询助手
+ * 数据库 查询 助手
  *
- * @author Winter Lau (http://my.oschina.net/javayou)<br>
+ * @author Winter Lau (http://my.oschina.net/javayou)
  * @modify Erhu
  */
 @SuppressWarnings("unchecked")
@@ -80,7 +80,7 @@ public class QueryHelper {
     }
 
     /**
-     * 获取数据库连接
+     * 获取 数据库 连接
      *
      * @return
      */
@@ -89,7 +89,7 @@ public class QueryHelper {
     }
 
     /**
-     * 读取某个对象
+     * 读取 某个 对象
      *
      * @param sql
      * @param params
@@ -108,7 +108,7 @@ public class QueryHelper {
     }
 
     /**
-     * 对象查询
+     * 对象 查询
      *
      * @param <T>
      * @param beanClass
@@ -129,7 +129,7 @@ public class QueryHelper {
     }
 
     /**
-     * 分页查询
+     * 分页 查询
      *
      * @param <T>
      * @param beanClass

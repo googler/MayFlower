@@ -33,7 +33,7 @@ import java.util.Locale;
 import java.util.Map;
 
 /**
- * 请求上下文
+ * 请求 上下文
  *
  * @author Winter Lau (http://my.oschina.net/javayou)<br>
  * @modify Erhu
@@ -50,7 +50,7 @@ public class RequestContext {
     private final static String upload_tmp_path;
     private final static String TEMP_UPLOAD_PATH_ATTR_NAME = "$OSCHINA_TEMP_UPLOAD_PATH$";
 
-    private static String webroot = null;
+    private static String webRoot = null;
 
     private ServletContext context;
     private HttpSession session;
@@ -59,17 +59,17 @@ public class RequestContext {
     private Map<String, Cookie> cookies;
 
     static {
-        webroot = getWebrootPath();
+        webRoot = getWebRootPath();
         // isResin = _CheckResinVersion();
         // 上传的临时目录
-        upload_tmp_path = webroot + "attached" + File.separator;
+        upload_tmp_path = webRoot + "attached" + File.separator;
         try {
             FileUtils.forceMkdir(new File(upload_tmp_path));
         } catch (IOException excp) {
         }
     }
 
-    private final static String getWebrootPath() {
+    private final static String getWebRootPath() {
         String root = "";
         try {
             root = RequestContext.class.getResource("/").toURI().getPath().toString();
@@ -82,7 +82,7 @@ public class RequestContext {
     }
 
     /**
-     * 初始化请求上下文
+     * 初始化 请求 上下文
      *
      * @param ctx
      * @param req
@@ -106,12 +106,12 @@ public class RequestContext {
     }
 
     /**
-     * 返回Web应用的路径
+     * 返回 Web 应用的 路径
      *
      * @return
      */
     public static String root() {
-        return webroot;
+        return webRoot;
     }
 
     /**

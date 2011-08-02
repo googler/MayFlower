@@ -46,14 +46,20 @@
                                 <tr>
                                     <td align="center">&nbsp;</td>
                                     <td height="31" colspan="2" align="left">
-                                        <a href="${contextPath}/admin/sysinfo">系统信息</a>
+                                        <a href="${contextPath}/admin/sysinfo">虚拟机信息</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center">&nbsp;</td>
+                                    <td height="31" colspan="2" align="left">
+                                        <a href="${contextPath}/admin/luceneIndex">索引管理</a>
                                     </td>
                                 </tr>
                             </c:if>
                             <tr>
                                 <td width="26%" align="center" class="border_bottom_green">&nbsp;</td>
                                 <td width="74%" height="31" align="left" class="border_bottom_green"><a
-                                        href="${contextPath}/admin">帐户信息</a></td>
+                                        href="${contextPath}/admin">我的帐户</a></td>
                             </tr>
                             <tr>
                                 <td colspan="3" align="center">&nbsp;</td>

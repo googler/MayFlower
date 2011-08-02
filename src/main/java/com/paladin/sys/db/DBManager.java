@@ -54,7 +54,7 @@ public class DBManager {
     }
 
     /**
-     * init DataSouce by spring
+     * init DataSource by spring
      */
     private static final void initDataSourceFromXml(String _xmpPath, String _beanName) {
         try {

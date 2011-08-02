@@ -15,34 +15,60 @@
  */
 package com.paladin.common;
 
+import com.paladin.mvc.RequestContext;
+
+import java.io.File;
+
+/**
+ * 常量
+ *
+ * @author Erhu
+ * @since begin
+ */
 public class Constants {
+
     /**
      * 每页显示文章条数
      */
     public static final int NUM_PER_PAGE = 46;
+
     /**
      * 每页 显示 的 箴言 条数
      */
     public static final int NUM_PER_PAGE_MOTTO = 20;
+
     /**
      * 每页显示的搜索结果条数
      */
     public static final int NUM_PER_PAGE_SEARCH = 10;
 
     /**
-     * 搜索结果中的文章内容只显示600字
+     * 搜索结果中的文章内容只显示500字
      */
-    public static final int LENGTH_OF_SEARCH_CONTENT = 500;
+    public static final int LENGTH_OF_SEARCH_CONTENT = 400;
+
     /**
      * 服务器启动时随机搜索的箴言的条数
      */
     public static final int NUM_RANDOM_MOTTO = 7;
+
     /**
      * 更新箴言列表的时间间隔(分钟)
      */
     public static final int MINUTE_UPDATE_MOTTO = 1;
+
     /**
      * 字段内容间的分隔符
      */
     public static final String LUCENE_FIELD_SEP = "!&%@~~@%&!";
+
+    /**
+     * 高亮 样式
+     */
+    public static final String HIGHLIGHT_STYLE = "<span style='background-color:#ff0;color:#006699'>";
+
+    /**
+     * lucene 索引 存储 位置
+     */
+    public static final String LUCENE_INDEX_ROOT = RequestContext.root() + "luceneIndex" + File.separatorChar;
 }

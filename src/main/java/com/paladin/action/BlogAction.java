@@ -23,6 +23,8 @@ import com.paladin.common.Tools;
 import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.DBManager;
 import com.paladin.sys.db.QueryHelper;
+import org.apache.lucene.index.Term;
+import org.apache.lucene.search.TermQuery;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -86,7 +88,7 @@ public class BlogAction extends BaseAction {
             request.setAttribute("q", q);
         }
         request.setAttribute("blog", blog);
-        // ------------------------------------------------------------------------------------------------------ hits++
+        // --------------------------------- hits++
         QueryHelper.update("UPDATE BLOG SET HITS = (HITS + 1) WHERE ID = ?", _id);
         forward(_reqCtxt, "/html/blog/blog_read.jsp");
     }
@@ -158,12 +160,14 @@ public class BlogAction extends BaseAction {
      * @param _q    question
      */
     private void dealBlogWhenQ(Blog _blog, String _q) {
-        //_q = Tools.ISO885912UTF8(_q).replaceAll("<[^>]*>", "");
         _q = _q.replaceAll("<[^>]*>", "");
+        TermQuery query = new TermQuery(new Term("field", _q));
+
         String title = _blog.getTitle().trim();
-        if (title.indexOf(_q) >= 0)
-            title = title.replaceAll(_q, Tools.standOutStr(_q));
-        _blog.setTitle(title);
+        String f_title = Tools.highlight(query, "field", title);
+        _blog.setTitle(f_title == null ? title : f_title);
+
+        // lucene 的高亮显示有字数限制，因此不可对文章内容使用上面的方法
         String content = _blog.getContent();
         _blog.setContent(content.replace(_q, Tools.standOutStr(_q)));
     }

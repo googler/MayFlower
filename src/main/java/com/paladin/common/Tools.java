@@ -55,9 +55,6 @@ public class Tools {
 
     /**
      * 判断某字符是否是空白字符(其实，空白字符还有许多，自己骗自己一下吧！)
-     *
-     * @param c 字符而已
-     * @return 返回这个字符是否是空白的啊
      */
     public static boolean isBlank(char c) {
         return (int) c == 9 || (int) c == 32;
@@ -67,17 +64,17 @@ public class Tools {
      * Check tag to make sure it is right
      *
      * @param _tags 标签
-     * @return 正确的标签
+     * @return 正确的 标签
      */
     public static String checkTag(String _tags) {
         if (Strings.isNullOrEmpty(_tags))
             return "";
-        // 替换全角逗号分隔符
+        // 替换 全角 逗号 分隔符
         _tags = _tags.replace("，", ",");
-        // 删除重复的tag
+        // 删除 重复的 tag
         List<String> tag_list = new ArrayList<String>();
         for (String tag : _tags.split(",")) {
-            String _tag = Tools.compressBlank(tag);// 压缩标签中的空格
+            String _tag = Tools.compressBlank(tag);// 压缩 标签 中的 空格
             if (!Strings.isNullOrEmpty(_tag) && !tag_list.contains(_tag))
                 tag_list.add(_tag);
         }
@@ -124,11 +121,11 @@ public class Tools {
     }
 
     /**
-     * 快速排序tag_Desc
-     * 根据MAP中TAG的出现次数，对数组进行排序
+     * 快速 排序 tag_Desc
+     * 根据 MAP 中 TAG 的 出现 次数，对 数组 进行 排序
      *
-     * @param _map   KEY对应TAG出现的次数
-     * @param _arr   保存所有TAG
+     * @param _map   KEY 对应 TAG 出现 的 次数
+     * @param _arr   保存 所有 TAG
      * @param _start start index
      * @param _end   end index
      */
@@ -154,8 +151,7 @@ public class Tools {
     }
 
     public static String standOutStr(String _str) {
-        return "<span style='background-color:#f00;'>" + _str
-                + "</span>";
+        return Constants.HIGHLIGHT_STYLE + _str + "</span>";
     }
 
     public static String[] q2qArr(String _q) {
@@ -167,7 +163,7 @@ public class Tools {
     }
 
     /**
-     * 在[_from, _to]区间取一随机整数
+     * 在[_from, _to] 区间 取 一 随机 整数
      *
      * @param _from 起始值
      * @param _to   结束值
@@ -224,7 +220,7 @@ public class Tools {
     public static String highlight(final Query _query, final String _field, final String _content) {
         // 高亮
         Scorer scorer = new QueryScorer(_query);
-        SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<span style='background-color:#f00;'>", "</span>");
+        SimpleHTMLFormatter formatter = new SimpleHTMLFormatter(Constants.HIGHLIGHT_STYLE, "</span>");
         Highlighter hl = new Highlighter(formatter, scorer);
         TokenStream tokens = new IKAnalyzer().tokenStream(_field, new StringReader(_content));
         try {

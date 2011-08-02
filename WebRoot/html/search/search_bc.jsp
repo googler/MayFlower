@@ -72,7 +72,7 @@
                     <form name="${blog.id}" id="${blog.id}" action="${contextPath}/blog/del"
                           method="post">
                         <input type="hidden" name="id" value="${blog.id}"/>
-                        <td width="68%" valign="middle" style="color:#FFF; font-size:16px;" nowrap>
+                        <td width="68%" valign="middle" style="color:#FFF; font-size:14px;" nowrap>
                             <img src="${contextPath}/images/default_activity.png" width="16">&nbsp;
                             <a href="${contextPath}/blog/read/${blog.id}/?q=${q}"><b>${blog.title}</b></a>
                         </td>
@@ -142,7 +142,7 @@
                     <form name="${code.id}" id="${code.id}" action="${contextPath}/code/del"
                           method="post">
                         <input type="hidden" name="id" value="${code.id}"/>
-                        <td width="68%" valign="middle" style="color:#FFF; font-size:16px;" nowrap>
+                        <td width="68%" valign="middle" style="color:#FFF; font-size:14px;" nowrap>
                             <img src="${contextPath}/images/default_activity.png" width="16">&nbsp;
                             <a href="${contextPath}/code/read/${code.id}/?q=${q}"><b>${code.title}</b></a>
                         </td>
@@ -150,7 +150,7 @@
                                 ${code.tag}&nbsp;
                         </td>
                         <td width="15%" align="right" nowrap>
-                                <!--${code.create_date}&nbsp;-->
+                            <!--${code.create_date}&nbsp;-->
                         </td>
                         <c:if test='${user.role == "admin"}'>
                             <td width="4%" align="center" nowrap>
