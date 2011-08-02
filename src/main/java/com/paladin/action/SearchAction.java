@@ -106,12 +106,9 @@ public class SearchAction extends BaseAction {
     private void _b(final HttpServletRequest request, final String _query, final String _table) throws IOException, ParseException, InvalidTokenOffsetsException {
         String index_dir = "D:\\myData\\luceneIdx\\" + _table;
         File dir = new File(index_dir);
+
         IndexSearcher searcher = new IndexSearcher(FSDirectory.open(dir));
-        Analyzer analyzer = new IKAnalyzer(false);
-
-        List<Document> doc_list = new ArrayList<Document>();
-
-        QueryParser parser = new QueryParser(Version.LUCENE_33, fields, analyzer);
+        QueryParser parser = new QueryParser(Version.LUCENE_33, fields, new IKAnalyzer(false));
         Query query = parser.parse(_query);
         TopScoreDocCollector collector = TopScoreDocCollector.create(10000, true);
         searcher.search(query, collector);
@@ -124,51 +121,12 @@ public class SearchAction extends BaseAction {
         int begin = (page_NO - 1) * Constants.NUM_PER_PAGE_SEARCH;
         begin = begin < 0 ? 0 : begin;
         ScoreDoc[] score_docs = collector.topDocs(begin, Constants.NUM_PER_PAGE_SEARCH).scoreDocs;
+
+        List<Document> doc_list = new ArrayList<Document>();
         for (ScoreDoc score_doc : score_docs)
             doc_list.add(searcher.doc(score_doc.doc));
 
-        //-------------------------------------------
-        List<Blog> blog_list = new ArrayList<Blog>();
-        for (Document doc : doc_list) {
-            Blog blog = new Blog();
-            // 高亮
-            Scorer scorer = new QueryScorer(query);
-            SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<span style='background-color:#f00;'>", "</span>");
-            Highlighter hig = new Highlighter(formatter, scorer);
-
-            // get blog
-            {
-                blog.setId(Integer.parseInt(doc.get("id")));
-
-                String[] data_arr = doc.get("title_content_tag").toString().split(Constants.LUCENE_FIELD_SEP);
-
-                String title = data_arr[0];
-                TokenStream tokens_title = new IKAnalyzer().tokenStream("title_content_tag", new StringReader(title));
-                final String f_title = hig.getBestFragment(tokens_title, title);
-                blog.setTitle(f_title == null ? title : f_title);
-
-                if (data_arr.length == 3) {
-                    String tag = data_arr[2];
-                    TokenStream tokens_tag = new IKAnalyzer().tokenStream("title_content_tag", new StringReader(tag));
-                    final String f_tag = hig.getBestFragment(tokens_tag, tag);
-                    blog.setTag(f_tag == null ? title : f_tag);
-                }
-
-                String content = data_arr[1];
-                content = content.replaceAll("<[^>]*>", "");
-
-                TokenStream tokens_content = new IKAnalyzer().tokenStream("title_content_tag", new StringReader(content));
-                String f_content = hig.getBestFragment(tokens_content, content);
-                if (f_content == null)
-                    f_content = content;
-
-                if (f_content.length() > Constants.LENGTH_OF_SEARCH_CONTENT)
-                    f_content = f_content.substring(0, Constants.LENGTH_OF_SEARCH_CONTENT);
-                blog.setContent(f_content);
-            }
-            blog_list.add(blog);
-        }
-        request.setAttribute(_table + "_list", blog_list);
+        request.setAttribute(_table + "_list", getBlogListFromDocList(query, doc_list));
     }
 
     /**
@@ -247,5 +205,43 @@ public class SearchAction extends BaseAction {
         }
         log.info("get motto:" + size);
         request.setAttribute("motto_list", motto_list);
+    }
+
+    /**
+     * 从 搜索 结果集 取得 博文列表
+     *
+     * @param query
+     * @param doc_list
+     * @return
+     */
+    private List<Blog> getBlogListFromDocList(Query query, List<Document> doc_list) {
+        List<Blog> blog_list = new ArrayList<Blog>();
+        for (Document doc : doc_list) {
+            Blog blog = new Blog();
+            blog.setId(Integer.parseInt(doc.get("id")));
+
+            String[] data_arr = doc.get("title_content_tag").toString().split(Constants.LUCENE_FIELD_SEP);
+
+            final String title = Tools.highlight(query, "title_content_tag", data_arr[0]);// 高亮
+            blog.setTitle(title == null ? data_arr[0] : title);
+
+            if (data_arr.length == 3) {
+                final String tag = Tools.highlight(query, "title_content_tag", data_arr[2]);
+                blog.setTag(tag == null ? data_arr[2] : tag);
+            }
+
+            String content = data_arr[1];
+            content = content.replaceAll("<[^>]*>", "");// 除去 HTML 标签
+            String f_content = Tools.highlight(query, "title_content_tag", content);
+            if (f_content == null)
+                f_content = content;
+
+            if (f_content.length() > Constants.LENGTH_OF_SEARCH_CONTENT)
+                f_content = f_content.substring(0, Constants.LENGTH_OF_SEARCH_CONTENT);
+            blog.setContent(f_content);
+
+            blog_list.add(blog);
+        }
+        return blog_list;
     }
 }

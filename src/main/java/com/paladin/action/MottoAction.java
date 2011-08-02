@@ -58,19 +58,21 @@ public class MottoAction extends BaseAction {
     public void list(final RequestContext _reqCtxt) {
         final HttpServletRequest request = _reqCtxt.request();
         log.info("get motto list.");
+
         // 分页
-        super.doPage(request, "SELECT COUNT(*) COUNT FROM MOTTO", "");
+        doPage(request, "SELECT COUNT(*) COUNT FROM MOTTO", "");
+
         // 获取页面数据
         String sql = "SELECT * FROM MOTTO ORDER BY ID DESC";
-        List<Motto> mottos = QueryHelper.query_slice(Motto.class, sql, page_NO, Constants.NUM_PER_PAGE, new Object[]{});
+        List<Motto> motto_list = QueryHelper.query_slice(Motto.class, sql, page_NO, Constants.NUM_PER_PAGE_MOTTO, new Object[]{});
 
-        request.setAttribute("mottos", mottos);
+        request.setAttribute("mottos", motto_list);
         request.setAttribute("motto", getRandomMotto());// 提取一条箴言
         forward(_reqCtxt, "/html/motto/motto_list.jsp");
     }
 
     /**
-     * 保存箴言(新增或者修改)
+     * 保存 箴言(新增或者修改)
      */
     public void save(final RequestContext _reqCtxt) {
         final HttpServletRequest request = _reqCtxt.request();
@@ -93,16 +95,18 @@ public class MottoAction extends BaseAction {
     }
 
     /**
-     * 提供随机箴言(公共调用)
+     * 提供 随机 箴言(公共 调用)
      */
     public static Motto getRandomMotto() {
-        // 获取当前时间（毫秒）
+        // 获取 当前 时间（毫秒）
         GregorianCalendar time = new GregorianCalendar();
+
         // 若更新间隔超过指定值，则重新获取箴言并更新updateTime
         if (randomMotto == null || Tools.getSecondsBetweenTwoDate(time, updateTime) > Constants.MINUTE_UPDATE_MOTTO * 60) {
             updateTime = time;
             generateRandomMotto();
         }
+
         long index = Tools.random(0, Constants.NUM_RANDOM_MOTTO - 1);
         if (randomMotto.size() <= index)
             return null;
@@ -113,18 +117,30 @@ public class MottoAction extends BaseAction {
      * 从DB中提取箴言
      */
     private static void generateRandomMotto() {
-        // 获取总记录数
+        // 获取 总 记录数
         String sql = "SELECT COUNT(*) FROM MOTTO";
         long count = QueryHelper.stat(sql);
         // 在[0, count - 7]之间取一个数作为LIMIT的起点
         long begin = Math.abs(Tools.random(0, count - Constants.NUM_RANDOM_MOTTO));
-        // 获取箴言
+        // 获取 箴言
         sql = "SELECT * FROM MOTTO LIMIT ?, ?";
         randomMotto = QueryHelper.query(Motto.class, sql, new Object[]{begin, Constants.NUM_RANDOM_MOTTO});
     }
 
     /**
-     * 转到添加箴言页面
+     * 用sql分页
+     *
+     * @param request
+     * @param _sql
+     * @param _para
+     */
+    protected void doPage(HttpServletRequest request, final String _sql, final String _type, Object... _para) {
+        total_page = (int) (QueryHelper.stat(_sql, _para) + Constants.NUM_PER_PAGE_MOTTO - 1) / Constants.NUM_PER_PAGE_MOTTO;
+        super._doPage(request, _type);
+    }
+
+    /**
+     * 转到 添加 箴言 页面
      */
     public void toAdd(final RequestContext _reqCtxt) {
         super.toAdd(_reqCtxt, "motto");
@@ -138,7 +154,7 @@ public class MottoAction extends BaseAction {
     }
 
     /**
-     * 删除箴言
+     * 删除 箴言
      */
     public void del(final RequestContext _reqCtxt) {
         super.del(_reqCtxt, "motto");

@@ -16,7 +16,13 @@
 package com.paladin.common;
 
 import com.google.common.base.Strings;
+import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.highlight.*;
+import org.wltea.analyzer.lucene.IKAnalyzer;
 
+import java.io.IOException;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 import java.util.*;
 
@@ -202,8 +208,32 @@ public class Tools {
      * @param gc2 时间点2
      * @return life is good:-)
      */
-    public static double getSecondsBetweenTwoDate(GregorianCalendar gc1, GregorianCalendar gc2) {
+    public static final double getSecondsBetweenTwoDate(GregorianCalendar gc1, GregorianCalendar gc2) {
         long milliSeconds = Math.abs(gc1.getTimeInMillis() - gc2.getTimeInMillis());
         return milliSeconds / 1000.0;
+    }
+
+    /**
+     * 高亮 显示 搜索 关键字
+     *
+     * @param _query
+     * @param _field
+     * @param _content
+     * @return
+     */
+    public static String highlight(final Query _query, final String _field, final String _content) {
+        // 高亮
+        Scorer scorer = new QueryScorer(_query);
+        SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<span style='background-color:#f00;'>", "</span>");
+        Highlighter hl = new Highlighter(formatter, scorer);
+        TokenStream tokens = new IKAnalyzer().tokenStream(_field, new StringReader(_content));
+        try {
+            return hl.getBestFragment(tokens, _content);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InvalidTokenOffsetsException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

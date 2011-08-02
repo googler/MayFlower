@@ -21,6 +21,10 @@ public class Constants {
      */
     public static final int NUM_PER_PAGE = 46;
     /**
+     * 每页 显示 的 箴言 条数
+     */
+    public static final int NUM_PER_PAGE_MOTTO = 20;
+    /**
      * 每页显示的搜索结果条数
      */
     public static final int NUM_PER_PAGE_SEARCH = 10;

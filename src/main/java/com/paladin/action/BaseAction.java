@@ -78,7 +78,7 @@ public abstract class BaseAction {
         _doPage(request, _type);
     }
 
-    private void _doPage(HttpServletRequest request, final String _type) {
+    protected void _doPage(HttpServletRequest request, final String _type) {
         page_NO = Integer.parseInt(getCurrentPage(request));
         page_NO = page_NO < 1 ? 1 : page_NO;
         page_NO = page_NO > total_page ? total_page : page_NO;
