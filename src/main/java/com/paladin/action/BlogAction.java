@@ -102,6 +102,7 @@ public class BlogAction extends BaseAction {
         final HttpServletRequest request = _reqCtxt.request();
         String id = request.getParameter("id");
         String title = request.getParameter("title").trim();
+
         // 对于长字符串，一定要用StringBuilder，否则调试起来太费劲了！
         StringBuilder content = new StringBuilder();
         content.append(request.getParameter("content").trim());
@@ -114,12 +115,14 @@ public class BlogAction extends BaseAction {
                     " HITS, TOP) VALUES(?, ?, ?, now(), now(), ?, 1, ?)";
             QueryHelper.update(sql, new String[]{title, content.toString(),
                     super.getUserFromSession(_reqCtxt).getUsername(), tag, top});
+
             log.info("Add blog success");
             redirect(_reqCtxt, "/blog");
         } else {// 修改文章
             String sql = "UPDATE BLOG SET TITLE = ?, CONTENT = ?, TAG = ?, LASTMODIFY_DATE = NOW(), " +
                     "TOP = ? WHERE ID = ?";
             QueryHelper.update(sql, new String[]{title, content.toString(), tag, top, id});
+
             log.info("Update blog success");
             redirect(_reqCtxt, "/blog/read/" + id);
         }

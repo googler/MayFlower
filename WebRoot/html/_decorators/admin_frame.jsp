@@ -52,7 +52,7 @@
                                 <tr>
                                     <td align="center">&nbsp;</td>
                                     <td height="31" colspan="2" align="left">
-                                        <a href="${contextPath}/admin/luceneIndex">索引管理</a>
+                                        <a href="${contextPath}/admin/toLuceneIndex">索引管理</a>
                                     </td>
                                 </tr>
                             </c:if>
