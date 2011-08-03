@@ -18,7 +18,7 @@
         <td>
             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td width="150">
+                    <td width="160"  align="center">
                         <img src="${contextPath}/images/mayFlower_small.png" alt="MayFlower:五月花!" title="MayFlower:五月花!"
                              onClick="window.location='${contextPath}/blog'">
                     </td>

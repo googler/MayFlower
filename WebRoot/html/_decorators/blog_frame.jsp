@@ -24,7 +24,7 @@
         <td>
             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td width="160">
+                    <td width="160" align="center">
                         <img src="${contextPath}/images/mayFlower_small.png" alt="MayFlower:五月花!" title="MayFlower:五月花!"
                              onClick="window.location='${contextPath}/blog'">
                     </td>
@@ -49,7 +49,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td valign="top" class="border_right_green">
+                    <td valign="top" class="border_right_green" align="center">
                         <table width="100%" border="0" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td width="26%" align="center" >&nbsp;</td>
