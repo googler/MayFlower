@@ -48,31 +48,31 @@ public class URLMappingFilter implements Filter {
     public void init(FilterConfig cfg) throws ServletException {
         this.context = cfg.getServletContext();
 
-        // 模板存放路径
+        // 模板 存放 路径
         this.PATH_PREFIX = cfg.getInitParameter("template-path-prefix");
         if (this.PATH_PREFIX == null)
             this.PATH_PREFIX = "/WEB-INF/templates";
         else if (this.PATH_PREFIX.endsWith("/"))
             this.PATH_PREFIX = this.PATH_PREFIX.substring(0, this.PATH_PREFIX.length() - 1);
 
-        // 某些URL前缀不予处理（例如 /img/***）
+        // 某些 URL 前缀不予处理（例如 /img/***）
         String ignores = cfg.getInitParameter("ignore");
         if (ignores != null)
             for (String ig : StringUtils.split(ignores, ','))
                 ignoreURIs.add(ig.trim());
 
-        // 某些URL扩展名不予处理（例如 *.jpg）
+        // 某些 URL 扩展名 不予 处理（例如 *.jpg）
         ignores = cfg.getInitParameter("ignoreExts");
         if (ignores != null)
             for (String ig : StringUtils.split(ignores, ','))
                 ignoreExts.add('.' + ig.trim());
 
-        // 主域名，必须指定
+        // 主域名，必须 指定
         String tmp = cfg.getInitParameter("domain");
         if (StringUtils.isNotBlank(tmp))
             rootDomain = tmp;
 
-        // 二级域名和对应页面模板路径
+        // 二级 域名 和 对应 页面 模板 路径
         @SuppressWarnings("unchecked")
         Enumeration<String> names = cfg.getInitParameterNames();
         while (names.hasMoreElements()) {
@@ -92,7 +92,7 @@ public class URLMappingFilter implements Filter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException,
             ServletException {
-        // 自动编码处理
+        // 自动 编码 处理
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         RequestContext rc = RequestContext.begin(this.context, request, response);
@@ -100,14 +100,14 @@ public class URLMappingFilter implements Filter {
         String req_uri = rc.uri();
 
         try {
-            // 过滤URL前缀
+            // 过滤 URL 前缀
             for (String ignoreURI : ignoreURIs) {
                 if (req_uri.startsWith(ignoreURI)) {
                     chain.doFilter(rc.request(), rc.response());
                     return;
                 }
             }
-            // 过滤URL后缀
+            // 过滤 URL 后缀
             for (String ignoreExt : ignoreExts) {
                 if (req_uri.endsWith(ignoreExt)) {
                     chain.doFilter(rc.request(), rc.response());

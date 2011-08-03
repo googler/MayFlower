@@ -1,4 +1,5 @@
-﻿<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+﻿<%@ page import="java.util.Random" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <html>
 <head>
     <title>搜索 - ${q}</title>
@@ -271,7 +272,11 @@
 </div>
 </c:when>
 <c:otherwise>
-    <div><img src="../../images/404_2.jpg" width="473" height="402"></div>
+    <%
+        java.util.Random rand = new Random();
+        int i = rand.nextInt(4);
+    %>
+    <div><img src="${contextPath}/images/404_<%=i%>.jpg" width="473" height="402"></div>
 </c:otherwise>
 </c:choose>
 <script type="text/javascript">
