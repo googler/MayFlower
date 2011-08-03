@@ -60,25 +60,30 @@ public class CodeAction extends BaseAction {
      */
     public void read(final RequestContext _reqCtxt, final long _id) throws ServletException, IOException {
         log.info("get code detail, the id = " + _id);
+
         String sql = "SELECT * FROM CODE WHERE ID = ?";
         Code code = QueryHelper.read(Code.class, sql, new Object[]{_id});
-        final HttpServletRequest request = _reqCtxt.request();
-        request.setAttribute("title", code.getTitle());
-        request.setAttribute("tags", Strings.isNullOrEmpty(code.getTag()) ? null : code.getTag().split(","));
 
-        if (!Strings.isNullOrEmpty(request.getParameter("q"))) {
-            String q = request.getParameter("q");
-            q = Tools.ISO885912UTF8(q).replaceAll("<[^>]*>", "");
-            String title = code.getTitle().trim();
-            if (title.indexOf(q) >= 0)
-                title = title.replaceAll(q, "<span style='background-color:#f00;'>" + q + "</span>");
-            code.setTitle(title);
-            request.setAttribute("q", q);
-        }
-        request.setAttribute("code", code);
-        // --------------------------------hits++
-        QueryHelper.update("UPDATE CODE SET HITS = (HITS + 1) WHERE ID = ?", _id);
-        forward(_reqCtxt, "/html/code/code_read.jsp");
+        if (code != null) {
+            final HttpServletRequest request = _reqCtxt.request();
+            request.setAttribute("title", code.getTitle());
+            request.setAttribute("tags", Strings.isNullOrEmpty(code.getTag()) ? null : code.getTag().split(","));
+
+            if (!Strings.isNullOrEmpty(request.getParameter("q"))) {
+                String q = request.getParameter("q");
+                q = Tools.ISO885912UTF8(q).replaceAll("<[^>]*>", "");
+                String title = code.getTitle().trim();
+                if (title.indexOf(q) >= 0)
+                    title = title.replaceAll(q, "<span style='background-color:#f00;'>" + q + "</span>");
+                code.setTitle(title);
+                request.setAttribute("q", q);
+            }
+            request.setAttribute("code", code);
+            // --------------------------------hits++
+            QueryHelper.update("UPDATE CODE SET HITS = (HITS + 1) WHERE ID = ?", _id);
+            forward(_reqCtxt, "/html/code/code_read.jsp");
+        } else
+           forward(_reqCtxt, "/html/error/404.jsp");
     }
 
     /**
@@ -88,6 +93,7 @@ public class CodeAction extends BaseAction {
         final HttpServletRequest request = _reqCtxt.request();
         String id = request.getParameter("id");
         String title = request.getParameter("title").trim();
+
         // 对于长字符串，一定要用StringBuilder，否则调试起来太费劲了！
         StringBuilder content = new StringBuilder();
         content.append(request.getParameter("content").trim());
@@ -97,11 +103,13 @@ public class CodeAction extends BaseAction {
         if (Strings.isNullOrEmpty(id)) {// 添加新代码
             String sql = "INSERT INTO CODE(TITLE, CONTENT, AUTHOR, CREATE_DATE, TAG, LANGUAGE, HITS) VALUES(?, ?, ?, now(), ?, ?, 1)";
             QueryHelper.update(sql, new Object[]{title, content.toString(), "erhu", tag, language});
+
             log.info("add new code success");
             redirect(_reqCtxt, "/code");
         } else {// 修改代码
             String sql = "UPDATE CODE SET TITLE = ?, CONTENT = ?, TAG = ?, LASTMODIFY_DATE = NOW(), LANGUAGE = ? WHERE ID = ?";
             QueryHelper.update(sql, new Object[]{title, content.toString(), tag, language, id});
+
             log.info("update code success");
             redirect(_reqCtxt, "/code/read/" + id);
         }

@@ -86,7 +86,7 @@ public final class ActionServlet extends HttpServlet {
                     log.info(action.getClass().getSimpleName() + " destroy ~~~~~~~~~");
                 }
             } catch (Exception e) {
-                log.error("Unable to destroy action: " + action.getClass().getSimpleName(), e);
+                //log.error("Unable to destroy action: " + action.getClass().getSimpleName(), e);
             }
         }
         super.destroy();
@@ -151,10 +151,12 @@ public final class ActionServlet extends HttpServlet {
             }
             String method_name = (parts.length > 1) ? parts[1] : "index";// 如果url中未传递方法名，则使用index
             Method method_of_action = this.getActionMethod(action, method_name);
+
+            // 指定的 方法 不存在 时，转到 主页
             if (method_of_action == null) {
-                _reqCtxt.not_found();
-                return false;
+                method_of_action = this.getActionMethod(action, "index");
             }
+            
             // 调用Action方法之准备参数
             int arg_c = method_of_action.getParameterTypes().length;// 参数个数
             switch (arg_c) {
@@ -166,7 +168,12 @@ public final class ActionServlet extends HttpServlet {
                     break;
                 case 2:// read(RequestContext, id)
                     boolean isLong = method_of_action.getParameterTypes()[1].equals(long.class);
-                    method_of_action.invoke(action, _reqCtxt, isLong ? NumberUtils.toLong(parts[2], -1L) : parts[2]);
+                    // 处理 对象时，未指定 对象 id, 转到 主页
+                    if (parts.length < 3) {
+                        method_of_action = this.getActionMethod(action, "index");
+                        method_of_action.invoke(action, _reqCtxt);
+                    } else
+                        method_of_action.invoke(action, _reqCtxt, isLong ? NumberUtils.toLong(parts[2], -1L) : parts[2]);
                     break;
                 case 3:// search(RequestContext, id, q)
                     // method_of_action.invoke(action, _reqCtxt,
@@ -176,7 +183,8 @@ public final class ActionServlet extends HttpServlet {
                     _reqCtxt.not_found();
                     return false;
             }
-        } catch (Exception e) {
+        } catch (Exception
+                e) {
             e.printStackTrace();
             return false;
         }
@@ -189,6 +197,7 @@ public final class ActionServlet extends HttpServlet {
      * @param _actionName
      * @return
      */
+
     private Object loadAction(final String _actionName) {
         try {
             Object action = actions.get(_actionName);

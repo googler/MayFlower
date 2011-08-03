@@ -271,7 +271,7 @@
 </div>
 </c:when>
 <c:otherwise>
-    <div><font color='#EA0' size="+3"><c:out value="Sorry! 我们没有找到与您的关键字相关的文章和代码:("/></font></div>
+    <div><img src="../../images/404_2.jpg" width="473" height="402"></div>
 </c:otherwise>
 </c:choose>
 <script type="text/javascript">

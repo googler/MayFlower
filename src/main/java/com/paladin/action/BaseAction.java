@@ -18,6 +18,7 @@ package com.paladin.action;
 import com.google.common.base.Strings;
 import com.paladin.bean.User;
 import com.paladin.common.Constants;
+import com.paladin.common.LuceneHelper;
 import com.paladin.common.Tools;
 import com.paladin.mvc.RequestContext;
 import com.paladin.sys.db.QueryHelper;
@@ -28,10 +29,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Base action
@@ -238,7 +236,7 @@ public abstract class BaseAction {
     /**
      * init
      */
-    public void init(ServletContext _ctxt) {
+    protected void init(ServletContext _ctxt) {
         log.info(this.getClass().getName() + " init...");
     }
 }

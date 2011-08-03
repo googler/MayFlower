@@ -75,22 +75,25 @@ public class BlogAction extends BaseAction {
      */
     public void read(final RequestContext _reqCtxt, final long _id) throws ServletException, IOException {
         log.info("get blog detail, the id = " + _id);
-
         Blog blog = QueryHelper.read(Blog.class, "SELECT * FROM BLOG WHERE ID = ?", _id);
-        final HttpServletRequest request = _reqCtxt.request();
-        request.setAttribute("title", blog.getTitle());
-        request.setAttribute("tags", Strings.isNullOrEmpty(blog.getTag()) ? null : blog.getTag().split(","));
 
-        if (!Strings.isNullOrEmpty(request.getParameter("q"))) {
-            String q = Tools.ISO885912UTF8(request.getParameter("q"));
+        if (blog != null) {
+            final HttpServletRequest request = _reqCtxt.request();
             request.setAttribute("title", blog.getTitle());
-            dealBlogWhenQ(blog, q);
-            request.setAttribute("q", q);
-        }
-        request.setAttribute("blog", blog);
-        // --------------------------------- hits++
-        QueryHelper.update("UPDATE BLOG SET HITS = (HITS + 1) WHERE ID = ?", _id);
-        forward(_reqCtxt, "/html/blog/blog_read.jsp");
+            request.setAttribute("tags", Strings.isNullOrEmpty(blog.getTag()) ? null : blog.getTag().split(","));
+
+            if (!Strings.isNullOrEmpty(request.getParameter("q"))) {
+                String q = Tools.ISO885912UTF8(request.getParameter("q"));
+                request.setAttribute("title", blog.getTitle());
+                dealBlogWhenQ(blog, q);
+                request.setAttribute("q", q);
+            }
+            request.setAttribute("blog", blog);
+            // --------------------------------- hits++
+            QueryHelper.update("UPDATE BLOG SET HITS = (HITS + 1) WHERE ID = ?", _id);
+            forward(_reqCtxt, "/html/blog/blog_read.jsp");
+        } else
+            forward(_reqCtxt, "/html/error/404.jsp");
     }
 
     /**

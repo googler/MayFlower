@@ -99,8 +99,7 @@ public class AdminAction extends BaseAction {
             sql_builder.append("INSERT INTO USER(USERNAME, PASSWORD, NICKNAME, EMAIL, REG_DATE, ");
             sql_builder.append("LASTLOGIN_DATE, FIRST_IP, ROLE, PROFILE) VALUES (?, ?, ?, ?, ");
             sql_builder.append("NOW(), NOW(), ?, 'visitor', ?)");
-            QueryHelper.update(sql_builder.toString(), new Object[]{username, password, nickname, email,
-                    ip, profile});
+            QueryHelper.update(sql_builder.toString(), new Object[]{username, password, nickname, email, ip, profile});
             log.info("add new user success:)");
             forward(_reqCtxt, "/login");
         } else {// 更新 用户 信息
