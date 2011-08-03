@@ -102,15 +102,14 @@ public class BlogAction extends BaseAction {
      * @param _reqCtxt life is good:-)
      */
     public void save(final RequestContext _reqCtxt) {
-        final HttpServletRequest request = _reqCtxt.request();
-        String id = request.getParameter("id");
-        String title = request.getParameter("title").trim();
+        String id = _reqCtxt.param("id");
+        String title = _reqCtxt.param("title").trim();
 
         // 对于长字符串，一定要用StringBuilder，否则调试起来太费劲了！
         StringBuilder content = new StringBuilder();
-        content.append(request.getParameter("content").trim());
-        String tag = Tools.checkTag(request.getParameter("tag").trim());
-        String top = request.getParameter("top");
+        content.append(_reqCtxt.param("content"));
+        String tag = Tools.checkTag(_reqCtxt.param("tag"));
+        String top = _reqCtxt.param("top");
         top = top == null ? "0" : top;
 
         if (Strings.isNullOrEmpty(id)) {// 添加新文章

@@ -18,7 +18,7 @@ package com.paladin.bean;
 import com.google.common.base.Strings;
 
 /**
- * 查询列表时使用的Bean类
+ * 查询列表时使用的 Bean 类
  */
 public class BaseBlog {
     protected int id;

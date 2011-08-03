@@ -43,12 +43,12 @@ public class LoginAction extends BaseAction {
     }
 
     public void index(final RequestContext _reqCtxt) {
-        final HttpServletRequest request = _reqCtxt.request();
-        String ip = RequestUtils.getRemoteAddress(request);
-        String r = request.getParameter("r");
+        String ip = RequestUtils.getRemoteAddress(_reqCtxt.request());
+        String r = _reqCtxt.param("r");
+
         log.info("Hi, someone from " + ip + " get ready to login!");
         _reqCtxt.session().removeAttribute("user");
-        request.setAttribute("r", r);
+        _reqCtxt.request().setAttribute("r", r);
         forward(_reqCtxt, "/html/login.jsp");
     }
 
@@ -56,12 +56,13 @@ public class LoginAction extends BaseAction {
      * get/generate user by ip
      */
     private void genUserByIp(final RequestContext _reqCtxt) {
-        final HttpServletRequest request = _reqCtxt.request();
         final HttpSession session = _reqCtxt.session();
-        String ip = RequestUtils.getRemoteAddress(request);
+        String ip = RequestUtils.getRemoteAddress(_reqCtxt.request());
+
         // check the ip if it was recorded before
         StringBuilder sql_builder = new StringBuilder();
         User user = getUserByIp(ip);
+
         if (user == null) {// if not recorded, generate new user
             String password = "12345";
             sql_builder.append("INSERT INTO USER(USERNAME, PASSWORD, NICKNAME, EMAIL, REG_DATE, ");
@@ -70,28 +71,26 @@ public class LoginAction extends BaseAction {
             user = getUserByIp(ip);
         }
         session.setAttribute("user", user);
-        request.setAttribute("msg", "当前用户名和密码系自动生成，请登录后修改！");
+        _reqCtxt.request().setAttribute("msg", "当前用户名和密码系自动生成，请登录后修改！");
     }
 
     /**
      * Login
      */
     public void doLogin(final RequestContext _reqCtxt) {
-        final HttpServletRequest request = _reqCtxt.request();
-        final HttpSession session = _reqCtxt.session();
-        session.removeAttribute("user");
+        _reqCtxt.session().removeAttribute("user");
 
-        String email = request.getParameter("email").trim();
-        String pwd = request.getParameter("pwd").trim();
+        String email = _reqCtxt.param("email").trim();
+        String pwd = _reqCtxt.param("pwd").trim();
         User user = getUser(email, pwd);
 
         if (null == user) {
-            request.setAttribute("msg", "Oops! 你输入的帐户信息有误:(");
+            _reqCtxt.request().setAttribute("msg", "Oops! 你输入的帐户信息有误:(");
             forward(_reqCtxt, "/html/login.jsp");
             return;
         }
-        session.setAttribute("user", user);
-        String r = request.getParameter("r");
+        _reqCtxt.session().setAttribute("user", user);
+        String r = _reqCtxt.param("r");
         if (Strings.isNullOrEmpty(r))
             redirect(_reqCtxt, "/");
         else
@@ -104,9 +103,8 @@ public class LoginAction extends BaseAction {
      * @param _reqCtxt
      */
     public void exit(final RequestContext _reqCtxt) {
-        final HttpSession session = _reqCtxt.session();
-        session.removeAttribute("user");
-        String r = _reqCtxt.request().getParameter("r");
+        _reqCtxt.session().removeAttribute("user");
+        String r = _reqCtxt.param("r");
         if (Strings.isNullOrEmpty(r))
             redirect(_reqCtxt, "/");
         else

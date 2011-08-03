@@ -83,15 +83,14 @@ public class AdminAction extends BaseAction {
      * 保存用户信息
      */
     public void save(final RequestContext _reqCtxt) {
-        final HttpServletRequest request = _reqCtxt.request();
-        String id = request.getParameter("id");
-        String username = request.getParameter("username").trim();
 
-        String nickname = request.getParameter("nickname").trim();
-        String password = request.getParameter("password").trim();
-        String email = request.getParameter("email").trim();
-        String profile = request.getParameter("profile").trim();
-        String ip = request.getParameter("ip");
+        String id = _reqCtxt.param("id");
+        String username = _reqCtxt.param("username");
+        String nickname = _reqCtxt.param("nickname");
+        String password = _reqCtxt.param("password");
+        String email = _reqCtxt.param("email");
+        String profile = _reqCtxt.param("profile");
+        String ip = _reqCtxt.param("ip");
 
         StringBuilder sql_builder = new StringBuilder();
 
@@ -100,15 +99,18 @@ public class AdminAction extends BaseAction {
             sql_builder.append("LASTLOGIN_DATE, FIRST_IP, ROLE, PROFILE) VALUES (?, ?, ?, ?, ");
             sql_builder.append("NOW(), NOW(), ?, 'visitor', ?)");
             QueryHelper.update(sql_builder.toString(), new Object[]{username, password, nickname, email, ip, profile});
+
             log.info("add new user success:)");
             forward(_reqCtxt, "/login");
         } else {// 更新 用户 信息
             String sql = "UPDATE USER SET USERNAME = ?, NICKNAME = ?, PASSWORD = ?, EMAIL = ?, PROFILE = ? WHERE ID = ?";
             QueryHelper.update(sql, new Object[]{username, nickname, password, email, profile, id});
+
             log.info("update user info success:)");
+
             User user = QueryHelper.read(User.class, "SELECT * FROM USER WHERE ID = ?", id);
             _reqCtxt.session().setAttribute("user", user);
-            request.setAttribute("msg", "保存成功!");
+            _reqCtxt.request().setAttribute("msg", "保存成功!");
             forward(_reqCtxt, "/admin");
         }
     }
@@ -131,9 +133,8 @@ public class AdminAction extends BaseAction {
      * @param _reqCtxt
      */
     public void updateIndex(final RequestContext _reqCtxt) throws IOException {
-        final HttpServletRequest request = _reqCtxt.request();
-        String operation = request.getParameter("operation");
-        String[] tables = request.getParameter("table").toString().split(",");
+        String operation = _reqCtxt.param("operation");
+        String[] tables = _reqCtxt.param("table").toString().split(",");
         log.info(operation + " lucene index...");
 
         LuceneHelper.index(tables, operation.equals("rebuild"));

@@ -69,8 +69,8 @@ public class CodeAction extends BaseAction {
             request.setAttribute("title", code.getTitle());
             request.setAttribute("tags", Strings.isNullOrEmpty(code.getTag()) ? null : code.getTag().split(","));
 
-            if (!Strings.isNullOrEmpty(request.getParameter("q"))) {
-                String q = request.getParameter("q");
+            if (!Strings.isNullOrEmpty(_reqCtxt.param("q"))) {
+                String q = _reqCtxt.param("q");
                 q = Tools.ISO885912UTF8(q).replaceAll("<[^>]*>", "");
                 String title = code.getTitle().trim();
                 if (title.indexOf(q) >= 0)
@@ -83,22 +83,21 @@ public class CodeAction extends BaseAction {
             QueryHelper.update("UPDATE CODE SET HITS = (HITS + 1) WHERE ID = ?", _id);
             forward(_reqCtxt, "/html/code/code_read.jsp");
         } else
-           forward(_reqCtxt, "/html/error/404.jsp");
+            forward(_reqCtxt, "/html/error/404.jsp");
     }
 
     /**
      * 保存代码(新增或者修改)
      */
     public void save(final RequestContext _reqCtxt) {
-        final HttpServletRequest request = _reqCtxt.request();
-        String id = request.getParameter("id");
-        String title = request.getParameter("title").trim();
+        String id = _reqCtxt.param("id");
+        String title = _reqCtxt.param("title");
 
         // 对于长字符串，一定要用StringBuilder，否则调试起来太费劲了！
         StringBuilder content = new StringBuilder();
-        content.append(request.getParameter("content").trim());
-        String tag = Tools.checkTag(request.getParameter("tag").trim());
-        String language = request.getParameter("language").trim();
+        content.append(_reqCtxt.param("content"));
+        String tag = Tools.checkTag(_reqCtxt.param("tag"));
+        String language = _reqCtxt.param("language");
 
         if (Strings.isNullOrEmpty(id)) {// 添加新代码
             String sql = "INSERT INTO CODE(TITLE, CONTENT, AUTHOR, CREATE_DATE, TAG, LANGUAGE, HITS) VALUES(?, ?, ?, now(), ?, ?, 1)";

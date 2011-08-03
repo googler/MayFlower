@@ -176,6 +176,7 @@ public abstract class BaseAction {
             redirect(_reqCtxt, "/login?r=/" + _bean_L + "/edit/" + _id);
             return;
         }
+
         log.info("get read to edit " + _bean_L + " - " + _id);
         String sql = "SELECT * FROM " + _bean_U + " WHERE ID = ?";
         _reqCtxt.request().setAttribute(_bean_L, QueryHelper.read(_class, sql, new Object[]{_id}));
@@ -189,11 +190,10 @@ public abstract class BaseAction {
      * @param _table
      */
     protected void del(final RequestContext _reqCtxt, final String _table) {
-        final HttpServletRequest request = _reqCtxt.request();
         if (_reqCtxt.sessionAttr("user") == null)
             forward(_reqCtxt, "/login");
 
-        String id = request.getParameter("id");
+        String id = _reqCtxt.param("id");
         if (Strings.isNullOrEmpty(id)) {
             log.info("the " + _table + "'s id is null when del.");
             redirect(_reqCtxt, "/" + _table.toLowerCase());
@@ -216,6 +216,7 @@ public abstract class BaseAction {
         String sql = "SELECT TAG FROM " + _table.toUpperCase();
         List<Map<String, Object>> list = QueryHelper.queryList(sql);
         Map<String, Integer> tag_map = new HashMap<String, Integer>();
+
         for (Map<String, Object> map : list) {
             String tags = map.get("TAG").toString();
             if (!Strings.isNullOrEmpty(tags))

@@ -52,7 +52,7 @@ import java.util.List;
 public final class ActionServlet extends HttpServlet {
 
     private static final long serialVersionUID = -694945602274634378L;
-    private final static String GOTO_PAGE = "goto_page";
+    private final static String GOTO_PAGE = "index.jsp";
     private static final Log log = LogFactory.getLog(ActionServlet.class);
     private final static String UTF_8 = "utf-8";
     private List<String> actionPackages;

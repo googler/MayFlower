@@ -76,10 +76,10 @@ public class MottoAction extends BaseAction {
      */
     public void save(final RequestContext _reqCtxt) {
         final HttpServletRequest request = _reqCtxt.request();
-        String id = request.getParameter("id");
-        String content = request.getParameter("content").trim();
-        String tag = Tools.checkTag(request.getParameter("tag").trim());
-        String author = request.getParameter("author").trim();
+        String id = _reqCtxt.param("id");
+        String content = _reqCtxt.param("content");
+        String tag = Tools.checkTag(_reqCtxt.param("tag"));
+        String author = _reqCtxt.param("author");
 
         if (Strings.isNullOrEmpty(id)) {
             QueryHelper.update("INSERT INTO MOTTO(CONTENT, AUTHOR, TAG) VALUES(?, ?, ?)",

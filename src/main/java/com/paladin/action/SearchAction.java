@@ -17,33 +17,27 @@ package com.paladin.action;
 
 import com.google.common.base.Strings;
 import com.paladin.bean.Blog;
-import com.paladin.bean.Motto;
 import com.paladin.common.Constants;
 import com.paladin.common.Tools;
 import com.paladin.mvc.RequestContext;
-import com.paladin.sys.db.QueryHelper;
-import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.queryParser.QueryParser;
-import org.apache.lucene.search.*;
-import org.apache.lucene.search.highlight.*;
-import org.apache.lucene.search.highlight.Scorer;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopScoreDocCollector;
+import org.apache.lucene.search.highlight.InvalidTokenOffsetsException;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 import org.wltea.analyzer.lucene.IKAnalyzer;
-import org.wltea.analyzer.lucene.IKQueryParser;
 import org.wltea.analyzer.lucene.IKSimilarity;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.util.*;
-
-import static java.lang.System.out;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Search Action
@@ -66,7 +60,7 @@ public class SearchAction extends BaseAction {
      */
     public void bcm(final RequestContext _reqCtxt) throws IOException, ParseException, InvalidTokenOffsetsException {
         HttpServletRequest request = _reqCtxt.request();
-        String q = request.getParameter("q");
+        String q = _reqCtxt.param("q");
 
         if (!Strings.isNullOrEmpty(q)) {
             q = Tools.ISO885912UTF8(q).trim();
@@ -78,7 +72,7 @@ public class SearchAction extends BaseAction {
             _b(request, q, "motto");// 查找箴言
 
             // 刷新页面时应该聚集到哪个选项卡
-            String type = request.getParameter("t");
+            String type = _reqCtxt.param("t");
             // 控制搜索结果页面的样式
             request.setAttribute("class_blog", "class=\'u_tab\'");
             request.setAttribute("class_code", "class=\'u_tab\'");
